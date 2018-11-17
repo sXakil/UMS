@@ -6,11 +6,13 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import org.bson.Document;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -140,5 +142,9 @@ public class AdminDashboardController implements Initializable {
             male.setSelected(true);
         else
             male.setSelected(false);
+    }
+
+    public void logOut() throws IOException {
+        new SceneSwitcher().switchSceneTo("resources/landing.fxml");
     }
 }

@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +20,7 @@
    <children>
       <StackPane layoutX="226.0" layoutY="7.0" prefHeight="787.0" prefWidth="965.0">
          <children>
-            <Pane fx:id="mAddStud" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="mAddStud" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <JFXTextField fx:id="newStudName" focusColor="#0947ff" labelFloat="true" layoutX="83.0" layoutY="93.0" onKeyReleased="#onTextFieldChangedListener" prefHeight="41.0" prefWidth="245.0" promptText="Name" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
                   <JFXButton fx:id="addNewStud" alignment="CENTER" disable="true" layoutX="83.0" layoutY="576.0" onAction="#addNewStudent" prefHeight="41.0" prefWidth="245.0" style="-fx-background-color: #11aa11;" text="Add" textFill="WHITE">
@@ -76,6 +77,11 @@
                   </JFXButton>
                   <JFXCheckBox fx:id="male" layoutX="83.0" layoutY="507.0" onAction="#isMale" selected="true" text="Male" />
                   <JFXCheckBox fx:id="female" layoutX="204.0" layoutY="507.0" onAction="#isFemale" text="Female" />
+                  <Label layoutX="300.0" layoutY="27.0" text="Add a new Student">
+                     <font>
+                        <Font name="System Bold" size="34.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Pane fx:id="dash" prefHeight="642.0" prefWidth="833.0" visible="false">
@@ -121,10 +127,10 @@
                         <Font name="DejaVu Serif Bold" size="15.0" />
                      </font>
                      <VBox.margin>
-                        <Insets />
+                        <Insets bottom="10.0" top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <JFXButton onAction="#toAddPane" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #111125;" text="Add new Student" textFill="WHITE">
+                  <JFXButton onAction="#toAddPane" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #7777ff;" text="Add new Student" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -134,6 +140,17 @@
                      <graphic>
                         <FontAwesomeIconView fill="#f8f8f8" glyphName="PLUS_CIRCLE" size="18.0" />
                      </graphic>
+                  </JFXButton>
+                  <JFXButton layoutX="10.0" layoutY="53.0" onAction="#toAddPane" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #111125;" text="Modify a Student" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#f8f8f8" glyphName="EDIT" size="18.0" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </JFXButton>
                   <JFXButton layoutX="10.0" layoutY="150.0" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #cc1111;" text=" Delete A Student" textFill="WHITE">
                      <font>
@@ -150,8 +167,11 @@
                      <font>
                         <Font name="DejaVu Serif Bold" size="15.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="20.0" />
+                     </VBox.margin>
                   </Label>
-                  <JFXButton prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #111125;" text=" Add new Faculty" textFill="WHITE">
+                  <JFXButton prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #7777ff;" text=" Add new Faculty" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -161,6 +181,17 @@
                      <graphic>
                         <FontAwesomeIconView fill="#f8f8f8" glyphName="PLUS_CIRCLE" size="18.0" />
                      </graphic>
+                  </JFXButton>
+                  <JFXButton layoutX="10.0" layoutY="113.0" onAction="#toAddPane" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #111125;" text="Modify a Faculty" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#f8f8f8" glyphName="EDIT" size="18.0" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </JFXButton>
                   <JFXButton prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #cc1111;" text=" Delete A Faculty" textFill="WHITE">
                      <font>
@@ -172,12 +203,18 @@
                   </JFXButton>
                </children>
             </VBox>
-            <JFXButton layoutX="13.0" layoutY="15.0" onAction="#mToDash" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #444488;" text="Dashboard" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="13.0" layoutY="15.0" onAction="#mToDash" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #444488;" text="Dashboard" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
             <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="37.0" layoutY="57.0" size="20" />
+            <JFXButton buttonType="RAISED" layoutX="29.0" layoutY="717.0" onAction="#logOut" prefHeight="60.0" prefWidth="168.0" style="-fx-background-color: #111f3aa7; -fx-background-radius: 10;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="KacstBook" size="20.0" />
+               </font>
+            </JFXButton>
+            <MaterialDesignIconView fill="WHITE" glyphName="LOGOUT" layoutX="50.0" layoutY="755.0" size="18" />
          </children>
       </Pane>
    </children>
