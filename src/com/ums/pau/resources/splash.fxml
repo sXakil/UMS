@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="spAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="869.0" style="-fx-background-color: #4ebf70c5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.Controller">
+   <children>
+         <Label fx:id="spLogo" alignment="CENTER" contentDisplay="CENTER" layoutX="400.0" layoutY="38.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #fff; -fx-background-radius: 50;" text="UMS" textFill="#4ebf70">
+            <font>
+               <Font name="Ubuntu Bold" size="32.0" />
+            </font>
+         </Label>
+         <Label fx:id="spLabel" layoutX="259.0" layoutY="142.0" prefHeight="56.0" prefWidth="382.0" text="Welcome to the UMS" textFill="WHITE" visible="false">
+            <font>
+               <Font size="36.0" />
+            </font>
+         </Label>
+         <JFXSpinner fx:id="spSpinner" layoutX="426.0" layoutY="254.0" visible="false" />
+         <Label fx:id="spMsg" alignment="CENTER" layoutX="353.0" layoutY="332.0" prefHeight="30.0" prefWidth="195.0" text="Just a second..." textFill="WHITE" visible="false" />
+   </children>
+</AnchorPane>
