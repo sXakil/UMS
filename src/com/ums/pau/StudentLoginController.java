@@ -40,7 +40,7 @@ public class StudentLoginController {
             System.out.println("Empty input!");
         }
         if(pass != null && passWord.getText().equals(pass)) {
-            new SceneSwitcher().switchSceneTo("resources/facultyDashboard.fxml");
+            new SceneSwitcher().switchSceneTo("resources/studentDashboard.fxml");
         } else error.setVisible(true);
     }
 

@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeTableColumn;
 
 
-public class ResultController {
+public class FacultyDashboardController {
     @FXML
     public JFXTreeTableView treeTableView;
     @FXML
