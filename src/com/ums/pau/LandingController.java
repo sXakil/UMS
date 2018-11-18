@@ -1,7 +1,5 @@
 package com.ums.pau;
 
-import javafx.event.ActionEvent;
-
 import java.io.IOException;
 
 public class LandingController {

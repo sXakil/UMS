@@ -158,7 +158,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="18.0" layoutY="14.0" text="New Faculty Added Successfully!" textFill="#04a158">
+                        <Label fx:id="nTe" layoutX="18.0" layoutY="14.0" text="New Faculty Added Successfully!" textFill="#04a158">
                            <font>
                               <Font size="14.0" />
                            </font>

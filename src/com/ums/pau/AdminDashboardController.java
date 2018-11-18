@@ -1,21 +1,21 @@
 package com.ums.pau;
 
 import com.jfoenix.controls.*;
-import com.mongodb.BasicDBObject;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import org.bson.Document;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +37,7 @@ public class AdminDashboardController implements Initializable {
     public JFXTextField newTeacherPosition, newTeacherMajor, newTeacherDept, newTeacherPass;
     public JFXDatePicker neTeacherJD;
     public Pane previewT;
-    public Label nTn, nTp, nTm, nTd, nTj;
+    public Label nTn, nTp, nTm, nTd, nTj, nTe;
     public JFXCheckBox maleT, femaleT;
 
     private static boolean isValid = false;
@@ -58,17 +58,24 @@ public class AdminDashboardController implements Initializable {
 
     public void addNewStudent() {
         if(addNew) {
-            MongoCollection<Document> table = initMongo("students");
-            BasicDBObject document = new BasicDBObject("name", newStudName.getText())
-                    .append("id", newStudID.getText())
-                    .append("dept", newStudDept.getText().toUpperCase())
-                    .append("session", newStudSes.getText())
-                    .append("admissionDate", newStudAdDate.getValue() == null ? new Date() : newStudAdDate.getValue().toString())
-                    .append("password", newStudPass.getText())
-                    .append("gender", male.isSelected() ? "Male" : "Female")
-                    .append("added_on", new Date());
-            Document doc = new Document(document);
-            table.insertOne(doc);
+            if(isDuplicate()) {
+                MongoCollection<Document> table = initMongo("students");
+                BasicDBObject document = new BasicDBObject("name", newStudName.getText())
+                        .append("id", newStudID.getText())
+                        .append("dept", newStudDept.getText().toUpperCase())
+                        .append("session", newStudSes.getText())
+                        .append("admissionDate", newStudAdDate.getValue() == null ? new Date() : newStudAdDate.getValue().toString())
+                        .append("password", newStudPass.getText())
+                        .append("gender", male.isSelected() ? "Male" : "Female")
+                        .append("added_on", new Date());
+                Document doc = new Document(document);
+                table.insertOne(doc);
+                nSm.setText("New student added successfully!");
+                nSm.setTextFill(Color.GREEN);
+            } else {
+                nSm.setText("Student already exists!");
+                nSm.setTextFill(Color.RED);
+            }
             preview.setVisible(true);
             nSn.setText(nSn.getText() + newStudName.getText());
             nSi.setText(nSi.getText() + newStudID.getText());
@@ -137,6 +144,7 @@ public class AdminDashboardController implements Initializable {
             newTeacherPass.setDisable(true);
             addNewTeacher.setText("Add Another");
             addNewT = false;
+
         } else {
             nTn.setText("Name: ");
             nTp.setText("Position: ");
@@ -247,5 +255,25 @@ public class AdminDashboardController implements Initializable {
 
     public void logOut() throws IOException {
         new SceneSwitcher().switchSceneTo("resources/landing.fxml");
+    }
+
+    private DBCollection initMongoDB() {
+        Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
+        mongoLogger.setLevel(Level.SEVERE);
+        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+        DB db = mongoClient.getDB("UMS");
+        return db.getCollection("students");
+    }
+
+    private boolean isDuplicate() {
+        BasicDBObject bd = new BasicDBObject("id", newStudID.getText());
+        DBCollection dc = initMongoDB();
+        DBCursor cursor = dc.find(bd);
+        try {
+            DBObject dbo = cursor.next();
+            return !Objects.equals(dbo.get("id").toString(), newStudID.getText());
+        } catch (NoSuchElementException e) {
+            return true;
+        }
     }
 }
