@@ -116,7 +116,6 @@ public class AdminDashboardController implements Initializable {
     }
 
 
-
     public void addNewTeacher() {
         if(addNewT) {
             MongoCollection<Document> table = initMongo("teacher");

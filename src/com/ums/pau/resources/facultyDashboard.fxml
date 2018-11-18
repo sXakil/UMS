@@ -2,31 +2,33 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.FacultyDashboardController">
     <children>
-        <JFXTreeTableView fx:id="treeTableView" layoutX="14.0" layoutY="6.0" prefHeight="800.0" prefWidth="600.0" stylesheets="@stylesheet/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <columns>
-                <TreeTableColumn fx:id="idCol" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="ID" />
-                <TreeTableColumn fx:id="nameCol" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Name" />
-                <TreeTableColumn fx:id="dptCol" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Department" />
-                <TreeTableColumn fx:id="cgpaCol" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="CGPA" />
-            </columns>
-            <columnResizePolicy>
-                <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
-        </JFXTreeTableView>
+      <Pane prefHeight="60.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" layoutX="29.0" layoutY="22.0" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #cccccc;" text="Name" />
+            <Label alignment="CENTER" layoutX="186.0" layoutY="22.0" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #cccccc;" text="ID" />
+            <Label alignment="CENTER" layoutX="342.0" layoutY="22.0" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #cccccc;" text="Dept." />
+            <Label alignment="CENTER" layoutX="488.0" layoutY="22.0" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #cccccc;" text="Gender" />
+         </children>
+      </Pane>
+      <ScrollPane layoutY="58.0" prefHeight="740.0" prefWidth="600.0">
+         <content>
+            <VBox fx:id="vBox" prefWidth="600.0" />
+         </content>
+      </ScrollPane>
         <JFXTextField fx:id="searchTF" focusColor="#00d09f" labelFloat="true" layoutX="614.0" layoutY="14.0" maxWidth="309.0" minWidth="289.0" prefHeight="31.0" prefWidth="309.0" promptText="Search" unFocusColor="#dadada" AnchorPane.leftAnchor="614.0" />
         <HBox layoutX="614.0" layoutY="52.0" prefHeight="46.0" prefWidth="581.0" AnchorPane.bottomAnchor="582.0" AnchorPane.leftAnchor="614.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="52.0">
             <children>
