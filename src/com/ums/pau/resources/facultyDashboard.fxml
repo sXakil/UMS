@@ -2,134 +2,28 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.FacultyDashboardController">
     <children>
-      <Pane prefHeight="60.0" prefWidth="600.0">
-         <children>
-            <Label alignment="CENTER" layoutX="29.0" layoutY="22.0" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #cccccc;" text="Name" />
-            <Label alignment="CENTER" layoutX="186.0" layoutY="22.0" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #cccccc;" text="ID" />
-            <Label alignment="CENTER" layoutX="342.0" layoutY="22.0" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #cccccc;" text="Dept." />
-            <Label alignment="CENTER" layoutX="488.0" layoutY="22.0" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #cccccc;" text="Gender" />
-         </children>
-      </Pane>
-      <ScrollPane layoutY="58.0" prefHeight="740.0" prefWidth="600.0">
+      <ScrollPane layoutY="114.0" prefHeight="686.0" prefWidth="600.0">
          <content>
-            <VBox fx:id="vBox" prefWidth="600.0" />
+            <VBox fx:id="vBox" prefWidth="596.0" />
          </content>
       </ScrollPane>
-        <JFXTextField fx:id="searchTF" focusColor="#00d09f" labelFloat="true" layoutX="614.0" layoutY="14.0" maxWidth="309.0" minWidth="289.0" prefHeight="31.0" prefWidth="309.0" promptText="Search" unFocusColor="#dadada" AnchorPane.leftAnchor="614.0" />
-        <HBox layoutX="614.0" layoutY="52.0" prefHeight="46.0" prefWidth="581.0" AnchorPane.bottomAnchor="582.0" AnchorPane.leftAnchor="614.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="52.0">
-            <children>
-                <JFXButton id="BTNS" prefHeight="46.0" prefWidth="81.0" style="-fx-background-color: #00a9e7;" text="ADD" textFill="WHITE" />
-                <JFXButton id="BTNS" prefHeight="46.0" prefWidth="81.0" style="-fx-background-color: #00b56f;" text="DELETE" textFill="WHITE" />
-                <JFXButton id="BTNS" prefHeight="46.0" prefWidth="81.0" style="-fx-background-color: #ff5656;" text="EDIT" textFill="WHITE" />
-                <JFXButton id="BTNS" prefHeight="46.0" prefWidth="81.0" style="-fx-background-color: #273968;" text="CLEAR" textFill="WHITE" />
-            </children>
-        </HBox>
-        <AnchorPane layoutX="601.00" layoutY="110.0" prefHeight="350.0" prefWidth="578.0" style="-fx-border-color: #00000027;" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="614.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="110.0">
-            <children>
-                <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="140.0" text="MANAGEMENT PANE" textFill="#ababab">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <GridPane layoutX="16.0" layoutY="47.0" prefHeight="217.0" prefWidth="290.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="41.0">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-                        <JFXTextField fx:id="idTF" focusColor="#00d087" labelFloat="true" promptText="ID" unFocusColor="#c9c9c9" />
-                        <JFXTextField fx:id="nameTF" focusColor="#00d087" labelFloat="true" promptText="Name" unFocusColor="#c9c9c9" GridPane.rowIndex="1" />
-                        <JFXTextField fx:id="dptTF" focusColor="#00d087" labelFloat="true" promptText="Department" unFocusColor="#c9c9c9" GridPane.rowIndex="2" />
-                        <JFXTextField fx:id="cgpaTF" focusColor="#00d087" prefHeight="25.0" prefWidth="291.0" promptText="CGPA" unFocusColor="#c9c9c9" GridPane.rowIndex="3">
-                            <padding>
-                                <Insets left="5.0" />
-                            </padding>
-                        </JFXTextField>
-                    </children>
-                </GridPane>
-            </children>
-        </AnchorPane>
-        <AnchorPane layoutX="601.0" layoutY="471.0" prefHeight="315.0" prefWidth="578.0" style="-fx-border-color: #00000027;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="614.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="471.0">
-            <children>
-                <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="140.0" text="View PANE" textFill="#ababab">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <GridPane layoutX="20.0" layoutY="37.0" prefHeight="217.0" prefWidth="200.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="42.0">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="67.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="223.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="106.0" text="ID" textFill="#9e9e9e">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="106.0" text="Name" textFill="#9e9e9e" GridPane.rowIndex="1">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="106.0" text="Department" textFill="#9e9e9e" GridPane.rowIndex="2">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="106.0" text="CGPA" textFill="#9e9e9e" GridPane.rowIndex="3">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="idLB" alignment="CENTER" prefHeight="17.0" prefWidth="205.0" text="Label" textFill="#9e9e9e" GridPane.columnIndex="1">
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="nameLB" alignment="CENTER" prefHeight="17.0" prefWidth="205.0" text="Label" textFill="#9e9e9e" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="dptLB" alignment="CENTER" prefHeight="17.0" prefWidth="205.0" text="Label" textFill="#9e9e9e" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="cgpaLB" alignment="CENTER" prefHeight="17.0" prefWidth="205.0" text="Label" textFill="#9e9e9e" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </GridPane>
-            </children>
-        </AnchorPane>
+        <JFXTextField fx:id="searchToEdit" focusColor="#00cf9b00" labelFloat="true" layoutX="74.0" layoutY="26.0" maxWidth="452.0" minWidth="289.0" prefHeight="46.0" prefWidth="452.0" style="-fx-background-color: #fff; -fx-border-color: #000; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;" unFocusColor="#d9d9d900" AnchorPane.leftAnchor="74.0" />
+          <JFXButton id="BTNS" layoutX="648.0" layoutY="657.0" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: #ff5656;" text="EDIT" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="15" />
+         </graphic>
+      </JFXButton>
+      <FontAwesomeIconView id="search" fill="#6f6f6f" glyphName="SEARCH" layoutX="480.0" layoutY="60.0" onMouseClicked="#findToEdit" size="30" />
+      <JFXTextField fx:id="idTF" disable="true" labelFloat="true" layoutX="633.0" layoutY="102.0" prefHeight="26.0" prefWidth="183.0" promptText="Id" />
+      <JFXTextField fx:id="nameTF" disable="true" layoutX="633.0" layoutY="153.0" prefHeight="26.0" prefWidth="183.0" promptText="Name" />
+      <JFXTextField fx:id="deptTF" disable="true" layoutX="633.0" layoutY="212.0" prefHeight="26.0" prefWidth="183.0" promptText="Dept" />
+      <JFXTextField fx:id="genTF" disable="true" layoutX="633.0" layoutY="272.0" prefHeight="26.0" prefWidth="183.0" promptText="Gender" />
     </children>
 </AnchorPane>

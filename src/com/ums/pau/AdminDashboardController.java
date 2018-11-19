@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.ums.pau.FacultyDashboardController.getDocumentMongoCollection;
+
 public class AdminDashboardController implements Initializable {
     @FXML
     public JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass;
@@ -45,11 +47,7 @@ public class AdminDashboardController implements Initializable {
     private static boolean addNewT = true;
 
     private MongoCollection<Document> initMongo(String collName) {
-        Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
-        mongoLogger.setLevel(Level.SEVERE);
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-        MongoDatabase db = mongoClient.getDatabase("UMS");
-        return db.getCollection(collName);
+        return getDocumentMongoCollection(collName);
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {

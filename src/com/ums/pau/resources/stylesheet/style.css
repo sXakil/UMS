@@ -105,3 +105,31 @@
     -fx-fill: #111155;
     -fx-text-fill: white;
 }
+#name, #id, #dept, #gender {
+    -fx-end-margin: 25px;
+    -fx-min-width: 125;
+}
+#name:hover, #id:hover, #dept:hover, #gender:hover {
+    -fx-background-color: #111155;
+    -fx-text-fill: #fff;
+}
+#search:hover {
+    -fx-fill: deepskyblue;
+}
+#hBox-list {
+    -fx-text-fill: #5a5a5a;
+    -fx-font-size: 20px;
+    -fx-background-color: #dfdcda;
+    -fx-padding: 25px;
+}
+#hBox-list {
+    -fx-text-fill: #5a5a5a;
+    -fx-font-size: 20px;
+    -fx-background-color: #dfdcda;
+    -fx-padding: 25px;
+}
+#hBox-list:hover {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-background-color: cyan;
+}
