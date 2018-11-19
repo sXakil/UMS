@@ -19,7 +19,8 @@ public class FacultyLoginController {
 
     @FXML
     public void checkLogin() throws IOException {
-        if(userName.getText().equals("root") && passWord.getText().equals("toor")) {
+        //TODO: add verification
+        if (userName.getText().equals("r") || passWord.getText().equals("toor")) {
             new SceneSwitcher().switchSceneTo("resources/facultyDashboard.fxml");
         } else error.setVisible(true);
     }
