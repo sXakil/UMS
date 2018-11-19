@@ -47,8 +47,8 @@
       </JFXButton>
       <FontAwesomeIconView id="search" fill="#6f6f6f" glyphName="SEARCH" layoutX="480.0" layoutY="60.0" onMouseClicked="#findToEdit" size="30" />
         <JFXTextField fx:id="idTF" disable="true" labelFloat="true" layoutX="704.0" layoutY="183.0"
-                      onKeyPressed="#filled" promptText="ID"/>
-        <JFXTextField fx:id="courseTF" labelFloat="true" layoutX="704.0" layoutY="227.0" onKeyPressed="#filled"
+                      onKeyReleased="#filled" promptText="ID"/>
+        <JFXTextField fx:id="courseTF" labelFloat="true" layoutX="704.0" layoutY="227.0" onKeyReleased="#filled"
                       promptText="Course Code"/>
         <ScrollPane layoutX="619.0" layoutY="417.0" prefHeight="380.0" prefWidth="570.0">
             <content>

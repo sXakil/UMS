@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.bson.Document;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,6 +58,7 @@ public class FacultyDashboardController implements Initializable {
     }
 
     private void editorFill(String id) {
+        getCGPA(id);
         isValid = false;
         DBCollection collection = dataRetriever("students");
         BasicDBObject dbObject = new BasicDBObject("id", id);
@@ -146,7 +148,7 @@ public class FacultyDashboardController implements Initializable {
             lb3.setId("item");
             //lb3.setAlignment(Pos.CENTER);
             hb.getChildren().add(lb3);
-
+            //String cgp = getCGPA(id);
             Label lb4 = new Label(gender);
             lb4.setId("item");
             //lb4.setAlignment(Pos.CENTER);
@@ -157,8 +159,31 @@ public class FacultyDashboardController implements Initializable {
         }
     }
 
-    public void getCGPA(String id) {
-
+    private void getCGPA(String id) {
+        DBCollection collection = dataRetriever("results");
+        BasicDBObject query = new BasicDBObject("id", id);
+        DBCursor cursor = collection.find(query);
+        DBObject doc;
+        Double gp, cc;
+        double totalGradePoint = 0, totalCredit = 0, gpMultiple = 0, gpDevisor = 0;
+        while (cursor.hasNext()) {
+            doc = cursor.next();
+            gp = Double.parseDouble(doc.get("gp").toString());
+            cc = Double.parseDouble(doc.get("course_credit").toString());
+            totalGradePoint += gp;
+            totalCredit += cc;
+            if (cc == 3.00) {
+                gpMultiple += gp * 4;
+                gpDevisor += 4;
+            } else if (cc == 1.00) {
+                gpMultiple += gp;
+                gpDevisor += 1;
+            }
+        }
+        Double cgp = gpMultiple / gpDevisor;
+        DecimalFormat df = new DecimalFormat("#.##");
+        cgp = Double.valueOf(df.format(cgp));
+        System.out.println(totalGradePoint + " " + totalCredit + " " + cgp);
     }
 
     public void enterResult() {
@@ -166,7 +191,8 @@ public class FacultyDashboardController implements Initializable {
         BasicDBObject dbObject = new BasicDBObject("id", idTF.getText())
                 .append("semester", semCB.getSelectionModel().getSelectedItem())
                 .append("course_code", courseTF.getText().replaceAll(" ", ""))
-                .append("gp", gpCB.getSelectionModel().getSelectedItem());
+                .append("gp", gpCB.getSelectionModel().getSelectedItem())
+                .append("course_credit", c3.isSelected() ? "3" : "1");
         Document doc = new Document(dbObject);
         grades.insertOne(doc);
         idTF.clear();
@@ -193,9 +219,9 @@ public class FacultyDashboardController implements Initializable {
 
     public void filled() {
         isValid = idTF.getText().length() > 0 &&
-                courseTF.getText().length() > 0 &&
-                semCB.getValue().length() != 0 &&
-                gpCB.getValue().length() != 0;
+                courseTF.getText().length() > 5 &&
+                semCB.getValue() != null &&
+                gpCB.getValue() != null;
         if (isValid) resultBTN.setDisable(false);
         else resultBTN.setDisable(true);
     }
