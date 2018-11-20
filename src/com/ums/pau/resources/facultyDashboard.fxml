@@ -47,7 +47,7 @@
          </graphic>
       </JFXButton>
       <FontAwesomeIconView id="search" fill="#6f6f6f" glyphName="SEARCH" layoutX="480.0" layoutY="60.0" onMouseClicked="#findToEdit" size="30" />
-        <JFXTextField fx:id="idTF" disable="true" labelFloat="true" layoutX="704.0" layoutY="183.0"
+        <JFXTextField fx:id="idTF" labelFloat="true" layoutX="704.0" layoutY="183.0"
                       onKeyReleased="#filled" promptText="ID"/>
         <JFXTextField fx:id="courseTF" labelFloat="true" layoutX="704.0" layoutY="227.0" onKeyReleased="#filled"
                       promptText="Course Code"/>

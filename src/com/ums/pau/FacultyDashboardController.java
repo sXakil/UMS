@@ -15,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.bson.Document;
-
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -70,6 +69,7 @@ public class FacultyDashboardController implements Initializable {
         prevPane.setVisible(true);
         nameLab.setText(object.get("name").toString());
         idTF.setText(object.get("id").toString());
+        idTF.setDisable(true);
 
         collection = dataRetriever("results");
         cursor = collection.find(dbObject);
@@ -183,9 +183,9 @@ public class FacultyDashboardController implements Initializable {
                 gpDivisor += 1;
             }
         }
-        Double cgp = gpMultiple / gpDivisor;
+        double cgp = gpMultiple / gpDivisor;
         DecimalFormat df = new DecimalFormat("#.##");
-        cgp = Double.valueOf(df.format(cgp));
+        cgp = cgp > 1.0 ? Double.valueOf(df.format(cgp)) : 0.0;
         System.out.println(totalGradePoint + " " + totalCredit + " " + cgp);
     }
 
@@ -199,12 +199,12 @@ public class FacultyDashboardController implements Initializable {
         if (cursor.hasNext()) {
             failed.setVisible(true);
             resultBTN.setText("Try Again");
-            resultBTN.setDisable(true);
+            resultBTN.setDisable(false);
         } else {
             MongoCollection<Document> grades = initMongo();
             BasicDBObject dbObject = new BasicDBObject("id", idTF.getText())
                     .append("semester", semCB.getSelectionModel().getSelectedItem())
-                    .append("course_code", courseTF.getText().toUpperCase().replaceAll(" ", ""))
+                    .append("course_code", courseTF.getText().toUpperCase().replaceAll("[ \\-]", ""))
                     .append("gp", gpCB.getSelectionModel().getSelectedItem())
                     .append("course_credit", c3.isSelected() ? "3" : "1");
             Document doc = new Document(dbObject);
