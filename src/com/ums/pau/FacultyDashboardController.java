@@ -15,6 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.bson.Document;
+
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
@@ -35,6 +37,7 @@ public class FacultyDashboardController implements Initializable {
     public VBox resultVBox;
     public JFXCheckBox c3, c1;
     private static boolean isValid = false;
+    public Label failed, success;
 
     private DBCollection dataRetriever(String collName) {
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
@@ -165,7 +168,7 @@ public class FacultyDashboardController implements Initializable {
         DBCursor cursor = collection.find(query);
         DBObject doc;
         Double gp, cc;
-        double totalGradePoint = 0, totalCredit = 0, gpMultiple = 0, gpDevisor = 0;
+        double totalGradePoint = 0, totalCredit = 0, gpMultiple = 0, gpDivisor = 0;
         while (cursor.hasNext()) {
             doc = cursor.next();
             gp = Double.parseDouble(doc.get("gp").toString());
@@ -174,32 +177,45 @@ public class FacultyDashboardController implements Initializable {
             totalCredit += cc;
             if (cc == 3.00) {
                 gpMultiple += gp * 4;
-                gpDevisor += 4;
+                gpDivisor += 4;
             } else if (cc == 1.00) {
                 gpMultiple += gp;
-                gpDevisor += 1;
+                gpDivisor += 1;
             }
         }
-        Double cgp = gpMultiple / gpDevisor;
+        Double cgp = gpMultiple / gpDivisor;
         DecimalFormat df = new DecimalFormat("#.##");
         cgp = Double.valueOf(df.format(cgp));
         System.out.println(totalGradePoint + " " + totalCredit + " " + cgp);
     }
 
     public void enterResult() {
-        MongoCollection<Document> grades = initMongo();
-        BasicDBObject dbObject = new BasicDBObject("id", idTF.getText())
-                .append("semester", semCB.getSelectionModel().getSelectedItem())
-                .append("course_code", courseTF.getText().replaceAll(" ", ""))
-                .append("gp", gpCB.getSelectionModel().getSelectedItem())
-                .append("course_credit", c3.isSelected() ? "3" : "1");
-        Document doc = new Document(dbObject);
-        grades.insertOne(doc);
-        idTF.clear();
-        semCB.getSelectionModel().clearSelection();
-        courseTF.clear();
-        gpCB.getSelectionModel().clearSelection();
-        resultBTN.setDisable(true);
+        failed.setVisible(false);
+        success.setVisible(false);
+        resultBTN.setText("Enter");
+        DBCollection collection = dataRetriever("results");
+        BasicDBObject query = new BasicDBObject("course_code", courseTF.getText().toUpperCase().replaceAll("[ \\-]", ""));
+        DBCursor cursor = collection.find(query);
+        if (cursor.hasNext()) {
+            failed.setVisible(true);
+            resultBTN.setText("Try Again");
+            resultBTN.setDisable(true);
+        } else {
+            MongoCollection<Document> grades = initMongo();
+            BasicDBObject dbObject = new BasicDBObject("id", idTF.getText())
+                    .append("semester", semCB.getSelectionModel().getSelectedItem())
+                    .append("course_code", courseTF.getText().toUpperCase().replaceAll(" ", ""))
+                    .append("gp", gpCB.getSelectionModel().getSelectedItem())
+                    .append("course_credit", c3.isSelected() ? "3" : "1");
+            Document doc = new Document(dbObject);
+            grades.insertOne(doc);
+            success.setVisible(true);
+            idTF.clear();
+            semCB.getSelectionModel().clearSelection();
+            courseTF.clear();
+            gpCB.getSelectionModel().clearSelection();
+            resultBTN.setDisable(true);
+        }
     }
 
 
@@ -218,12 +234,18 @@ public class FacultyDashboardController implements Initializable {
     }
 
     public void filled() {
+        failed.setVisible(false);
+        success.setVisible(false);
         isValid = idTF.getText().length() > 0 &&
                 courseTF.getText().length() > 5 &&
                 semCB.getValue() != null &&
                 gpCB.getValue() != null;
         if (isValid) resultBTN.setDisable(false);
         else resultBTN.setDisable(true);
+    }
+
+    public void logOut() throws IOException {
+        new SceneSwitcher().switchSceneTo("resources/landing.fxml");
     }
 }
 //    @FXML

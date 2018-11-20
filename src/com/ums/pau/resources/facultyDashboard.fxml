@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -38,7 +39,7 @@
                       minWidth="289.0" prefHeight="46.0" prefWidth="452.0" promptText="Search with the ID"
                       style="-fx-background-color: #fff; -fx-border-color: #000; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;"
                       unFocusColor="#d9d9d900" AnchorPane.leftAnchor="74.0"/>
-        <JFXButton id="BTNS" fx:id="resultBTN" buttonType="RAISED" layoutX="824.0" layoutY="314.0"
+        <JFXButton id="BTNS" fx:id="resultBTN" buttonType="RAISED" layoutX="824.0" layoutY="350.0"
                    onAction="#enterResult" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: #ff5656;"
                    text="Enter" textFill="WHITE">
          <graphic>
@@ -50,6 +51,13 @@
                       onKeyReleased="#filled" promptText="ID"/>
         <JFXTextField fx:id="courseTF" labelFloat="true" layoutX="704.0" layoutY="227.0" onKeyReleased="#filled"
                       promptText="Course Code"/>
+        <JFXButton id="BTNS" buttonType="RAISED" layoutX="22.0" layoutY="734.0" onAction="#logOut" prefHeight="46.0"
+                   prefWidth="124.0" style="-fx-background-color: #444466; -fx-background-radius: 20;" text="Log Out"
+                   textFill="WHITE">
+            <graphic>
+                <MaterialDesignIconView fill="WHITE" glyphName="LOGOUT" size="15"/>
+            </graphic>
+        </JFXButton>
         <ScrollPane layoutX="619.0" layoutY="417.0" prefHeight="380.0" prefWidth="570.0">
             <content>
                 <VBox fx:id="resultVBox" prefWidth="560.0"/>
@@ -62,5 +70,17 @@
         <JFXCheckBox fx:id="c3" layoutX="810.0" layoutY="276.0" onAction="#isThree" selected="true" text="3"/>
         <JFXCheckBox fx:id="c1" layoutX="859.0" layoutY="276.0" onAction="#isOne" text="1"/>
         <Label layoutX="704.0" layoutY="277.0" text="Course Credit: "/>
+        <Label fx:id="success" layoutX="761.0" layoutY="315.0" text="New grade uploaded successfully!"
+               textFill="#2ac32d" visible="false">
+            <font>
+                <Font name="System Bold" size="13.0"/>
+            </font>
+        </Label>
+        <Label fx:id="failed" layoutX="788.0" layoutY="316.0" text="Invalid or duplicate grade!" textFill="#d01a1a"
+               visible="false">
+            <font>
+                <Font name="System Bold" size="13.0"/>
+            </font>
+        </Label>
     </children>
 </AnchorPane>
