@@ -57,7 +57,7 @@ public class FacultyDashboardController implements Initializable {
         DBCursor students = collection.find();
         BasicDBObject sort = new BasicDBObject("id", 1);
         students.sort(sort);
-        setNewHbox(students);
+        setNewHBox(students);
     }
 
     private void editorFill(String id) {
@@ -108,14 +108,14 @@ public class FacultyDashboardController implements Initializable {
         DBCollection collection = dataRetriever("students");
         BasicDBObject query = new BasicDBObject("id", searchToEdit.getText());
         DBCursor students = collection.find(query);
-        setNewHbox(students);
+        setNewHBox(students);
         if (searchToEdit.getText().length() < 1) {
             students = collection.find();
-            setNewHbox(students);
+            setNewHBox(students);
         }
     }
 
-    private void setNewHbox(DBCursor students) {
+    private void setNewHBox(DBCursor students) {
         System.out.println(students.count());
         if (students.count() < 1) {
             vBox.getChildren().add(new Label("No records found!"));
