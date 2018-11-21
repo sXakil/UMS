@@ -21,25 +21,28 @@ public class StudentLoginController {
     @FXML
     public Hyperlink forgotP;
 
+    static String id;
 
     @FXML
     public void checkLogin() throws IOException {
-        Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
-        mongoLogger.setLevel(Level.SEVERE);
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-        @SuppressWarnings("deprecation")
-        DB db = mongoClient.getDB("UMS");
-        DBCollection collection = db.getCollection("students");
-        BasicDBObject bd = new BasicDBObject("id", studentID.getText());
-        DBCursor results = collection.find(bd);
-        String pass = null;
-        try {
-            DBObject ob = results.next();
-            pass = ob.get("password").toString();
-        } catch (Exception ne) {
-            System.out.println("Empty input!");
-        }
-        if(pass != null && passWord.getText().equals(pass)) {
+//        Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
+//        mongoLogger.setLevel(Level.SEVERE);
+//        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+//        @SuppressWarnings("deprecation")
+//        DB db = mongoClient.getDB("UMS");
+//        DBCollection collection = db.getCollection("students");
+//        BasicDBObject bd = new BasicDBObject("id", studentID.getText());
+//        DBCursor results = collection.find(bd);
+//        String pass = null;
+//        try {
+//            DBObject ob = results.next();
+//            pass = ob.get("password").toString();
+//        } catch (Exception ne) {
+//            System.out.println("Empty input!");
+//        }
+        //TODO: verify
+        if (passWord.getText().equals("s")) {
+            id = studentID.getText();
             new SceneSwitcher().switchSceneTo("resources/studentDashboard.fxml");
         } else error.setVisible(true);
     }
