@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.ums.pau.StudentDashboardController.getCollection;
+import static com.ums.pau.StudentDashboardController.markToCGPA;
 
 
 public class FacultyDashboardController implements Initializable {
@@ -160,16 +161,7 @@ public class FacultyDashboardController implements Initializable {
 
     private String toGrade(String mark) {
         double m = Double.parseDouble(mark);
-        if (m >= 80) return "4.00";
-        else if (m >= 75) return "3.75";
-        else if (m >= 70) return "3.50";
-        else if (m >= 65) return "3.25";
-        else if (m >= 60) return "3.00";
-        else if (m >= 55) return "2.75";
-        else if (m >= 50) return "2.50";
-        else if (m >= 45) return "2.25";
-        else if (m >= 40) return "2.00";
-        else return "0.00";
+        return markToCGPA(m);
     }
 
     private void getCGPA(String id) {
@@ -207,10 +199,12 @@ public class FacultyDashboardController implements Initializable {
         DBCollection collection = dataRetriever("results");
         BasicDBObject query = new BasicDBObject("course_code", courseTF.getText().toUpperCase().replaceAll("[ \\-]", ""));
         DBCursor cursor = collection.find(query);
-        if (cursor.hasNext()) {
+        DBObject check = cursor.next();
+        if (check.get("course_code").toString().equals(courseTF.getText())) {
             failed.setVisible(true);
             resultBTN.setText("Try Again");
             resultBTN.setDisable(false);
+            System.out.println(check.get("course_code").toString() + " " + courseTF.getText());
         } else {
             MongoCollection<Document> grades = initMongo();
             BasicDBObject dbObject = new BasicDBObject("id", idTF.getText())

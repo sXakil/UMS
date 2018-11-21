@@ -44,6 +44,26 @@
     -fx-text-fill: #ffffff;
 }
 
+#hBox-list:hover #itemS {
+    -fx-text-fill: #ffffff;
+}
+
 #sep-pane {
     -fx-background-color: #555599;
+}
+
+#itemS {
+    -fx-padding: 5;
+    -fx-min-width: 182;
+}
+
+#itemH {
+    -fx-padding: 5;
+    -fx-min-width: 182;
+    -fx-text-fill: #dfdcda;
+    -fx-font-size: 15px;
+}
+
+#hBox-header {
+    -fx-background-color: #558855;
 }
