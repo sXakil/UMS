@@ -5,11 +5,19 @@ import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -26,6 +34,13 @@ import java.util.logging.Logger;
 import static com.ums.pau.FacultyDashboardController.getDocumentMongoCollection;
 
 public class AdminDashboardController implements Initializable {
+    public static Stage prompt;
+    public static String toBeDeleted;
+    public Pane delStudentPane;
+    public JFXTextField delSearchTF;
+    public Label delSearch;
+    public Pane delConfirmation;
+    public Label delName, delID, delDept, delGen, delAdDate;
     @FXML
     private JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass;
     @FXML
@@ -207,6 +222,7 @@ public class AdminDashboardController implements Initializable {
         addTeacherPane.setVisible(false);
         dashBoardPane.setVisible(false);
         modify.setVisible(false);
+        delStudentPane.setVisible(false);
         addStudTitle.setText("Add a Student");
         notification.setText("New Student added successfully!");
         addStudPane.setVisible(true);
@@ -215,6 +231,8 @@ public class AdminDashboardController implements Initializable {
         isValid = false;
         dashBoardPane.setVisible(false);
         addStudPane.setVisible(false);
+        modify.setVisible(false);
+        delStudentPane.setVisible(false);
         addTeacherPane.setVisible(true);
     }
     public void toDashboardPane() {
@@ -225,11 +243,21 @@ public class AdminDashboardController implements Initializable {
         addTeacherPane.setVisible(false);
         addStudPane.setVisible(false);
         dashBoardPane.setVisible(true);
+        delStudentPane.setVisible(false);
     }
 
+    public void toDeleteStudent() {
+        addTeacherPane.setVisible(false);
+        dashBoardPane.setVisible(false);
+        addStudPane.setVisible(false);
+        modify.setVisible(false);
+        delStudentPane.setVisible(true);
+
+    }
     public void toModifyStudent() {
         addTeacherPane.setVisible(false);
         dashBoardPane.setVisible(false);
+        delStudentPane.setVisible(false);
         modify.setVisible(true);
         addStudTitle.setText("Modify a Student");
         notification.setText("Student modified successfully!");
@@ -322,5 +350,41 @@ public class AdminDashboardController implements Initializable {
             checked = true;
         }
         if (!checked) searchResult.setVisible(true);
+    }
+
+    public void cancelDelete() {
+        delConfirmation.setVisible(false);
+    }
+
+    public void promptDelete() throws IOException {
+        toBeDeleted = delID.getText();
+        Parent root = FXMLLoader.load(getClass().getResource("resources/deletePrompt.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        prompt = stage;
+        stage.show();
+    }
+
+    public void delSearchStudent() {
+        delSearch.setVisible(false);
+        delConfirmation.setVisible(false);
+        boolean checked = false;
+        DBCollection collection = initMongoDB();
+        BasicDBObject query = new BasicDBObject("id", delSearchTF.getText());
+        DBCursor cursor = collection.find(query);
+        while (cursor.hasNext()) {
+            DBObject object = cursor.next();
+            delID.setText(object.get("id").toString());
+            delName.setText(object.get("name").toString());
+            delDept.setText(object.get("dept").toString());
+            delAdDate.setText(LocalDate.parse(object.get("admissionDate").toString()).toString());
+            delGen.setText(object.get("gender").toString().equals("Male") ? "Male" : "Female");
+            delConfirmation.setVisible(true);
+            checked = true;
+        }
+        if (!checked) delSearch.setVisible(true);
     }
 }

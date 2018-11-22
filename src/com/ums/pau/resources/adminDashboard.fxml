@@ -32,7 +32,7 @@
                                 <Insets bottom="10.0" top="20.0"/>
                             </VBox.margin>
                         </Label>
-                        <JFXButton onAction="#toAddStudentPane" prefHeight="70.0" prefWidth="200.0"
+                        <JFXButton buttonType="RAISED" onAction="#toAddStudentPane" prefHeight="70.0" prefWidth="200.0"
                                    style="-fx-background-color: #7777ff;" text="Add new Student" textFill="WHITE">
                             <font>
                                 <Font size="16.0"/>
@@ -57,8 +57,9 @@
                                 <Insets bottom="10.0"/>
                             </VBox.margin>
                         </JFXButton>
-                        <JFXButton layoutX="10.0" layoutY="150.0" prefHeight="70.0" prefWidth="200.0"
-                                   style="-fx-background-color: #cc1111;" text=" Delete A Student" textFill="WHITE">
+                        <JFXButton layoutX="10.0" layoutY="150.0" onAction="#toDeleteStudent" prefHeight="70.0"
+                                   prefWidth="200.0" style="-fx-background-color: #cc1111;" text=" Delete A Student"
+                                   textFill="WHITE">
                             <font>
                                 <Font size="16.0"/>
                             </font>
@@ -78,7 +79,7 @@
                                 <Insets bottom="10.0" top="20.0"/>
                             </VBox.margin>
                         </Label>
-                        <JFXButton onAction="#toAddTeacherPane" prefHeight="70.0" prefWidth="200.0"
+                        <JFXButton buttonType="RAISED" onAction="#toAddTeacherPane" prefHeight="70.0" prefWidth="200.0"
                                    style="-fx-background-color: #7777ff;" text=" Add new Faculty" textFill="WHITE">
                             <font>
                                 <Font size="16.0"/>
@@ -165,7 +166,7 @@
                         <Line endX="-100.0" endY="312.0" layoutX="582.0" layoutY="237.0" startX="-100.0" stroke="#e88e4a" strokeWidth="5.0" />
                     </children>
                 </Pane>
-                <Pane fx:id="addStudPane" prefHeight="800.0" prefWidth="974.0">
+                <Pane fx:id="addStudPane" prefHeight="800.0" prefWidth="974.0" visible="false">
                     <children>
                         <VBox layoutX="58.0" layoutY="186.0" prefHeight="570.0" prefWidth="365.0" spacing="30.0">
                             <children>
@@ -252,8 +253,7 @@
                                     </font>
                                 </Label>
                                 <Label fx:id="notification" layoutX="18.0" layoutY="14.0"
-                                       text="New Student Added Successfully!"
-                                       textFill="#04a158">
+                                       text="New Student Added Successfully!" textFill="#04a158">
                                     <font>
                                         <Font size="14.0"/>
                                     </font>
@@ -344,8 +344,7 @@
                                     </font>
                                 </Label>
                                 <Label fx:id="tNotification" layoutX="18.0" layoutY="14.0"
-                                       text="New Faculty Added Successfully!"
-                                       textFill="#04a158">
+                                       text="New Faculty Added Successfully!" textFill="#04a158">
                                     <font>
                                         <Font size="14.0"/>
                                     </font>
@@ -371,6 +370,85 @@
                                 <Font name="System Bold" size="34.0"/>
                             </font>
                         </Label>
+                    </children>
+                </Pane>
+                <Pane fx:id="delStudentPane" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="974.0"
+                      visible="false">
+                    <children>
+                        <Label layoutX="263.0" layoutY="32.0" text="Delete a Student record">
+                            <font>
+                                <Font name="System Bold" size="34.0"/>
+                            </font>
+                        </Label>
+                        <Pane layoutX="242.0" layoutY="102.0">
+                            <children>
+                                <JFXTextField fx:id="delSearchTF" focusColor="#405aa800" prefHeight="50.0"
+                                              prefWidth="490.0" promptText="Search by ID"
+                                              style="-fx-background-color: #fff; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 1; -fx-border-color: #000;"
+                                              unFocusColor="#4d4d4d00">
+                                    <padding>
+                                        <Insets left="15.0"/>
+                                    </padding>
+                                </JFXTextField>
+                                <Label fx:id="delSearch" layoutX="181.0" layoutY="63.0" text="No records found!"
+                                       textFill="RED" visible="false"/>
+                                <FontAwesomeIconView fill="#6f6f6f" glyphName="SEARCH" layoutX="440.0" layoutY="35.0"
+                                                     onMouseClicked="#delSearchStudent" size="30"/>
+                            </children>
+                        </Pane>
+                        <Pane fx:id="delConfirmation" layoutX="38.0" layoutY="213.0" prefHeight="131.0"
+                              prefWidth="885.0" visible="false">
+                            <children>
+                                <HBox prefHeight="52.0" prefWidth="885.0">
+                                    <children>
+                                        <Label fx:id="delName" alignment="CENTER" prefHeight="52.0" prefWidth="346.0"
+                                               style="-fx-background-color: #222244;" text="Name" textFill="WHITE">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="delID" alignment="CENTER" prefHeight="52.0" prefWidth="156.0"
+                                               style="-fx-background-color: #222266;" text="ID" textFill="WHITE">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="delDept" alignment="CENTER" prefHeight="52.0" prefWidth="112.0"
+                                               style="-fx-background-color: #222244;" text="Department"
+                                               textFill="WHITE">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="delGen" alignment="CENTER" prefHeight="52.0" prefWidth="105.0"
+                                               style="-fx-background-color: #222266;" text="Gender" textFill="WHITE">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="delAdDate" alignment="CENTER" prefHeight="52.0" prefWidth="170.0"
+                                               style="-fx-background-color: #222244;" text="Adimssion Date"
+                                               textFill="WHITE">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <Label layoutX="250.0" layoutY="67.0" prefHeight="19.0" prefWidth="634.0"
+                                       text="Are you absolutely sure you want to delete this student from the databse?"
+                                       textFill="#ff6161">
+                                    <font>
+                                        <Font name="System Bold" size="15.0"/>
+                                    </font>
+                                </Label>
+                                <JFXButton layoutX="777.0" layoutY="97.0" onAction="#cancelDelete" prefHeight="26.0"
+                                           prefWidth="41.0" style="-fx-background-color: mediumseagreen;" text="No"
+                                           textFill="WHITE"/>
+                                <JFXButton layoutX="833.0" layoutY="97.0" onAction="#promptDelete"
+                                           style="-fx-background-color: coral;" text="Yes" textFill="WHITE"/>
+                            </children>
+                        </Pane>
                     </children>
                 </Pane>
             </children>

@@ -31,7 +31,7 @@ public class StudentDashboardController implements Initializable {
         return getCollection(collName);
     }
 
-    static DBCollection getCollection(String collName) {
+    public static DBCollection getCollection(String collName) {
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
         MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
