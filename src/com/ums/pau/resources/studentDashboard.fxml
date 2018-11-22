@@ -129,9 +129,11 @@
            <JFXPasswordField fx:id="newPass" labelFloat="true" layoutX="240.0" layoutY="340.0"
                              onKeyReleased="#validatePassword" prefHeight="42.0" prefWidth="344.0"
                              promptText="New pasword"/>
-           <JFXPasswordField fx:id="confirmPass" labelFloat="true" layoutX="240.0" layoutY="410.0" prefHeight="42.0"
-                             prefWidth="344.0" promptText="Confirm new password"/>
-           <JFXButton layoutX="313.0" layoutY="501.0" prefHeight="42.0" prefWidth="200.0"
+           <JFXPasswordField fx:id="confirmPass" labelFloat="true" layoutX="240.0" layoutY="410.0"
+                             onKeyReleased="#didMatch" disable="true" prefHeight="42.0" prefWidth="344.0"
+                             promptText="Confirm new password"/>
+           <JFXButton fx:id="changePassButton" layoutX="313.0" layoutY="501.0" onAction="#changePassword"
+                      prefHeight="42.0" prefWidth="200.0"
                       style="-fx-background-color: #44bb44; -fx-background-radius: 10;" text="Change Password"
                       textFill="WHITE">
                <font>
@@ -144,19 +146,21 @@
                    <Font size="18.0"/>
                </font>
            </Label>
-           <Label fx:id="wrongPass" layoutX="589.0" layoutY="285.0" text="Wrong password!" textFill="#963717">
+           <Label fx:id="wrongPass" layoutX="589.0" layoutY="285.0" text="Wrong password!" textFill="#963717"
+                  visible="false">
                <font>
                    <Font size="14.0"/>
                </font>
            </Label>
-           <Label fx:id="passMatch" layoutX="589.0" layoutY="422.0" text="Password didn't match!" textFill="#963717">
+           <Label fx:id="passMatch" layoutX="589.0" layoutY="422.0" text="Password didn't match!" textFill="#963717"
+                  visible="false">
                <font>
                    <Font size="14.0"/>
                </font>
            </Label>
            <Label fx:id="invalidPass" layoutX="589.0" layoutY="340.0" prefHeight="42.0" prefWidth="329.0"
-                  text="Must be consist of at least 8 charachters with one uppercase letter, one number and one symbol."
-                  textFill="#963717" wrapText="true"/>
+                  text="Must be &gt;8 characters containing both lower and upper-case letters, numbers and symbols."
+                  textFill="#963717" visible="false" wrapText="true"/>
        </Pane>
       <Pane fx:id="home" layoutX="233.0" layoutY="9.0" prefHeight="784.0" prefWidth="957.0" visible="false">
          <children>
