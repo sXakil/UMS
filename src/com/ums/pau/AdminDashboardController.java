@@ -3,14 +3,11 @@ package com.ums.pau;
 import com.jfoenix.controls.*;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import org.bson.Document;
@@ -30,23 +27,25 @@ import static com.ums.pau.FacultyDashboardController.getDocumentMongoCollection;
 
 public class AdminDashboardController implements Initializable {
     @FXML
-    public JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass;
-    public JFXDatePicker newStudAdDate;
-    public JFXButton addNewStud;
-    public Label nSm, nSn, nSi, nSd, nSa, nSs;
-    public Pane dash;
-    public Pane mAddStud;
-    public Label totalFac, totalStud;
-    public JFXCheckBox male, female;
-    public Pane preview;
-    public Pane mAddTeacher;
-    public JFXTextField newTeacherName;
-    public JFXButton addNewTeacher;
-    public JFXTextField newTeacherPosition, newTeacherMajor, newTeacherDept, newTeacherPass;
-    public JFXDatePicker neTeacherJD;
-    public Pane previewT;
-    public Label nTn, nTp, nTm, nTd, nTj, nTe;
-    public JFXCheckBox maleT, femaleT;
+    private JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass;
+    @FXML
+    private JFXTextField newTeacherName, newTeacherPosition, newTeacherMajor, newTeacherDept, newTeacherPass;
+    @FXML
+    private JFXDatePicker newStudAdDate, neTeacherJD;
+    @FXML
+    private JFXButton addNewStud, addNewTeacher;
+    @FXML
+    private Label notification, nameLabel, idLabel, deptLabel, adDateLabel, sessionLabel;
+    @FXML
+    private Label tNotification, tNameLabel, positionLabel, majorLabel, tDeptLabel, jdLabel;
+    @FXML
+    private Pane dashBoardPane, addStudPane, addTeacherPane;
+    @FXML
+    private Label totalFac, totalStud;
+    @FXML
+    private JFXCheckBox male, female, maleT, femaleT;
+    @FXML
+    private Pane preview, previewT;
 
     private static boolean isValid = false;
     private static boolean addNew = true;
@@ -66,8 +65,7 @@ public class AdminDashboardController implements Initializable {
 
     public void addNewStudent() {
         if(addNew) {
-
-                MongoCollection<Document> table = initMongo("students");
+            MongoCollection<Document> table = initMongo("students");
             Bson filter = Filters.eq("id", newStudID.getText());
             Bson update = new Document("$set",
                     new Document()
@@ -81,18 +79,18 @@ public class AdminDashboardController implements Initializable {
                             .append("added_on", new Date()));
             UpdateOptions options = new UpdateOptions().upsert(true);
             table.updateOne(filter, update, options);
-                nSm.setText("New student added successfully!");
-                nSm.setTextFill(Color.GREEN);
+            notification.setText("New student added successfully!");
+            notification.setTextFill(Color.GREEN);
             if (isDuplicate()) {
-                nSm.setText("An existing student was updated!");
-                nSm.setTextFill(Color.GREEN);
+                notification.setText("An existing student was updated!");
+                notification.setTextFill(Color.CORAL);
             }
             preview.setVisible(true);
-            nSn.setText(nSn.getText() + newStudName.getText());
-            nSi.setText(nSi.getText() + newStudID.getText());
-            nSd.setText(nSd.getText() + newStudDept.getText());
-            nSa.setText(nSa.getText() + (newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString()));
-            nSs.setText((nSs.getText() + newStudSes.getText()));
+            nameLabel.setText(nameLabel.getText() + newStudName.getText());
+            idLabel.setText(idLabel.getText() + newStudID.getText());
+            deptLabel.setText(deptLabel.getText() + newStudDept.getText());
+            adDateLabel.setText(adDateLabel.getText() + (newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString()));
+            sessionLabel.setText((sessionLabel.getText() + newStudSes.getText()));
             newStudName.setDisable(true);
             newStudID.setDisable(true);
             newStudDept.setDisable(true);
@@ -102,11 +100,11 @@ public class AdminDashboardController implements Initializable {
             addNewStud.setText("Add Another");
             addNew = false;
         } else {
-            nSn.setText("Name: ");
-            nSi.setText("ID: ");
-            nSd.setText("Department: ");
-            nSa.setText("Admission Date: ");
-            nSs.setText("Session: ");
+            nameLabel.setText("Name: ");
+            idLabel.setText("ID: ");
+            deptLabel.setText("Department: ");
+            adDateLabel.setText("Admission Date: ");
+            sessionLabel.setText("Session: ");
             preview.setVisible(false);
             newStudName.setDisable(false);
             newStudID.setDisable(false);
@@ -141,11 +139,11 @@ public class AdminDashboardController implements Initializable {
             Document doc = new Document(document);
             table.insertOne(doc);
             previewT.setVisible(true);
-            nTn.setText(nTn.getText() + newTeacherName.getText());
-            nTp.setText(nTp.getText() + newTeacherPosition.getText());
-            nTm.setText(nTm.getText() + newTeacherMajor.getText());
-            nTd.setText((nTd.getText() + newTeacherDept.getText()));
-            nTj.setText(nTj.getText() + (neTeacherJD.getValue() == null ? new Date().toString() : neTeacherJD.getValue().toString()));
+            tNameLabel.setText(tNameLabel.getText() + newTeacherName.getText());
+            positionLabel.setText(positionLabel.getText() + newTeacherPosition.getText());
+            majorLabel.setText(majorLabel.getText() + newTeacherMajor.getText());
+            tDeptLabel.setText((tDeptLabel.getText() + newTeacherDept.getText()));
+            jdLabel.setText(jdLabel.getText() + (neTeacherJD.getValue() == null ? new Date().toString() : neTeacherJD.getValue().toString()));
             newTeacherName.setDisable(true);
             newTeacherPosition.setDisable(true);
             newTeacherMajor.setDisable(true);
@@ -156,11 +154,12 @@ public class AdminDashboardController implements Initializable {
             addNewT = false;
 
         } else {
-            nTn.setText("Name: ");
-            nTp.setText("Position: ");
-            nTm.setText("Major: ");
-            nTd.setText("Department: ");
-            nTj.setText("Joining Date: ");
+            tNotification.setText(tNotification.getText());
+            tNameLabel.setText("Name: ");
+            positionLabel.setText("Position: ");
+            majorLabel.setText("Major: ");
+            tDeptLabel.setText("Department: ");
+            jdLabel.setText("Joining Date: ");
             previewT.setVisible(false);
             newTeacherName.setDisable(false);
             newTeacherPosition.setDisable(false);
@@ -205,36 +204,36 @@ public class AdminDashboardController implements Initializable {
 
     public void toAddStudentPane() {
         isValid = false;
-        mAddTeacher.setVisible(false);
-        dash.setVisible(false);
+        addTeacherPane.setVisible(false);
+        dashBoardPane.setVisible(false);
         modify.setVisible(false);
         addStudTitle.setText("Add a Student");
-        nSm.setText("New Student added successfully!");
-        mAddStud.setVisible(true);
+        notification.setText("New Student added successfully!");
+        addStudPane.setVisible(true);
     }
     public void toAddTeacherPane() {
         isValid = false;
-        dash.setVisible(false);
-        mAddStud.setVisible(false);
-        mAddTeacher.setVisible(true);
+        dashBoardPane.setVisible(false);
+        addStudPane.setVisible(false);
+        addTeacherPane.setVisible(true);
     }
     public void toDashboardPane() {
         MongoCollection<Document> tableS = initMongo( "students");
         totalStud.setText(String.valueOf(tableS.countDocuments()));
         MongoCollection<Document> tableT = initMongo( "teacher");
         totalFac.setText(String.valueOf(tableT.countDocuments()));
-        mAddTeacher.setVisible(false);
-        mAddStud.setVisible(false);
-        dash.setVisible(true);
+        addTeacherPane.setVisible(false);
+        addStudPane.setVisible(false);
+        dashBoardPane.setVisible(true);
     }
 
     public void toModifyStudent() {
-        mAddTeacher.setVisible(false);
-        dash.setVisible(false);
+        addTeacherPane.setVisible(false);
+        dashBoardPane.setVisible(false);
         modify.setVisible(true);
         addStudTitle.setText("Modify a Student");
-        nSm.setText("Student modified successfully!");
-        mAddStud.setVisible(true);
+        notification.setText("Student modified successfully!");
+        addStudPane.setVisible(true);
     }
 
     public void genPass() {
