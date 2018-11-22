@@ -4,15 +4,21 @@ import com.jfoenix.controls.*;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.UpdateOptions;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -45,6 +51,10 @@ public class AdminDashboardController implements Initializable {
     private static boolean isValid = false;
     private static boolean addNew = true;
     private static boolean addNewT = true;
+    public Pane modify;
+    public JFXTextField searchStud;
+    public Label searchResult;
+    public Label addStudTitle;
 
     private MongoCollection<Document> initMongo(String collName) {
         return getDocumentMongoCollection(collName);
@@ -56,23 +66,26 @@ public class AdminDashboardController implements Initializable {
 
     public void addNewStudent() {
         if(addNew) {
-            if(isDuplicate()) {
+
                 MongoCollection<Document> table = initMongo("students");
-                BasicDBObject document = new BasicDBObject("name", newStudName.getText())
-                        .append("id", newStudID.getText())
-                        .append("dept", newStudDept.getText().toUpperCase())
-                        .append("session", newStudSes.getText())
-                        .append("admissionDate", newStudAdDate.getValue() == null ? new Date() : newStudAdDate.getValue().toString())
-                        .append("password", newStudPass.getText())
-                        .append("gender", male.isSelected() ? "Male" : "Female")
-                        .append("added_on", new Date());
-                Document doc = new Document(document);
-                table.insertOne(doc);
+            Bson filter = Filters.eq("id", newStudID.getText());
+            Bson update = new Document("$set",
+                    new Document()
+                            .append("name", newStudName.getText())
+                            .append("id", newStudID.getText())
+                            .append("dept", newStudDept.getText().toUpperCase())
+                            .append("session", newStudSes.getText())
+                            .append("gender", male.isSelected() ? "Male" : "Female")
+                            .append("admissionDate", newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString())
+                            .append("password", newStudPass.getText())
+                            .append("added_on", new Date()));
+            UpdateOptions options = new UpdateOptions().upsert(true);
+            table.updateOne(filter, update, options);
                 nSm.setText("New student added successfully!");
                 nSm.setTextFill(Color.GREEN);
-            } else {
-                nSm.setText("Student already exists!");
-                nSm.setTextFill(Color.RED);
+            if (isDuplicate()) {
+                nSm.setText("An existing student was updated!");
+                nSm.setTextFill(Color.GREEN);
             }
             preview.setVisible(true);
             nSn.setText(nSn.getText() + newStudName.getText());
@@ -194,6 +207,9 @@ public class AdminDashboardController implements Initializable {
         isValid = false;
         mAddTeacher.setVisible(false);
         dash.setVisible(false);
+        modify.setVisible(false);
+        addStudTitle.setText("Add a Student");
+        nSm.setText("New Student added successfully!");
         mAddStud.setVisible(true);
     }
     public void toAddTeacherPane() {
@@ -210,6 +226,15 @@ public class AdminDashboardController implements Initializable {
         mAddTeacher.setVisible(false);
         mAddStud.setVisible(false);
         dash.setVisible(true);
+    }
+
+    public void toModifyStudent() {
+        mAddTeacher.setVisible(false);
+        dash.setVisible(false);
+        modify.setVisible(true);
+        addStudTitle.setText("Modify a Student");
+        nSm.setText("Student modified successfully!");
+        mAddStud.setVisible(true);
     }
 
     public void genPass() {
@@ -272,5 +297,31 @@ public class AdminDashboardController implements Initializable {
         } catch (NoSuchElementException e) {
             return true;
         }
+    }
+
+    public void searchStudent() {
+        searchResult.setVisible(false);
+        boolean checked = false;
+        DBCollection collection = initMongoDB();
+        BasicDBObject query = new BasicDBObject("id", searchStud.getText());
+        DBCursor cursor = collection.find(query);
+        while (cursor.hasNext()) {
+            DBObject object = cursor.next();
+            newStudID.setText(object.get("id").toString());
+            newStudName.setText(object.get("name").toString());
+            newStudDept.setText(object.get("dept").toString());
+            newStudSes.setText(object.get("session").toString());
+            newStudPass.setText(object.get("password").toString());
+            newStudAdDate.setValue(LocalDate.parse(object.get("admissionDate").toString()));
+            if (object.get("gender").toString().equals("Male")) {
+                male.setSelected(true);
+                female.setSelected(false);
+            } else {
+                female.setSelected(true);
+                male.setSelected(false);
+            }
+            checked = true;
+        }
+        if (!checked) searchResult.setVisible(true);
     }
 }

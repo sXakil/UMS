@@ -3,6 +3,7 @@ package com.ums.pau;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.mongodb.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -22,6 +23,7 @@ public class StudentDashboardController implements Initializable {
     public JFXPasswordField oldPass, newPass, confirmPass;
     public Label passSuccess, invalidPass, wrongPass, passMatch;
     public JFXButton changePassButton;
+    public Pane support;
     private String id = StudentLoginController.id;
     public Label studentName;
 
@@ -72,7 +74,7 @@ public class StudentDashboardController implements Initializable {
                 Label cgpa = new Label("Grade");
                 cgpa.setId("itemH");
                 hBox.getChildren().addAll(semester, course, credit, mark, cgpa);
-                if (i > 1) VBox.setMargin(hBox, new Insets(20, 0, 0, 0));
+                if (i > 1) VBox.setMargin(hBox, new Insets(25, 0, 0, 0));
                 vBox.getChildren().add(hBox);
                 i++;
             }
@@ -121,24 +123,30 @@ public class StudentDashboardController implements Initializable {
     public void toHome() {
         gradeReport.setVisible(false);
         changePass.setVisible(false);
+        support.setVisible(false);
         home.setVisible(true);
     }
 
     public void toGrade() {
         home.setVisible(false);
         changePass.setVisible(false);
+        support.setVisible(false);
         gradeReport.setVisible(true);
     }
 
     public void toCPass() {
         home.setVisible(false);
         gradeReport.setVisible(false);
+        support.setVisible(false);
         changePass.setVisible(true);
 
     }
 
     public void toSupport() {
-
+        home.setVisible(false);
+        gradeReport.setVisible(false);
+        changePass.setVisible(false);
+        support.setVisible(true);
     }
 
     public void logOut() throws IOException {
@@ -187,5 +195,9 @@ public class StudentDashboardController implements Initializable {
         newPass.clear();
         oldPass.clear();
         confirmPass.clear();
+    }
+
+    public void forgotPass() {
+
     }
 }

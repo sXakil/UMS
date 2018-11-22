@@ -54,16 +54,21 @@
 
 #itemS {
     -fx-padding: 5;
-    -fx-min-width: 182;
+    -fx-min-width: 164;
 }
 
 #itemH {
     -fx-padding: 5;
-    -fx-min-width: 182;
+    -fx-min-width: 164;
     -fx-text-fill: #dfdcda;
     -fx-font-size: 15px;
 }
 
 #hBox-header {
-    -fx-background-color: #558855;
+    -fx-background-color: #222233;
+}
+
+Pane Pane .scroll-pane {
+    -fx-padding: 50;
+    -fx-alignment: center;
 }
