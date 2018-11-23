@@ -5,15 +5,12 @@ import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -366,6 +363,7 @@ public class AdminDashboardController implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         prompt = stage;
         stage.show();
+        delConfirmation.setDisable(true);
     }
 
     public void delSearchStudent() {
@@ -383,6 +381,7 @@ public class AdminDashboardController implements Initializable {
             delAdDate.setText(LocalDate.parse(object.get("admissionDate").toString()).toString());
             delGen.setText(object.get("gender").toString().equals("Male") ? "Male" : "Female");
             delConfirmation.setVisible(true);
+            delConfirmation.setDisable(false);
             checked = true;
         }
         if (!checked) delSearch.setVisible(true);
