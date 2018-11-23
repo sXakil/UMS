@@ -2,13 +2,13 @@ package com.ums.pau.resources;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.ums.pau.AdminDashboardController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -33,16 +33,27 @@ public class DeletePrompt implements Initializable {
         stage.close();
     }
 
-    private DBCollection dataRetriever() {
-        return getCollection("students");
+    private DBCollection dataRetriever(String collName) {
+        return getCollection(collName);
     }
 
     public void doDelete() {
         wrong.setVisible(false);
         if (confirm.getText().equals(conf)) {
-            DBCollection collection = dataRetriever();
+            DBCollection collection = dataRetriever("students");
             BasicDBObject query = new BasicDBObject("id", AdminDashboardController.toBeDeleted);
+            DBCollection backup = dataRetriever("UMSBackup");
+            backup.insert(collection.findOne(query));
             collection.findAndRemove(query);
+            if (AdminDashboardController.delAll) {
+                DBCollection result = dataRetriever("results");
+                DBCursor cursor = result.find(query);
+                while (cursor.hasNext()) {
+                    DBObject object = cursor.next();
+                    backup.insert(object);
+                    result.findAndRemove(object);
+                }
+            }
             closeWindow();
         } else {
             wrong.setVisible(true);

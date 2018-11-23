@@ -38,6 +38,7 @@ public class AdminDashboardController implements Initializable {
     public Label delSearch;
     public Pane delConfirmation;
     public Label delName, delID, delDept, delGen, delAdDate;
+    public JFXCheckBox includeResult;
     @FXML
     private JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass;
     @FXML
@@ -353,6 +354,7 @@ public class AdminDashboardController implements Initializable {
         delConfirmation.setVisible(false);
     }
 
+    public static boolean delAll = false;
     public void promptDelete() throws IOException {
         toBeDeleted = delID.getText();
         Parent root = FXMLLoader.load(getClass().getResource("resources/deletePrompt.fxml"));
@@ -362,6 +364,7 @@ public class AdminDashboardController implements Initializable {
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         prompt = stage;
+        delAll = includeResult.isSelected();
         stage.show();
         delConfirmation.setDisable(true);
     }

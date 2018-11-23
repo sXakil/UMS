@@ -372,8 +372,7 @@
                         </Label>
                     </children>
                 </Pane>
-                <Pane fx:id="delStudentPane" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="974.0"
-                      visible="false">
+                <Pane fx:id="delStudentPane" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="974.0">
                     <children>
                         <Label layoutX="263.0" layoutY="32.0" text="Delete a Student record">
                             <font>
@@ -447,6 +446,8 @@
                                            textFill="WHITE"/>
                                 <JFXButton layoutX="833.0" layoutY="97.0" onAction="#promptDelete"
                                            style="-fx-background-color: coral;" text="Yes" textFill="WHITE"/>
+                                <JFXCheckBox fx:id="includeResult" layoutX="14.0" layoutY="108.0"
+                                             text="Including the result record."/>
                             </children>
                         </Pane>
                     </children>
