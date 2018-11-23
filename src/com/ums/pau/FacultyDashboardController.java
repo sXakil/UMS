@@ -6,7 +6,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import org.bson.Document;
@@ -67,24 +66,46 @@ public class FacultyDashboardController implements Initializable {
         nameLab.setText(object.get("name").toString());
         idTF.setText(object.get("id").toString());
         idTF.setDisable(true);
-
         collection = dataRetriever("results");
         cursor = collection.find(dbObject);
         BasicDBObject sorter = new BasicDBObject("semester", 1);
         cursor.sort(sorter);
         resultVBox.getChildren().clear();
+        Label l = new Label("Previous Records of " + object.get("name").toString());
+        l.setStyle("-fx-min-width: inherit; -fx-font-size: 18px; -fx-alignment: center;");
+        resultVBox.getChildren().add(l);
+        int i = 1;
         while (cursor.hasNext()) {
             object = cursor.next();
+            if (object.get("semester").toString().contains(String.valueOf(i))) {
+                HBox hBox = new HBox();
+                hBox.setId("hBox-header");
+                Label semester = new Label(i == 1 ? "1st Semester" : i == 2 ? "2nd Semester" : i == 3 ? "3rd Semester" : i + "th Semester");
+                semester.setId("itemH");
+                hBox.getChildren().add(semester);
+                hBox.setStyle("-fx-alignment: center");
+                Pane p = new Pane();
+                p.setStyle("-fx-pref-height: 1px; -fx-background-color: darkgray");
+                if (i > 1)
+                    resultVBox.getChildren().add(p);
+                VBox.setMargin(hBox, new Insets(25, 0, 0, 0));
+                resultVBox.getChildren().add(hBox);
+                i++;
+            }
             HBox hBox = new HBox();
-            resultVBox.getChildren().add(hBox);
+            hBox.setMinWidth(500);
             Label courseName = new Label(object.get("course_code").toString());
-            Label s1 = new Label("    -   ");
-            Label s2 = new Label("    -   ");
-            Label grade = new Label(toGrade(object.get("mark").toString()));
-            Label semester = new Label(object.get("semester").toString());
-            hBox.getChildren().addAll(semester, s1, courseName, s2, grade);
-            hBox.setAlignment(Pos.CENTER);
-            hBox.setPadding(new Insets(20));
+            courseName.setStyle("-fx-alignment: center; -fx-min-width: 245");
+
+            Label grade = new Label(object.get("mark").toString());
+            grade.setStyle("-fx-alignment: center; -fx-min-width: 245");
+
+            hBox.getChildren().addAll(courseName, grade);
+            hBox.setStyle("-fx-alignment: center");
+
+            hBox.setPadding(new Insets(5));
+            hBox.setStyle("-fx-border-color: darkgray; -fx-border: 0 0 0 1px");
+            resultVBox.getChildren().add(hBox);
         }
     }
 
@@ -119,7 +140,7 @@ public class FacultyDashboardController implements Initializable {
         System.out.println(students.count());
         if (students.count() < 1) {
             vBox.getChildren().add(new Label("No records found!"));
-            vBox.setAlignment(Pos.CENTER);
+            vBox.setStyle("-fx-alignment: center");
         } else {
             vBox.getChildren().clear();
         }
@@ -216,6 +237,7 @@ public class FacultyDashboardController implements Initializable {
                     .append("comment", commentTF.getText() == null ? "" : commentTF.getText());
             Document doc = new Document(dbObject);
             grades.insertOne(doc);
+            editorFill(idTF.getText());
             idTF.clear();
             semCB.getSelectionModel().clearSelection();
             courseTF.clear();
