@@ -44,6 +44,8 @@ public class FacultyDashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        failed.setVisible(false);
+        success.setVisible(false);
         isValid = false;
         resultBTN.setDisable(true);
         semCB.getItems().setAll("1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th");
@@ -134,7 +136,7 @@ public class FacultyDashboardController implements Initializable {
             vBox.getChildren().add(hb);
 
             Label lb1 = new Label(name);
-            lb1.setId("item");
+            lb1.setId("nameItem");
             hb.getChildren().add(lb1);
 
             Label lb2 = new Label(id);
@@ -193,14 +195,13 @@ public class FacultyDashboardController implements Initializable {
     }
 
     public void enterResult() {
-        failed.setVisible(false);
-        success.setVisible(false);
         resultBTN.setText("Enter");
         DBCollection collection = dataRetriever("results");
         BasicDBObject query = new BasicDBObject("course_code", courseTF.getText().toUpperCase().replaceAll("[ \\-]", ""));
         DBCursor cursor = collection.find(query);
-        DBObject check = cursor.next();
-        if (check.get("course_code").toString().equals(courseTF.getText())) {
+        DBObject check = null;
+        if (cursor.hasNext()) check = cursor.next();
+        if (check != null && check.get("course_code").toString().equals(courseTF.getText())) {
             failed.setVisible(true);
             resultBTN.setText("Try Again");
             resultBTN.setDisable(false);
@@ -215,12 +216,12 @@ public class FacultyDashboardController implements Initializable {
                     .append("comment", commentTF.getText() == null ? "" : commentTF.getText());
             Document doc = new Document(dbObject);
             grades.insertOne(doc);
-            success.setVisible(true);
             idTF.clear();
             semCB.getSelectionModel().clearSelection();
             courseTF.clear();
             markTF.clear();
             resultBTN.setDisable(true);
+            success.setVisible(true);
         }
     }
 

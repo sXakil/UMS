@@ -13,10 +13,11 @@
    <children>
       <ImageView fitHeight="800.0" fitWidth="1200.0">
          <image>
-            <Image url="@pictures/landing.jpg" />
+            <Image url="@pictures/bg.png"/>
          </image>
       </ImageView>
-      <Pane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #03cea4f0;" stylesheets="@stylesheet/style.css">
+      <Pane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #03cea4d8;"
+            stylesheets="@stylesheet/style.css">
          <children>
             <ImageView id="logo" fitHeight="279.0" fitWidth="499.0" pickOnBounds="true" preserveRatio="true">
                <image>

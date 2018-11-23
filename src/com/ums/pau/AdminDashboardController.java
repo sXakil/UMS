@@ -39,6 +39,7 @@ public class AdminDashboardController implements Initializable {
     public Pane delConfirmation;
     public Label delName, delID, delDept, delGen, delAdDate;
     public JFXCheckBox includeResult;
+    public JFXTextField newTeacherUNID;
     @FXML
     private JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass;
     @FXML
@@ -78,7 +79,7 @@ public class AdminDashboardController implements Initializable {
 
     public void addNewStudent() {
         if(addNew) {
-            MongoCollection<Document> table = initMongo("students");
+            MongoCollection<Document> collection = initMongo("students");
             Bson filter = Filters.eq("id", newStudID.getText());
             Bson update = new Document("$set",
                     new Document()
@@ -91,7 +92,7 @@ public class AdminDashboardController implements Initializable {
                             .append("password", newStudPass.getText())
                             .append("added_on", new Date()));
             UpdateOptions options = new UpdateOptions().upsert(true);
-            table.updateOne(filter, update, options);
+            collection.updateOne(filter, update, options);
             notification.setText("New student added successfully!");
             notification.setTextFill(Color.GREEN);
             if (isDuplicate()) {
@@ -140,17 +141,21 @@ public class AdminDashboardController implements Initializable {
 
     public void addNewTeacher() {
         if(addNewT) {
-            MongoCollection<Document> table = initMongo("teacher");
-            BasicDBObject document = new BasicDBObject("name", newTeacherName.getText())
-                    .append("position", newTeacherPosition.getText())
-                    .append("major", newTeacherMajor.getText())
-                    .append("department", newTeacherDept.getText())
-                    .append("joiningDate", neTeacherJD.getValue() == null ? new Date() : neTeacherJD.getValue().toString())
-                    .append("password", newTeacherPass.getText())
-                    .append("gender", male.isSelected() ? "Male" : "Female")
-                    .append("added_on", new Date());
-            Document doc = new Document(document);
-            table.insertOne(doc);
+            MongoCollection<Document> collection = initMongo("teachers");
+            Bson update = new Document("$set",
+                    new Document()
+                            .append("name", newTeacherName.getText())
+                            .append("uNID", newTeacherUNID.getText())
+                            .append("position", newTeacherPosition.getText())
+                            .append("major", newTeacherMajor.getText())
+                            .append("department", newTeacherDept.getText())
+                            .append("joiningDate", neTeacherJD.getValue() == null ? new Date() : neTeacherJD.getValue().toString())
+                            .append("password", newTeacherPass.getText())
+                            .append("gender", male.isSelected() ? "Male" : "Female")
+                            .append("added_on", new Date()));
+            Bson filter = Filters.eq("uNID", newTeacherUNID.getText());
+            UpdateOptions options = new UpdateOptions().upsert(true);
+            collection.updateOne(filter, update, options);
             previewT.setVisible(true);
             tNameLabel.setText(tNameLabel.getText() + newTeacherName.getText());
             positionLabel.setText(positionLabel.getText() + newTeacherPosition.getText());
@@ -158,6 +163,7 @@ public class AdminDashboardController implements Initializable {
             tDeptLabel.setText((tDeptLabel.getText() + newTeacherDept.getText()));
             jdLabel.setText(jdLabel.getText() + (neTeacherJD.getValue() == null ? new Date().toString() : neTeacherJD.getValue().toString()));
             newTeacherName.setDisable(true);
+            newTeacherUNID.setDisable(true);
             newTeacherPosition.setDisable(true);
             newTeacherMajor.setDisable(true);
             newTeacherDept.setDisable(true);
@@ -165,7 +171,6 @@ public class AdminDashboardController implements Initializable {
             newTeacherPass.setDisable(true);
             addNewTeacher.setText("Add Another");
             addNewT = false;
-
         } else {
             tNotification.setText(tNotification.getText());
             tNameLabel.setText("Name: ");
@@ -175,11 +180,13 @@ public class AdminDashboardController implements Initializable {
             jdLabel.setText("Joining Date: ");
             previewT.setVisible(false);
             newTeacherName.setDisable(false);
+            newTeacherUNID.setDisable(false);
             newTeacherPosition.setDisable(false);
             newTeacherMajor.setDisable(false);
             newTeacherDept.setDisable(false);
             neTeacherJD.setDisable(false);
             newTeacherPass.setDisable(false);
+            newTeacherUNID.clear();
             newTeacherName.clear();
             newTeacherPosition.clear();
             newTeacherMajor.clear();
@@ -352,6 +359,7 @@ public class AdminDashboardController implements Initializable {
 
     public void cancelDelete() {
         delConfirmation.setVisible(false);
+        delSearchTF.clear();
     }
 
     public static boolean delAll = false;

@@ -284,37 +284,68 @@
                     </children>
                 </Pane>
                 <Pane fx:id="addTeacherPane" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="974.0"
-                      style="-fx-background-color: #ddddff;" visible="false">
+                      style="-fx-background-color: #F5FAFA;">
                     <children>
-                        <JFXTextField fx:id="newTeacherName" focusColor="#0947ff" labelFloat="true" layoutX="83.0"
-                                      layoutY="93.0" onKeyReleased="#teacherTextListener" prefHeight="41.0"
-                                      prefWidth="245.0" promptText="Name" style="-fx-prompt-text-fill: #444488;"
-                                      unFocusColor="#444488"/>
-                        <JFXButton fx:id="addNewTeacher" alignment="CENTER" disable="true" layoutX="83.0"
-                                   layoutY="576.0" onAction="#addNewTeacher" prefHeight="41.0" prefWidth="245.0"
-                                   style="-fx-background-color: #11aa11;" text="Add" textFill="WHITE">
-                            <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="16.0"/>
-                            </graphic>
-                            <font>
-                                <Font size="18.0"/>
-                            </font>
-                        </JFXButton>
-                        <JFXTextField fx:id="newTeacherPosition" focusColor="#0947ff" labelFloat="true" layoutX="83.0"
-                                      layoutY="164.0" onKeyReleased="#teacherTextListener" prefHeight="41.0"
-                                      prefWidth="245.0" promptText="Position" style="-fx-prompt-text-fill: #444488;"
-                                      unFocusColor="#444488"/>
-                        <JFXTextField fx:id="newTeacherMajor" focusColor="#0947ff" labelFloat="true" layoutX="83.0"
-                                      layoutY="237.0" onKeyReleased="#teacherTextListener" prefHeight="41.0"
-                                      prefWidth="245.0" promptText="Major" style="-fx-prompt-text-fill: #444488;"
-                                      unFocusColor="#444488"/>
-                        <JFXTextField fx:id="newTeacherDept" focusColor="#0947ff" labelFloat="true" layoutX="83.0"
-                                      layoutY="307.0" onKeyReleased="#teacherTextListener" prefHeight="41.0"
-                                      prefWidth="245.0" promptText="Department" style="-fx-prompt-text-fill: #444488;"
-                                      unFocusColor="#444488"/>
-                        <JFXDatePicker fx:id="neTeacherJD" defaultColor="#0947ff" layoutX="83.0" layoutY="376.0"
-                                       prefHeight="41.0" prefWidth="245.0" promptText="Joining Date"
-                                       style="-fx-prompt-text-fill: #009688;"/>
+                        <VBox layoutX="68.0" layoutY="170.0" prefHeight="570.0" prefWidth="365.0" spacing="25.0">
+                            <children>
+                                <JFXTextField fx:id="newTeacherName" focusColor="#0947ff" labelFloat="true"
+                                              onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0"
+                                              promptText="Name" style="-fx-prompt-text-fill: #444488;"
+                                              unFocusColor="#444488"/>
+                                <JFXTextField fx:id="newTeacherUNID" focusColor="#0947ff" labelFloat="true"
+                                              layoutX="20.0" layoutY="86.0" onKeyReleased="#teacherTextListener"
+                                              prefHeight="41.0" prefWidth="245.0" promptText="uNID"
+                                              style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488"/>
+                                <JFXTextField fx:id="newTeacherDept" focusColor="#0947ff" labelFloat="true"
+                                              onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0"
+                                              promptText="Department" style="-fx-prompt-text-fill: #444488;"
+                                              unFocusColor="#444488"/>
+                                <JFXTextField fx:id="newTeacherPosition" focusColor="#0947ff" labelFloat="true"
+                                              onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0"
+                                              promptText="Position" style="-fx-prompt-text-fill: #444488;"
+                                              unFocusColor="#444488"/>
+                                <JFXTextField fx:id="newTeacherMajor" focusColor="#0947ff" labelFloat="true"
+                                              onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0"
+                                              promptText="Major" style="-fx-prompt-text-fill: #444488;"
+                                              unFocusColor="#444488"/>
+                                <JFXDatePicker fx:id="neTeacherJD" defaultColor="#0947ff" prefHeight="41.0"
+                                               prefWidth="245.0" promptText="Joining Date"
+                                               style="-fx-prompt-text-fill: #009688;"/>
+                                <HBox prefHeight="48.0" prefWidth="374.0" spacing="20.0">
+                                    <children>
+                                        <JFXTextField fx:id="newTeacherPass" focusColor="#0947ff" labelFloat="true"
+                                                      onKeyReleased="#studentTextListener" prefHeight="41.0"
+                                                      prefWidth="220.0" promptText="Password"
+                                                      style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488"/>
+                                        <JFXButton onAction="#genTPass" prefHeight="26.0" prefWidth="97.0"
+                                                   style="-fx-background-color: blue;" text="Generate" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </JFXButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="16.0" prefWidth="374.0" spacing="25.0">
+                                    <children>
+                                        <JFXCheckBox fx:id="maleT" onAction="#isMaleT" selected="true" text="Male"/>
+                                        <JFXCheckBox fx:id="femaleT" onAction="#isFemaleT" text="Female"/>
+                                    </children>
+                                </HBox>
+                                <JFXButton fx:id="addNewTeacher" alignment="CENTER" disable="true"
+                                           onAction="#addNewTeacher" prefHeight="41.0" prefWidth="399.0"
+                                           style="-fx-background-color: #11aa11;" text="Add" textFill="WHITE">
+                                    <graphic>
+                                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="16.0"/>
+                                    </graphic>
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </JFXButton>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </padding>
+                        </VBox>
                         <Pane fx:id="previewT" layoutX="571.0" layoutY="209.0" prefHeight="186.0" prefWidth="270.0"
                               visible="false">
                             <children>
@@ -351,20 +382,6 @@
                                 </Label>
                             </children>
                         </Pane>
-                        <JFXTextField fx:id="newTeacherPass" focusColor="#0947ff" labelFloat="true" layoutX="83.0"
-                                      layoutY="447.0" onKeyReleased="#studentTextListener" prefHeight="41.0"
-                                      prefWidth="245.0" promptText="Password" style="-fx-prompt-text-fill: #444488;"
-                                      unFocusColor="#444488"/>
-                        <JFXButton layoutX="346.0" layoutY="455.0" onAction="#genTPass"
-                                   style="-fx-background-color: blue;" text="Generate" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="13.0"/>
-                            </font>
-                        </JFXButton>
-                        <JFXCheckBox fx:id="maleT" layoutX="83.0" layoutY="523.0" onAction="#isMaleT" selected="true"
-                                     text="Male"/>
-                        <JFXCheckBox fx:id="femaleT" layoutX="204.0" layoutY="523.0" onAction="#isFemaleT"
-                                     text="Female"/>
                         <Label layoutX="300.0" layoutY="27.0" text="Add a new Faculty">
                             <font>
                                 <Font name="System Bold" size="34.0"/>
@@ -372,7 +389,8 @@
                         </Label>
                     </children>
                 </Pane>
-                <Pane fx:id="delStudentPane" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="974.0">
+                <Pane fx:id="delStudentPane" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="974.0"
+                      visible="false">
                     <children>
                         <Label layoutX="263.0" layoutY="32.0" text="Delete a Student record">
                             <font>
