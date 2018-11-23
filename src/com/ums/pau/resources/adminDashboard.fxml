@@ -29,7 +29,7 @@
                                 <Font name="DejaVu Serif Bold" size="15.0"/>
                             </font>
                             <VBox.margin>
-                                <Insets bottom="10.0" top="20.0"/>
+                                <Insets bottom="10.0" top="30.0"/>
                             </VBox.margin>
                         </Label>
                         <JFXButton buttonType="RAISED" onAction="#toAddStudentPane" prefHeight="70.0" prefWidth="200.0"
@@ -76,7 +76,7 @@
                                 <Font name="DejaVu Serif Bold" size="15.0"/>
                             </font>
                             <VBox.margin>
-                                <Insets bottom="10.0" top="20.0"/>
+                                <Insets bottom="10.0" top="30.0"/>
                             </VBox.margin>
                         </Label>
                         <JFXButton buttonType="RAISED" onAction="#toAddTeacherPane" prefHeight="70.0" prefWidth="200.0"
@@ -91,8 +91,9 @@
                                 <FontAwesomeIconView fill="#f8f8f8" glyphName="PLUS_CIRCLE" size="18.0"/>
                             </graphic>
                         </JFXButton>
-                        <JFXButton layoutX="10.0" layoutY="113.0" prefHeight="70.0" prefWidth="200.0"
-                                   style="-fx-background-color: #111125;" text="Modify a Faculty" textFill="WHITE">
+                        <JFXButton layoutX="10.0" layoutY="113.0" onAction="#toModifyFac" prefHeight="70.0"
+                                   prefWidth="200.0" style="-fx-background-color: #111125;" text="Modify a Faculty"
+                                   textFill="WHITE">
                             <font>
                                 <Font size="16.0"/>
                             </font>
@@ -103,8 +104,8 @@
                                 <Insets bottom="10.0"/>
                             </VBox.margin>
                         </JFXButton>
-                        <JFXButton prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #cc1111;"
-                                   text=" Delete A Faculty" textFill="WHITE">
+                        <JFXButton onAction="#toDeleteFac" prefHeight="70.0" prefWidth="200.0"
+                                   style="-fx-background-color: #cc1111;" text=" Delete A Faculty" textFill="WHITE">
                             <font>
                                 <Font size="16.0"/>
                             </font>
@@ -286,6 +287,22 @@
                 <Pane fx:id="addTeacherPane" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="974.0"
                       style="-fx-background-color: #F5FAFA;">
                     <children>
+                        <Pane fx:id="modifyFac" layoutX="188.0" layoutY="86.0">
+                            <children>
+                                <JFXTextField fx:id="searchFacTF" focusColor="#405aa800" prefHeight="50.0"
+                                              prefWidth="490.0" promptText="Search by ID"
+                                              style="-fx-background-color: #fff; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 1; -fx-border-color: #000;"
+                                              unFocusColor="#4d4d4d00">
+                                    <padding>
+                                        <Insets left="15.0"/>
+                                    </padding>
+                                </JFXTextField>
+                                <Label fx:id="facSearchResult" layoutX="181.0" layoutY="68.0" text="No records found!"
+                                       textFill="RED" visible="false"/>
+                                <FontAwesomeIconView fill="#6f6f6f" glyphName="SEARCH" layoutX="440.0" layoutY="35.0"
+                                                     onMouseClicked="#searchFac" size="30"/>
+                            </children>
+                        </Pane>
                         <VBox layoutX="68.0" layoutY="170.0" prefHeight="570.0" prefWidth="365.0" spacing="25.0">
                             <children>
                                 <JFXTextField fx:id="newTeacherName" focusColor="#0947ff" labelFloat="true"
@@ -308,7 +325,7 @@
                                               onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0"
                                               promptText="Major" style="-fx-prompt-text-fill: #444488;"
                                               unFocusColor="#444488"/>
-                                <JFXDatePicker fx:id="neTeacherJD" defaultColor="#0947ff" prefHeight="41.0"
+                                <JFXDatePicker fx:id="newTeacherJD" defaultColor="#0947ff" prefHeight="41.0"
                                                prefWidth="245.0" promptText="Joining Date"
                                                style="-fx-prompt-text-fill: #009688;"/>
                                 <HBox prefHeight="48.0" prefWidth="374.0" spacing="20.0">
@@ -382,7 +399,7 @@
                                 </Label>
                             </children>
                         </Pane>
-                        <Label layoutX="300.0" layoutY="27.0" text="Add a new Faculty">
+                        <Label fx:id="addFac" layoutX="300.0" layoutY="27.0" text="Add a new Faculty">
                             <font>
                                 <Font name="System Bold" size="34.0"/>
                             </font>

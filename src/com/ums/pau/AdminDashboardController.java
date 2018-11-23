@@ -40,12 +40,16 @@ public class AdminDashboardController implements Initializable {
     public Label delName, delID, delDept, delGen, delAdDate;
     public JFXCheckBox includeResult;
     public JFXTextField newTeacherUNID;
+    public Label addFac;
+    public JFXTextField searchFacTF;
+    public Label facSearchResult;
+    public Pane modifyFac;
     @FXML
     private JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass;
     @FXML
     private JFXTextField newTeacherName, newTeacherPosition, newTeacherMajor, newTeacherDept, newTeacherPass;
     @FXML
-    private JFXDatePicker newStudAdDate, neTeacherJD;
+    private JFXDatePicker newStudAdDate, newTeacherJD;
     @FXML
     private JFXButton addNewStud, addNewTeacher;
     @FXML
@@ -126,12 +130,7 @@ public class AdminDashboardController implements Initializable {
             newStudSes.setDisable(false);
             newStudAdDate.setDisable(false);
             newStudPass.setDisable(false);
-            newStudName.clear();
-            newStudID.clear();
-            newStudDept.clear();
-            newStudSes.clear();
-            newStudAdDate.setValue(null);
-            newStudPass.clear();
+            clearStudentFields();
             addNewStud.setText("Add");
             addNewStud.setDisable(true);
             addNew = true;
@@ -149,9 +148,9 @@ public class AdminDashboardController implements Initializable {
                             .append("position", newTeacherPosition.getText())
                             .append("major", newTeacherMajor.getText())
                             .append("department", newTeacherDept.getText())
-                            .append("joiningDate", neTeacherJD.getValue() == null ? new Date() : neTeacherJD.getValue().toString())
+                            .append("joiningDate", newTeacherJD.getValue() == null ? new Date() : newTeacherJD.getValue().toString())
                             .append("password", newTeacherPass.getText())
-                            .append("gender", male.isSelected() ? "Male" : "Female")
+                            .append("gender", maleT.isSelected() ? "Male" : "Female")
                             .append("added_on", new Date()));
             Bson filter = Filters.eq("uNID", newTeacherUNID.getText());
             UpdateOptions options = new UpdateOptions().upsert(true);
@@ -161,13 +160,13 @@ public class AdminDashboardController implements Initializable {
             positionLabel.setText(positionLabel.getText() + newTeacherPosition.getText());
             majorLabel.setText(majorLabel.getText() + newTeacherMajor.getText());
             tDeptLabel.setText((tDeptLabel.getText() + newTeacherDept.getText()));
-            jdLabel.setText(jdLabel.getText() + (neTeacherJD.getValue() == null ? new Date().toString() : neTeacherJD.getValue().toString()));
+            jdLabel.setText(jdLabel.getText() + (newTeacherJD.getValue() == null ? new Date().toString() : newTeacherJD.getValue().toString()));
             newTeacherName.setDisable(true);
             newTeacherUNID.setDisable(true);
             newTeacherPosition.setDisable(true);
             newTeacherMajor.setDisable(true);
             newTeacherDept.setDisable(true);
-            neTeacherJD.setDisable(true);
+            newTeacherJD.setDisable(true);
             newTeacherPass.setDisable(true);
             addNewTeacher.setText("Add Another");
             addNewT = false;
@@ -184,19 +183,23 @@ public class AdminDashboardController implements Initializable {
             newTeacherPosition.setDisable(false);
             newTeacherMajor.setDisable(false);
             newTeacherDept.setDisable(false);
-            neTeacherJD.setDisable(false);
+            newTeacherJD.setDisable(false);
             newTeacherPass.setDisable(false);
-            newTeacherUNID.clear();
-            newTeacherName.clear();
-            newTeacherPosition.clear();
-            newTeacherMajor.clear();
-            newTeacherDept.clear();
-            neTeacherJD.setValue(null);
-            newTeacherPass.clear();
+            clearTeachersFields();
             addNewTeacher.setText("Add");
             addNewTeacher.setDisable(true);
             addNewT = true;
         }
+    }
+
+    private void clearTeachersFields() {
+        newTeacherUNID.clear();
+        newTeacherName.clear();
+        newTeacherPosition.clear();
+        newTeacherMajor.clear();
+        newTeacherDept.clear();
+        newTeacherJD.setValue(null);
+        newTeacherPass.clear();
     }
 
     private void TextFieldChangedListener(JFXTextField[] textFields, JFXButton button) {
@@ -223,6 +226,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void toAddStudentPane() {
+        clearStudentFields();
         isValid = false;
         addTeacherPane.setVisible(false);
         dashBoardPane.setVisible(false);
@@ -233,17 +237,20 @@ public class AdminDashboardController implements Initializable {
         addStudPane.setVisible(true);
     }
     public void toAddTeacherPane() {
+        clearTeachersFields();
         isValid = false;
         dashBoardPane.setVisible(false);
         addStudPane.setVisible(false);
         modify.setVisible(false);
         delStudentPane.setVisible(false);
+        modifyFac.setVisible(false);
+        addFac.setText("Add a Faculty");
         addTeacherPane.setVisible(true);
     }
     public void toDashboardPane() {
         MongoCollection<Document> tableS = initMongo( "students");
         totalStud.setText(String.valueOf(tableS.countDocuments()));
-        MongoCollection<Document> tableT = initMongo( "teacher");
+        MongoCollection<Document> tableT = initMongo("teachers");
         totalFac.setText(String.valueOf(tableT.countDocuments()));
         addTeacherPane.setVisible(false);
         addStudPane.setVisible(false);
@@ -260,6 +267,8 @@ public class AdminDashboardController implements Initializable {
 
     }
     public void toModifyStudent() {
+        clearStudentFields();
+        searchStud.clear();
         addTeacherPane.setVisible(false);
         dashBoardPane.setVisible(false);
         delStudentPane.setVisible(false);
@@ -268,6 +277,33 @@ public class AdminDashboardController implements Initializable {
         notification.setText("Student modified successfully!");
         addStudPane.setVisible(true);
     }
+
+    public void toModifyFac() {
+        clearTeachersFields();
+        searchFacTF.clear();
+        isValid = false;
+        dashBoardPane.setVisible(false);
+        addStudPane.setVisible(false);
+        modify.setVisible(false);
+        delStudentPane.setVisible(false);
+        addFac.setText("Modify a Faculty");
+        modifyFac.setVisible(true);
+        addTeacherPane.setVisible(true);
+    }
+
+    public void toDeleteFac() {
+
+    }
+
+    private void clearStudentFields() {
+        newStudName.clear();
+        newStudID.clear();
+        newStudDept.clear();
+        newStudSes.clear();
+        newStudAdDate.setValue(null);
+        newStudPass.clear();
+    }
+
 
     public void genPass() {
         GenPass gp = new GenPass();
@@ -311,17 +347,21 @@ public class AdminDashboardController implements Initializable {
         new SceneSwitcher().switchSceneTo("resources/landing.fxml");
     }
 
-    private DBCollection initMongoDB() {
+    private DBCollection initMongoDB(String collName) {
+        return getDBCollection(collName);
+    }
+
+    static DBCollection getDBCollection(String collName) {
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
         MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
         DB db = mongoClient.getDB("UMS");
-        return db.getCollection("students");
+        return db.getCollection(collName);
     }
 
     private boolean isDuplicate() {
         BasicDBObject bd = new BasicDBObject("id", newStudID.getText());
-        DBCollection dc = initMongoDB();
+        DBCollection dc = initMongoDB("students");
         DBCursor cursor = dc.find(bd);
         try {
             DBObject dbo = cursor.next();
@@ -334,7 +374,7 @@ public class AdminDashboardController implements Initializable {
     public void searchStudent() {
         searchResult.setVisible(false);
         boolean checked = false;
-        DBCollection collection = initMongoDB();
+        DBCollection collection = initMongoDB("students");
         BasicDBObject query = new BasicDBObject("id", searchStud.getText());
         DBCursor cursor = collection.find(query);
         while (cursor.hasNext()) {
@@ -345,13 +385,7 @@ public class AdminDashboardController implements Initializable {
             newStudSes.setText(object.get("session").toString());
             newStudPass.setText(object.get("password").toString());
             newStudAdDate.setValue(LocalDate.parse(object.get("admissionDate").toString()));
-            if (object.get("gender").toString().equals("Male")) {
-                male.setSelected(true);
-                female.setSelected(false);
-            } else {
-                female.setSelected(true);
-                male.setSelected(false);
-            }
+            getGender(object.get("gender").toString(), male, female);
             checked = true;
         }
         if (!checked) searchResult.setVisible(true);
@@ -381,8 +415,8 @@ public class AdminDashboardController implements Initializable {
         delSearch.setVisible(false);
         delConfirmation.setVisible(false);
         boolean checked = false;
-        DBCollection collection = initMongoDB();
-        BasicDBObject query = new BasicDBObject("id", delSearchTF.getText());
+        DBCollection collection = initMongoDB("students");
+        BasicDBObject query = new BasicDBObject("id", delSearchTF.getText().replaceAll("-", ""));
         DBCursor cursor = collection.find(query);
         while (cursor.hasNext()) {
             DBObject object = cursor.next();
@@ -396,5 +430,37 @@ public class AdminDashboardController implements Initializable {
             checked = true;
         }
         if (!checked) delSearch.setVisible(true);
+    }
+
+    public void searchFac() {
+
+        facSearchResult.setVisible(false);
+        boolean checked = false;
+        DBCollection collection = initMongoDB("teachers");
+        BasicDBObject query = new BasicDBObject("uNID", searchFacTF.getText());
+        DBCursor cursor = collection.find(query);
+        while (cursor.hasNext()) {
+            DBObject object = cursor.next();
+            newTeacherUNID.setText(object.get("uNID").toString());
+            newTeacherDept.setText(object.get("department").toString());
+            newTeacherName.setText(object.get("name").toString());
+            newTeacherPosition.setText(object.get("position").toString());
+            newTeacherMajor.setText(object.get("major").toString());
+            newTeacherPass.setText(object.get("password").toString());
+            newTeacherJD.setValue(LocalDate.parse(object.get("joiningDate").toString()));
+            getGender(object.get("gender").toString(), maleT, femaleT);
+            checked = true;
+        }
+        if (!checked) facSearchResult.setVisible(true);
+    }
+
+    private void getGender(String string, JFXCheckBox maleT, JFXCheckBox femaleT) {
+        if (string.equals("Male")) {
+            maleT.setSelected(true);
+            femaleT.setSelected(false);
+        } else {
+            femaleT.setSelected(true);
+            maleT.setSelected(false);
+        }
     }
 }

@@ -3,19 +3,17 @@ package com.ums.pau;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.mongodb.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.ums.pau.AdminDashboardController.getDBCollection;
 
 public class StudentDashboardController implements Initializable {
     public Pane home, gradeReport, changePass;
@@ -32,11 +30,7 @@ public class StudentDashboardController implements Initializable {
     }
 
     public static DBCollection getCollection(String collName) {
-        Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
-        mongoLogger.setLevel(Level.SEVERE);
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-        DB db = mongoClient.getDB("UMS");
-        return db.getCollection(collName);
+        return getDBCollection(collName);
     }
 
 
