@@ -45,7 +45,7 @@
                 </Label>
             </children>
         </HBox>
-        <Label layoutX="415.0" layoutY="11.0" text="Faculty List" textFill="WHITE">
+        <Label layoutX="415.0" layoutY="11.0" text="Student List" textFill="WHITE">
             <font>
                 <Font size="30.0" />
             </font>

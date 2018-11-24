@@ -82,28 +82,10 @@ Pane Pane .scroll-pane {
     -fx-alignment: center;
 }
 
-#facID {
-    -fx-min-width: 168;
-    -fx-pref-height: 40;
-    -fx-alignment: center;
+#listItem:hover {
+    -fx-background-color: #555599;
+    -fx-text-fill: white;
 }
-#facName {
-    -fx-min-width: 298;
-    -fx-pref-height: 40;
-    -fx-alignment: center;
-}
-#facDept {
-    -fx-min-width: 118;
-    -fx-pref-height: 40;
-    -fx-alignment: center;
-}
-#facMajor {
-    -fx-min-width: 158;
-    -fx-pref-height: 40;
-    -fx-alignment: center;
-}
-#facPosition {
-    -fx-min-width: 248;
-    -fx-pref-height: 40;
-    -fx-alignment: center;
+#listItem:hover #itemChild{
+    -fx-text-fill: white;
 }

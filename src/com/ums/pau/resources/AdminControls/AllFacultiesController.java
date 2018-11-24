@@ -23,15 +23,21 @@ public class AllFacultiesController implements Initializable {
             HBox hBox = new HBox();
             Label uNID = new Label(object.get("uNID").toString());
             uNID.setStyle("-fx-padding: 5; -fx-min-width: 170; -fx-alignment: center");
+            uNID.setId("itemChild");
             Label name = new Label(object.get("name").toString());
             name.setStyle("-fx-padding: 5; -fx-min-width: 300; -fx-alignment: center");
+            name.setId("itemChild");
             Label dept = new Label(object.get("department").toString());
             dept.setStyle("-fx-padding: 5; -fx-min-width: 120; -fx-alignment: center");
+            dept.setId("itemChild");
             Label major = new Label(object.get("major").toString());
             major.setStyle("-fx-padding: 5; -fx-min-width: 160; -fx-alignment: center");
+            major.setId("itemChild");
             Label position = new Label(object.get("position").toString());
             position.setStyle("-fx-padding: 5; -fx-min-width: 250; -fx-alignment: center");
+            position.setId("itemChild");
             hBox.getChildren().addAll(uNID, name, dept, major, position);
+            hBox.setId("listItem");
             facVBox.getChildren().add(hBox);
         }
     }

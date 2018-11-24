@@ -23,15 +23,21 @@ public class AllStudentsController implements Initializable {
             HBox hBox = new HBox();
             Label id = new Label(object.get("id").toString());
             id.setStyle("-fx-padding: 5; -fx-min-width: 170; -fx-alignment: center");
+            id.setId("itemChild");
             Label name = new Label(object.get("name").toString());
             name.setStyle("-fx-padding: 5; -fx-min-width: 300; -fx-alignment: center");
+            name.setId("itemChild");
             Label dept = new Label(object.get("dept").toString());
             dept.setStyle("-fx-padding: 5; -fx-min-width: 120; -fx-alignment: center");
+            dept.setId("itemChild");
             Label gender = new Label(object.get("gender").toString());
             gender.setStyle("-fx-padding: 5; -fx-min-width: 160; -fx-alignment: center");
+            gender.setId("itemChild");
             Label admissionDate = new Label(object.get("admissionDate").toString());
             admissionDate.setStyle("-fx-padding: 5; -fx-min-width: 250; -fx-alignment: center");
+            admissionDate.setId("itemChild");
             hBox.getChildren().addAll(id, name, dept, gender, admissionDate);
+            hBox.setId("listItem");
             studVBox.getChildren().add(hBox);
         }
     }
