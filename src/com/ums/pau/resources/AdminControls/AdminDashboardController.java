@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -401,7 +402,7 @@ public class AdminDashboardController implements Initializable {
     static boolean delAll = false;
     public void promptDelete() throws IOException {
         toBeDeleted = delID.getText();
-        Parent root = FXMLLoader.load(getClass().getResource("resources/AdminControls/deletePrompt.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("deletePrompt.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -465,4 +466,27 @@ public class AdminDashboardController implements Initializable {
             maleT.setSelected(false);
         }
     }
+    static Stage facList;
+    public void showFacList() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("allFaculties.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        facList = stage;
+        stage.show();
+    }
+    static Stage studList;
+    public void showStudList() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("allStudents.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        studList = stage;
+        stage.show();
+    }
+
 }

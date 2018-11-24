@@ -15,7 +15,7 @@ public class Main extends Application {
         primaryStage.setTitle("UMS Portal");
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("bin/pictures/ico.jpg")));
         Scene newScene = new Scene(root);
-        newScene.getStylesheets().add(getClass().getResource("bin/stylesheet/style.css").toExternalForm());
+        newScene.getStylesheets().add(getClass().getResource("resources/stylesheet/style.css").toExternalForm());
         primaryStage.setScene(newScene);
         primaryStage.setResizable(false);
         rootStage = primaryStage;
