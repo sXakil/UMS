@@ -1,7 +1,8 @@
-package com.ums.pau;
+package com.ums.pau.resources.AdminControls;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.ums.pau.SceneSwitcher;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
@@ -14,13 +15,13 @@ public class AdminPanelController {
     public Label wrongIDFormat;
 
     public void backToHome() throws IOException {
-        new SceneSwitcher().switchSceneTo("resources/landing.fxml");
+        new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
     }
 
     public void validate() throws IOException {
         //TODO: Add admins
         if(adminID.getText().equals("a") || adminPass.getText().equals("adminPassword")) {
-            new SceneSwitcher().switchSceneTo("resources/adminDashboard.fxml");
+            new SceneSwitcher().switchSceneTo("resources/AdminControls/adminDashboard.fxml");
         }
         else {
             wrongID.setVisible(true);

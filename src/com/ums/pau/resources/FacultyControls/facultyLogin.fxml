@@ -12,18 +12,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.FacultyLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.FacultyControls.FacultyLoginController">
     <children>
         <Pane prefHeight="800.0" prefWidth="1200.0" />
         <ImageView fitHeight="800.0" fitWidth="1200.0">
             <image>
-                <Image url="@pictures/m-main-bg.png" />
+                <Image url="@../../bin/pictures/m-main-bg.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="800.0" fitWidth="1200.0" layoutX="167.0" layoutY="4.0" pickOnBounds="true"
                    preserveRatio="true">
             <image>
-                <Image url="@pictures/m-lgin-bg.png" />
+                <Image url="@../../bin/pictures/m-lgin-bg.png" />
             </image>
         </ImageView>
         <Pane layoutX="693.0" layoutY="117.0" prefHeight="563.0" prefWidth="397.0"
@@ -34,12 +34,12 @@
         </Pane>
         <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true" visible="false">
             <image>
-                <Image url="@pictures/m-bg.png" />
+                <Image url="@../../bin/pictures/m-bg.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true" visible="false">
             <image>
-                <Image url="@pictures/m-pc.png" />
+                <Image url="@../../bin/pictures/m-pc.png" />
             </image>
         </ImageView>
         <Label layoutX="312.0" layoutY="202.0" prefHeight="35.0" prefWidth="185.0" text="Hello there," textFill="WHITE">
@@ -59,7 +59,7 @@
         <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="308.0" layoutY="334.0" pickOnBounds="true"
                    preserveRatio="true">
             <image>
-                <Image url="@pictures/man-user.png" />
+                <Image url="@../../bin/pictures/man-user.png" />
             </image>
         </ImageView>
         <JFXPasswordField fx:id="passWord" focusColor="cyan" labelFloat="true" layoutX="367.0" layoutY="414.0"
@@ -68,7 +68,7 @@
         <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="308.0" layoutY="426.0" pickOnBounds="true"
                    preserveRatio="true">
             <image>
-                <Image url="@pictures/key.png" />
+                <Image url="@../../bin/pictures/key.png" />
             </image>
         </ImageView>
         <JFXButton buttonType="RAISED" layoutX="620.0" layoutY="495.0" onAction="#checkLogin" prefHeight="42.0"
@@ -87,7 +87,7 @@
         <ImageView fitHeight="223.0" fitWidth="356.0" layoutX="-13.0" layoutY="-34.0" pickOnBounds="true"
                    preserveRatio="true">
             <image>
-                <Image url="@pictures/logo.png" />
+                <Image url="@../../bin/pictures/logo.png" />
             </image>
         </ImageView>
         <JFXButton buttonType="RAISED" layoutX="39.0" layoutY="721.0" onAction="#backToHome" prefHeight="48.0" prefWidth="152.0" style="-fx-background-color: #111f3aa7; -fx-background-radius: 10; -fx-border-radius: 10;" text=" Go Back" textFill="WHITE">
@@ -97,7 +97,7 @@
             <graphic>
                 <ImageView fitHeight="27.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@pictures/return.png" />
+                        <Image url="@../../bin/pictures/return.png" />
                     </image>
                 </ImageView>
             </graphic>

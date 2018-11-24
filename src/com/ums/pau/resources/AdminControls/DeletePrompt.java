@@ -1,10 +1,9 @@
-package com.ums.pau.resources;
+package com.ums.pau.resources.AdminControls;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.ums.pau.AdminDashboardController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -13,7 +12,7 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import static com.ums.pau.StudentDashboardController.getCollection;
+import static com.ums.pau.resources.StudentControls.StudentDashboardController.getCollection;
 
 public class DeletePrompt implements Initializable {
     public Label confirmLabel;

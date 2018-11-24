@@ -11,11 +11,11 @@ public class Main extends Application {
     static Stage rootStage;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("resources/landing.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/LandingControls/landing.fxml"));
         primaryStage.setTitle("UMS Portal");
-        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("resources/pictures/ico.jpg")));
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("bin/pictures/ico.jpg")));
         Scene newScene = new Scene(root);
-        newScene.getStylesheets().add(getClass().getResource("resources/stylesheet/style.css").toExternalForm());
+        newScene.getStylesheets().add(getClass().getResource("bin/stylesheet/style.css").toExternalForm());
         primaryStage.setScene(newScene);
         primaryStage.setResizable(false);
         rootStage = primaryStage;

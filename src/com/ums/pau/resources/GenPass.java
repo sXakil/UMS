@@ -1,13 +1,13 @@
-package com.ums.pau;
+package com.ums.pau.resources;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-class GenPass {
+public class GenPass {
     private String str;
     private StringBuilder sb;
     private List<Integer> l;
-    GenPass() {
+    public GenPass() {
         this.l = new ArrayList<>();
         this.sb = new StringBuilder();
         buildPassword();
@@ -24,7 +24,7 @@ class GenPass {
         }
         str = sb.toString();
     }
-    String getString() {
+    public String getString() {
         return str;
     }
 }

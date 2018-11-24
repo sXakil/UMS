@@ -1,10 +1,12 @@
-package com.ums.pau;
+package com.ums.pau.resources.AdminControls;
 
 import com.jfoenix.controls.*;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
+import com.ums.pau.resources.GenPass;
+import com.ums.pau.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,11 +30,11 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.ums.pau.FacultyDashboardController.getDocumentMongoCollection;
+import static com.ums.pau.resources.FacultyControls.FacultyDashboardController.getDocumentMongoCollection;
 
 public class AdminDashboardController implements Initializable {
-    public static Stage prompt;
-    public static String toBeDeleted;
+    static Stage prompt;
+    static String toBeDeleted;
     public Pane delStudentPane;
     public JFXTextField delSearchTF;
     public Label delSearch;
@@ -344,14 +346,14 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void logOut() throws IOException {
-        new SceneSwitcher().switchSceneTo("resources/landing.fxml");
+        new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
     }
 
     private DBCollection initMongoDB(String collName) {
         return getDBCollection(collName);
     }
 
-    static DBCollection getDBCollection(String collName) {
+    public static DBCollection getDBCollection(String collName) {
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
         MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
@@ -396,10 +398,10 @@ public class AdminDashboardController implements Initializable {
         delSearchTF.clear();
     }
 
-    public static boolean delAll = false;
+    static boolean delAll = false;
     public void promptDelete() throws IOException {
         toBeDeleted = delID.getText();
-        Parent root = FXMLLoader.load(getClass().getResource("resources/deletePrompt.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/AdminControls/deletePrompt.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);

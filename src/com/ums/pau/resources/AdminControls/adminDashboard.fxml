@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F0FBFF;" stylesheets="@stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.AdminDashboardController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F0FBFF;" stylesheets="@../../bin/stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.AdminDashboardController">
     <children>
         <Pane prefHeight="800.0" prefWidth="226.0" style="-fx-background-color: #333388;" AnchorPane.bottomAnchor="0.0"
               AnchorPane.topAnchor="0.0">

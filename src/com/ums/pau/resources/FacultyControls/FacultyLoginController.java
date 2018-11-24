@@ -1,7 +1,8 @@
-package com.ums.pau;
+package com.ums.pau.resources.FacultyControls;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.ums.pau.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -21,7 +22,7 @@ public class FacultyLoginController {
     public void checkLogin() throws IOException {
         //TODO: add verification
         if (userName.getText().equals("r") || passWord.getText().equals("toor")) {
-            new SceneSwitcher().switchSceneTo("resources/facultyDashboard.fxml");
+            new SceneSwitcher().switchSceneTo("resources/FacultyControls/facultyDashboard.fxml");
         } else error.setVisible(true);
     }
 
@@ -33,7 +34,7 @@ public class FacultyLoginController {
 
     public void backToHome() {
         try {
-            new SceneSwitcher().switchSceneTo("resources/landing.fxml");
+            new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

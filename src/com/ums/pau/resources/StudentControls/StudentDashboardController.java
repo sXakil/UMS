@@ -1,8 +1,9 @@
-package com.ums.pau;
+package com.ums.pau.resources.StudentControls;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.mongodb.*;
+import com.ums.pau.SceneSwitcher;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -13,7 +14,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.ums.pau.AdminDashboardController.getDBCollection;
+import static com.ums.pau.resources.AdminControls.AdminDashboardController.getDBCollection;
 
 public class StudentDashboardController implements Initializable {
     public Pane home, gradeReport, changePass;
@@ -100,7 +101,7 @@ public class StudentDashboardController implements Initializable {
         return markToCGPA(m);
     }
 
-    static String markToCGPA(double m) {
+    public static String markToCGPA(double m) {
         if (m >= 80) return "4.00";
         else if (m >= 75) return "3.75";
         else if (m >= 70) return "3.50";
@@ -144,7 +145,7 @@ public class StudentDashboardController implements Initializable {
     }
 
     public void logOut() throws IOException {
-        new SceneSwitcher().switchSceneTo("resources/landing.fxml");
+        new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
     }
 
     public void validatePassword() {

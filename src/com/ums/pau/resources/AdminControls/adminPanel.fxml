@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #111125;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.AdminPanelController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #111125;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.AdminPanelController">
    <children>
       <FontAwesomeIconView fill="#dad8d8" glyphName="LOCK" layoutX="552.0" layoutY="207.0" size="150.0" />
       <JFXTextField fx:id="adminID" labelFloat="true" layoutX="422.0" layoutY="262.0" onKeyReleased="#validateEmail" prefHeight="57.0" prefWidth="356.0" promptText="uNID" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #fff;" unFocusColor="#a8a6a6" />
@@ -37,7 +37,7 @@
       </Label>
       <ImageView fitHeight="139.0" fitWidth="300.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@pictures/logo.png" />
+            <Image url="@../../bin/pictures/logo.png" />
          </image>
       </ImageView>
        <JFXButton buttonType="RAISED" layoutX="47.0" layoutY="708.0" onAction="#backToHome" prefHeight="48.0" prefWidth="152.0" style="-fx-background-color: #dad8d8; -fx-background-radius: 10; -fx-border-radius: 10;" text="    Go Back" textFill="#111125">

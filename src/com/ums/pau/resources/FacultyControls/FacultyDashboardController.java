@@ -1,9 +1,10 @@
-package com.ums.pau;
+package com.ums.pau.resources.FacultyControls;
 
 import com.jfoenix.controls.*;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.ums.pau.SceneSwitcher;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -16,8 +17,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.ums.pau.StudentDashboardController.getCollection;
-import static com.ums.pau.StudentDashboardController.markToCGPA;
+import static com.ums.pau.resources.StudentControls.StudentDashboardController.getCollection;
+import static com.ums.pau.resources.StudentControls.StudentDashboardController.markToCGPA;
 
 
 public class FacultyDashboardController implements Initializable {
@@ -114,7 +115,7 @@ public class FacultyDashboardController implements Initializable {
         return getDocumentMongoCollection("results");
     }
 
-    static MongoCollection<Document> getDocumentMongoCollection(String collName) {
+    public static MongoCollection<Document> getDocumentMongoCollection(String collName) {
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
         MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
@@ -274,7 +275,7 @@ public class FacultyDashboardController implements Initializable {
     }
 
     public void logOut() throws IOException {
-        new SceneSwitcher().switchSceneTo("resources/landing.fxml");
+        new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
     }
 }
 //    @FXML

@@ -1,7 +1,8 @@
-package com.ums.pau;
+package com.ums.pau.resources.StudentControls;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.mongodb.*;
+import com.ums.pau.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -39,7 +40,7 @@ public class StudentLoginController {
         }
         if (pass != null && passWord.getText().equals(pass)) {
             id = studentID.getText();
-            new SceneSwitcher().switchSceneTo("resources/studentDashboard.fxml");
+            new SceneSwitcher().switchSceneTo("resources/StudentControls/studentDashboard.fxml");
         } else error.setVisible(true);
     }
 
@@ -51,7 +52,7 @@ public class StudentLoginController {
 
     public void backToHome() {
         try {
-            new SceneSwitcher().switchSceneTo("resources/landing.fxml");
+            new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
