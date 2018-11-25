@@ -5,11 +5,14 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.bson.Document;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,14 +21,17 @@ import static com.ums.pau.resources.StudentControls.StudentDashboardController.g
 public class AllStudentsController implements Initializable {
     public VBox studVBox;
     public JFXTextField searchField;
+    public FontAwesomeIconView searchIcon;
     private DBCollection collection = getCollection("students");
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        searchField.setPromptText("Search by ID");
         DBCursor cursor = collection.find();
-        //search(cursor);
+        search(cursor);
     }
 
     private void search(DBCursor cursor) {
+        studVBox.getChildren().clear();
         while (cursor.hasNext()) {
             DBObject object = cursor.next();
             HBox hBox = new HBox();
@@ -47,6 +53,7 @@ public class AllStudentsController implements Initializable {
             hBox.getChildren().addAll(id, name, dept, gender, admissionDate);
             hBox.setId("listItem");
             studVBox.getChildren().add(hBox);
+            searchField.setPromptText("Search by ID");
         }
     }
 
@@ -55,9 +62,17 @@ public class AllStudentsController implements Initializable {
     }
 
     public void searchStudent() {
-        //DBCursor cursor = collection.find();
+        BasicDBObject query = new BasicDBObject("id", searchField.getText());
+        DBCursor cursor = collection.find(query);
+        if(!cursor.hasNext()) {
+            searchField.clear();
+            search(collection.find());
+            searchField.setPromptText("No record found");
+        } else search(cursor);
+    }
 
-        //while ()
-        //search(collection.find(query)); //.sort(new BasicDBObject("score", new BasicDBObject("$meta", "textScore"))));
+    public void resetPrompt() {
+        searchField.setPromptText("Search by ID");
+        searchField.setOnKeyPressed(keyEvent -> { if (keyEvent.getCode().equals(KeyCode.ENTER)) searchStudent(); });
     }
 }

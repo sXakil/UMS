@@ -1,4 +1,5 @@
 package com.ums.pau.resources.StudentControls;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.mongodb.*;
@@ -6,12 +7,15 @@ import com.ums.pau.BCrypt;
 import com.ums.pau.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public class StudentLoginController {
+public class StudentLoginController implements Initializable {
     @FXML
     public JFXTextField studentID;
     @FXML
@@ -22,8 +26,11 @@ public class StudentLoginController {
     public Hyperlink forgotP;
 
     static String id;
+    public JFXButton login;
+
     @FXML
     public void checkLogin() throws IOException {
+        login.setDefaultButton(true);
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
         MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
@@ -57,5 +64,10 @@ public class StudentLoginController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        login.setDefaultButton(true);
     }
 }

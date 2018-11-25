@@ -56,7 +56,7 @@
                 <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="40" />
             </graphic>
         </JFXButton>
-      <JFXTextField fx:id="searchField" focusColor="#ffffff00" layoutX="273.0" layoutY="59.0" onKeyReleased="#searchStudent" prefHeight="49.0" prefWidth="457.0" promptText="Search by Name or ID" style="-fx-prompt-text-fill: #222244; -fx-background-color: #cccccc; -fx-padding: 15;" unFocusColor="#ffffff00" />
-      <FontAwesomeIconView fill="#222244" glyphName="SEARCH" layoutX="686.0" layoutY="96.0" size="35" />
+      <JFXTextField fx:id="searchField" onKeyTyped="#resetPrompt" focusColor="#ffffff00" layoutX="273.0" layoutY="59.0" prefHeight="49.0" prefWidth="457.0" promptText="Search by Name or ID" style="-fx-prompt-text-fill: #222244; -fx-background-color: #cccccc; -fx-padding: 15;" unFocusColor="#ffffff00" />
+      <FontAwesomeIconView fx:id="searchIcon" onMouseClicked="#searchStudent" fill="#222244" glyphName="SEARCH" layoutX="686.0" layoutY="96.0" size="35" />
     </children>
 </AnchorPane>

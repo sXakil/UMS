@@ -15,7 +15,7 @@
       <FontAwesomeIconView fill="#dad8d8" glyphName="LOCK" layoutX="552.0" layoutY="207.0" size="150.0" />
       <JFXTextField fx:id="adminID" labelFloat="true" layoutX="422.0" layoutY="262.0" onKeyReleased="#validateEmail" prefHeight="57.0" prefWidth="356.0" promptText="uNID" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #fff;" unFocusColor="#a8a6a6" />
       <JFXPasswordField fx:id="adminPass" labelFloat="true" layoutX="422.0" layoutY="376.0" prefHeight="57.0" prefWidth="356.0" promptText="Passcode" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #fff;" unFocusColor="#c3bfbf" />
-      <JFXButton layoutX="547.0" layoutY="482.0" onAction="#validate" prefHeight="41.0" prefWidth="106.0" style="-fx-background-color: #dad8d8; -fx-background-radius: 10;" text="Log In">
+      <JFXButton fx:id="login" layoutX="547.0" layoutY="482.0" onAction="#validate" prefHeight="41.0" prefWidth="106.0" style="-fx-background-color: #dad8d8; -fx-background-radius: 10;" text="Log In">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

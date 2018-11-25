@@ -1,18 +1,23 @@
 package com.ums.pau.resources.AdminControls;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.ums.pau.SceneSwitcher;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AdminPanelController {
+public class AdminPanelController implements Initializable {
     public JFXTextField adminID;
     public JFXPasswordField adminPass;
     public Label wrongPass;
     public Label wrongID;
     public Label wrongIDFormat;
+    public JFXButton login;
 
     public void backToHome() throws IOException {
         new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
@@ -40,5 +45,10 @@ public class AdminPanelController {
         } else {
             wrongIDFormat.setVisible(false);
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        login.setDefaultButton(true);
     }
 }

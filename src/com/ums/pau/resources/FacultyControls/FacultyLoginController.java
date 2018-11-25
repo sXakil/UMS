@@ -1,14 +1,18 @@
 package com.ums.pau.resources.FacultyControls;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.ums.pau.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class FacultyLoginController {
+public class FacultyLoginController implements Initializable {
     @FXML
     public JFXTextField userName;
     @FXML
@@ -17,6 +21,7 @@ public class FacultyLoginController {
     public javafx.scene.control.Label error;
     @FXML
     public Hyperlink forgotP;
+    public JFXButton login;
 
     @FXML
     public void checkLogin() throws IOException {
@@ -38,5 +43,10 @@ public class FacultyLoginController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        login.setDefaultButton(true);
     }
 }

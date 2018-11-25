@@ -71,7 +71,7 @@
                 <Image url="@../../bin/pictures/key.png" />
             </image>
         </ImageView>
-        <JFXButton buttonType="RAISED" layoutX="620.0" layoutY="495.0" onAction="#checkLogin" prefHeight="42.0"
+        <JFXButton fx:id="login" buttonType="RAISED" layoutX="620.0" layoutY="495.0" onAction="#checkLogin" prefHeight="42.0"
                    prefWidth="127.0" style="-fx-background-color: #e7e6ea;" text="Sign In" textFill="#515050">
             <font>
                 <Font size="16.0" />
