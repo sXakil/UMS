@@ -2,6 +2,7 @@ package com.ums.pau.resources.StudentControls;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.mongodb.*;
+import com.ums.pau.BCrypt;
 import com.ums.pau.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +39,7 @@ public class StudentLoginController {
         } catch (Exception ne) {
             System.out.println("Empty input!");
         }
-        if (pass != null && passWord.getText().equals(pass)) {
+        if (pass != null && BCrypt.checkPassword(passWord.getText(), pass)) {
             id = studentID.getText();
             new SceneSwitcher().switchSceneTo("resources/StudentControls/studentDashboard.fxml");
         } else error.setVisible(true);

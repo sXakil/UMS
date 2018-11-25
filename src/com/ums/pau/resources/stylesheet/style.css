@@ -88,4 +88,5 @@ Pane Pane .scroll-pane {
 }
 #listItem:hover #itemChild{
     -fx-text-fill: white;
+    -fx-font-weight: bold;
 }

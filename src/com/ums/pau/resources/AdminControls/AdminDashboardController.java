@@ -5,6 +5,7 @@ import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
+import com.ums.pau.BCrypt;
 import com.ums.pau.resources.GenPass;
 import com.ums.pau.SceneSwitcher;
 import javafx.fxml.FXML;
@@ -13,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -96,7 +96,7 @@ public class AdminDashboardController implements Initializable {
                             .append("session", newStudSes.getText())
                             .append("gender", male.isSelected() ? "Male" : "Female")
                             .append("admissionDate", newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString())
-                            .append("password", newStudPass.getText())
+                            .append("password", BCrypt.hashPassword(newStudPass.getText(), BCrypt.genSalt()))
                             .append("added_on", new Date()));
             UpdateOptions options = new UpdateOptions().upsert(true);
             collection.updateOne(filter, update, options);
@@ -152,7 +152,7 @@ public class AdminDashboardController implements Initializable {
                             .append("major", newTeacherMajor.getText())
                             .append("department", newTeacherDept.getText())
                             .append("joiningDate", newTeacherJD.getValue() == null ? new Date() : newTeacherJD.getValue().toString())
-                            .append("password", newTeacherPass.getText())
+                            .append("password", BCrypt.hashPassword(newTeacherPass.getText(), BCrypt.genSalt()))
                             .append("gender", maleT.isSelected() ? "Male" : "Female")
                             .append("added_on", new Date()));
             Bson filter = Filters.eq("uNID", newTeacherUNID.getText());
@@ -386,7 +386,7 @@ public class AdminDashboardController implements Initializable {
             newStudName.setText(object.get("name").toString());
             newStudDept.setText(object.get("dept").toString());
             newStudSes.setText(object.get("session").toString());
-            newStudPass.setText(object.get("password").toString());
+            //newStudPass.setText(object.get("password").toString());
             newStudAdDate.setValue(LocalDate.parse(object.get("admissionDate").toString()));
             getGender(object.get("gender").toString(), male, female);
             checked = true;
@@ -449,7 +449,7 @@ public class AdminDashboardController implements Initializable {
             newTeacherName.setText(object.get("name").toString());
             newTeacherPosition.setText(object.get("position").toString());
             newTeacherMajor.setText(object.get("major").toString());
-            newTeacherPass.setText(object.get("password").toString());
+            //newTeacherPass.setText(object.get("password").toString());
             newTeacherJD.setValue(LocalDate.parse(object.get("joiningDate").toString()));
             getGender(object.get("gender").toString(), maleT, femaleT);
             checked = true;
@@ -488,5 +488,4 @@ public class AdminDashboardController implements Initializable {
         studList = stage;
         stage.show();
     }
-
 }

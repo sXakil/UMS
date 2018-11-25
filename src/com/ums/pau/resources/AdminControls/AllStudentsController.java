@@ -1,5 +1,7 @@
 package com.ums.pau.resources.AdminControls;
 
+import com.jfoenix.controls.JFXTextField;
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -7,17 +9,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.bson.Document;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import static com.ums.pau.resources.StudentControls.StudentDashboardController.getCollection;
 
 public class AllStudentsController implements Initializable {
     public VBox studVBox;
-
+    public JFXTextField searchField;
+    private DBCollection collection = getCollection("students");
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        DBCollection collection = getCollection("students");
         DBCursor cursor = collection.find();
+        //search(cursor);
+    }
+
+    private void search(DBCursor cursor) {
         while (cursor.hasNext()) {
             DBObject object = cursor.next();
             HBox hBox = new HBox();
@@ -41,7 +49,15 @@ public class AllStudentsController implements Initializable {
             studVBox.getChildren().add(hBox);
         }
     }
+
     public void closeStudWindow() {
         AdminDashboardController.studList.close();
+    }
+
+    public void searchStudent() {
+        //DBCursor cursor = collection.find();
+
+        //while ()
+        //search(collection.find(query)); //.sort(new BasicDBObject("score", new BasicDBObject("$meta", "textScore"))));
     }
 }
