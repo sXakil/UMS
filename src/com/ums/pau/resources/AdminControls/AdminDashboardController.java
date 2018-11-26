@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -28,10 +27,8 @@ import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import static com.ums.pau.resources.FacultyControls.FacultyDashboardController.getDocumentMongoCollection;
+import static com.ums.pau.DatabaseHandler.*;
 
 public class AdminDashboardController implements Initializable {
     static Stage prompt;
@@ -76,9 +73,6 @@ public class AdminDashboardController implements Initializable {
     public Label searchResult;
     public Label addStudTitle;
 
-    private MongoCollection<Document> initMongo(String collName) {
-        return getDocumentMongoCollection(collName);
-    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         toDashboardPane();
@@ -86,7 +80,7 @@ public class AdminDashboardController implements Initializable {
 
     public void addNewStudent() {
         if(addNew) {
-            MongoCollection<Document> collection = initMongo("students");
+            MongoCollection<Document> collection = insertInto("students");
             Bson filter = Filters.eq("id", newStudID.getText());
             Bson update = new Document("$set",
                     new Document()
@@ -143,7 +137,7 @@ public class AdminDashboardController implements Initializable {
 
     public void addNewTeacher() {
         if(addNewT) {
-            MongoCollection<Document> collection = initMongo("teachers");
+            MongoCollection<Document> collection = insertInto("teachers");
             Bson update = new Document("$set",
                     new Document()
                             .append("name", newTeacherName.getText())
@@ -251,9 +245,9 @@ public class AdminDashboardController implements Initializable {
         addTeacherPane.setVisible(true);
     }
     public void toDashboardPane() {
-        MongoCollection<Document> tableS = initMongo( "students");
+        MongoCollection<Document> tableS = insertInto( "students");
         totalStud.setText(String.valueOf(tableS.countDocuments()));
-        MongoCollection<Document> tableT = initMongo("teachers");
+        MongoCollection<Document> tableT = insertInto("teachers");
         totalFac.setText(String.valueOf(tableT.countDocuments()));
         addTeacherPane.setVisible(false);
         addStudPane.setVisible(false);
@@ -350,21 +344,11 @@ public class AdminDashboardController implements Initializable {
         new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
     }
 
-    private DBCollection initMongoDB(String collName) {
-        return getDBCollection(collName);
-    }
 
-    public static DBCollection getDBCollection(String collName) {
-        Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
-        mongoLogger.setLevel(Level.SEVERE);
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-        DB db = mongoClient.getDB("UMS");
-        return db.getCollection(collName);
-    }
 
     private boolean isDuplicate() {
         BasicDBObject bd = new BasicDBObject("id", newStudID.getText());
-        DBCollection dc = initMongoDB("students");
+        DBCollection dc = getFrom("students");
         DBCursor cursor = dc.find(bd);
         try {
             DBObject dbo = cursor.next();
@@ -377,7 +361,7 @@ public class AdminDashboardController implements Initializable {
     public void searchStudent() {
         searchResult.setVisible(false);
         boolean checked = false;
-        DBCollection collection = initMongoDB("students");
+        DBCollection collection = getFrom("students");
         BasicDBObject query = new BasicDBObject("id", searchStud.getText());
         DBCursor cursor = collection.find(query);
         while (cursor.hasNext()) {
@@ -418,7 +402,7 @@ public class AdminDashboardController implements Initializable {
         delSearch.setVisible(false);
         delConfirmation.setVisible(false);
         boolean checked = false;
-        DBCollection collection = initMongoDB("students");
+        DBCollection collection = getFrom("students");
         BasicDBObject query = new BasicDBObject("id", delSearchTF.getText().replaceAll("-", ""));
         DBCursor cursor = collection.find(query);
         while (cursor.hasNext()) {
@@ -439,7 +423,7 @@ public class AdminDashboardController implements Initializable {
 
         facSearchResult.setVisible(false);
         boolean checked = false;
-        DBCollection collection = initMongoDB("teachers");
+        DBCollection collection = getFrom("teachers");
         BasicDBObject query = new BasicDBObject("uNID", searchFacTF.getText());
         DBCursor cursor = collection.find(query);
         while (cursor.hasNext()) {
@@ -449,7 +433,6 @@ public class AdminDashboardController implements Initializable {
             newTeacherName.setText(object.get("name").toString());
             newTeacherPosition.setText(object.get("position").toString());
             newTeacherMajor.setText(object.get("major").toString());
-            //newTeacherPass.setText(object.get("password").toString());
             newTeacherJD.setValue(LocalDate.parse(object.get("joiningDate").toString()));
             getGender(object.get("gender").toString(), maleT, femaleT);
             checked = true;
@@ -473,7 +456,7 @@ public class AdminDashboardController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Faculties");
         facList = stage;
         stage.show();
     }
@@ -484,7 +467,7 @@ public class AdminDashboardController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Students");
         studList = stage;
         stage.show();
     }

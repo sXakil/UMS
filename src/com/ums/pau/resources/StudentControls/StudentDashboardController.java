@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.ums.pau.resources.AdminControls.AdminDashboardController.getDBCollection;
+import static com.ums.pau.DatabaseHandler.getFrom;
 
 public class StudentDashboardController implements Initializable {
     public Pane home, gradeReport, changePass;
@@ -26,13 +26,7 @@ public class StudentDashboardController implements Initializable {
     private String id = StudentLoginController.id;
     public Label studentName;
 
-    private DBCollection dataRetriever(String collName) {
-        return getCollection(collName);
-    }
 
-    public static DBCollection getCollection(String collName) {
-        return getDBCollection(collName);
-    }
 
 
     @Override
@@ -40,12 +34,12 @@ public class StudentDashboardController implements Initializable {
         toHome();
         changePassButton.setDisable(true);
         passSuccess.setVisible(false);
-        DBCollection collection = dataRetriever("students");
+        DBCollection collection = getFrom("students");
         BasicDBObject query = new BasicDBObject("id", id);
         DBCursor cursor = collection.find(query);
         DBObject object = cursor.next();
         studentName.setText(object.get("name") == null ? "Unknown" : object.get("name").toString());
-        collection = dataRetriever("results");
+        collection = getFrom("results");
         cursor = collection.find(query);
         query = new BasicDBObject("semester", 1);
         getReport(cursor.sort(query));
@@ -173,7 +167,7 @@ public class StudentDashboardController implements Initializable {
     public void changePassword() {
         passSuccess.setVisible(false);
         wrongPass.setVisible(false);
-        DBCollection collection = dataRetriever("students");
+        DBCollection collection = getFrom("students");
         BasicDBObject query = new BasicDBObject("id", id);
         DBCursor cursor = collection.find(query);
         DBObject object = cursor.next();

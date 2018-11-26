@@ -3,7 +3,6 @@ package com.ums.pau.resources.FacultyControls;
 import com.jfoenix.controls.*;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.ums.pau.SceneSwitcher;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -14,10 +13,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static com.ums.pau.DatabaseHandler.*;
 
-import static com.ums.pau.resources.StudentControls.StudentDashboardController.getCollection;
 import static com.ums.pau.resources.StudentControls.StudentDashboardController.markToCGPA;
 
 
@@ -38,9 +35,6 @@ public class FacultyDashboardController implements Initializable {
     public JFXTextField markTF;
     public JFXTextArea commentTF;
 
-    private DBCollection dataRetriever(String collName) {
-        return getCollection(collName);
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,7 +43,7 @@ public class FacultyDashboardController implements Initializable {
         isValid = false;
         resultBTN.setDisable(true);
         semCB.getItems().setAll("1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th");
-        DBCollection collection = dataRetriever("students");
+        DBCollection collection = getFrom("students");
         DBCursor students = collection.find();
         BasicDBObject sort = new BasicDBObject("id", 1);
         students.sort(sort);
@@ -59,7 +53,7 @@ public class FacultyDashboardController implements Initializable {
     private void editorFill(String id) {
         getCGPA(id);
         isValid = false;
-        DBCollection collection = dataRetriever("students");
+        DBCollection collection = getFrom("students");
         BasicDBObject dbObject = new BasicDBObject("id", id);
         DBCursor cursor = collection.find(dbObject);
         DBObject object = cursor.next();
@@ -67,7 +61,7 @@ public class FacultyDashboardController implements Initializable {
         nameLab.setText(object.get("name").toString());
         idTF.setText(object.get("id").toString());
         idTF.setDisable(true);
-        collection = dataRetriever("results");
+        collection = getFrom("results");
         cursor = collection.find(dbObject);
         BasicDBObject sorter = new BasicDBObject("semester", 1);
         cursor.sort(sorter);
@@ -110,22 +104,9 @@ public class FacultyDashboardController implements Initializable {
         }
     }
 
-
-    private MongoCollection<Document> initMongo() {
-        return getDocumentMongoCollection("results");
-    }
-
-    public static MongoCollection<Document> getDocumentMongoCollection(String collName) {
-        Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
-        mongoLogger.setLevel(Level.SEVERE);
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-        MongoDatabase db = mongoClient.getDatabase("UMS");
-        return db.getCollection(collName);
-    }
-
     public void findToEdit() {
         vBox.getChildren().clear();
-        DBCollection collection = dataRetriever("students");
+        DBCollection collection = getFrom("students");
         BasicDBObject query = new BasicDBObject("id", searchToEdit.getText());
         DBCursor students = collection.find(query);
         setNewHBox(students);
@@ -189,7 +170,7 @@ public class FacultyDashboardController implements Initializable {
     }
 
     private void getCGPA(String id) {
-        DBCollection collection = dataRetriever("results");
+        DBCollection collection = getFrom("results");
         BasicDBObject query = new BasicDBObject("id", id);
         DBCursor cursor = collection.find(query);
         DBObject doc;
@@ -218,7 +199,7 @@ public class FacultyDashboardController implements Initializable {
 
     public void enterResult() {
         resultBTN.setText("Enter");
-        DBCollection collection = dataRetriever("results");
+        DBCollection collection = getFrom("results");
         BasicDBObject query = new BasicDBObject("course_code", courseTF.getText().toUpperCase().replaceAll("[ \\-]", ""));
         DBCursor cursor = collection.find(query);
         DBObject check = null;
@@ -229,7 +210,7 @@ public class FacultyDashboardController implements Initializable {
             resultBTN.setDisable(false);
             System.out.println(check.get("course_code").toString() + " " + courseTF.getText());
         } else {
-            MongoCollection<Document> grades = initMongo();
+            MongoCollection<Document> grades = insertInto("results");
             BasicDBObject dbObject = new BasicDBObject("id", idTF.getText())
                     .append("semester", semCB.getSelectionModel().getSelectedItem())
                     .append("course_code", courseTF.getText().toUpperCase().replaceAll("[ \\-]", ""))
@@ -278,7 +259,3 @@ public class FacultyDashboardController implements Initializable {
         new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
     }
 }
-//    @FXML
-//    public void switchToLogin() throws IOException {
-//        new SceneSwitcher().switchSceneTo("resources/studentLogin.fxml");
-//    }

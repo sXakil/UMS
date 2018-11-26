@@ -9,14 +9,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
-import static com.ums.pau.resources.StudentControls.StudentDashboardController.getCollection;
+
+import static com.ums.pau.DatabaseHandler.getFrom;
+
 
 public class AllFacultiesController implements Initializable {
     public VBox facVBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        DBCollection collection = getCollection("teachers");
+        DBCollection collection = getFrom("teachers");
         DBCursor cursor = collection.find();
         while (cursor.hasNext()) {
             DBObject object = cursor.next();

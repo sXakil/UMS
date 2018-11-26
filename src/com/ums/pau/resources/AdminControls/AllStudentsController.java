@@ -6,23 +6,21 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-import static com.ums.pau.resources.StudentControls.StudentDashboardController.getCollection;
+
+import static com.ums.pau.DatabaseHandler.getFrom;
 
 public class AllStudentsController implements Initializable {
     public VBox studVBox;
     public JFXTextField searchField;
     public FontAwesomeIconView searchIcon;
-    private DBCollection collection = getCollection("students");
+    private DBCollection collection = getFrom("students");
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         searchField.setPromptText("Search by ID");
