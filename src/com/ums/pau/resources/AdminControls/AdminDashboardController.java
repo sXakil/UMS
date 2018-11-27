@@ -70,7 +70,7 @@ public class AdminDashboardController implements Initializable {
     private static boolean addNewT = true;
     public Pane modify;
     public JFXTextField searchStud;
-    public Label searchResult;
+    public Label zeroSearchResult;
     public Label addStudTitle;
 
     @Override
@@ -106,12 +106,7 @@ public class AdminDashboardController implements Initializable {
             deptLabel.setText(deptLabel.getText() + newStudDept.getText());
             adDateLabel.setText(adDateLabel.getText() + (newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString()));
             sessionLabel.setText((sessionLabel.getText() + newStudSes.getText()));
-            newStudName.setDisable(true);
-            newStudID.setDisable(true);
-            newStudDept.setDisable(true);
-            newStudSes.setDisable(true);
-            newStudAdDate.setDisable(true);
-            newStudPass.setDisable(true);
+            disableStudentsFields(true);
             addNewStud.setText("Add Another");
             addNew = false;
         } else {
@@ -121,17 +116,30 @@ public class AdminDashboardController implements Initializable {
             adDateLabel.setText("Admission Date: ");
             sessionLabel.setText("Session: ");
             preview.setVisible(false);
+            clearStudentFields();
+            disableStudentsFields(false);
+            addNewStud.setText("Add");
+            addNewStud.setDisable(true);
+            addNew = true;
+        }
+    }
+    private void disableStudentsFields(boolean disable) {
+        if(disable) {
+            newStudName.setDisable(true);
+            newStudID.setDisable(true);
+            newStudDept.setDisable(true);
+            newStudSes.setDisable(true);
+            newStudAdDate.setDisable(true);
+            newStudPass.setDisable(true);
+        } else {
             newStudName.setDisable(false);
             newStudID.setDisable(false);
             newStudDept.setDisable(false);
             newStudSes.setDisable(false);
             newStudAdDate.setDisable(false);
             newStudPass.setDisable(false);
-            clearStudentFields();
-            addNewStud.setText("Add");
-            addNewStud.setDisable(true);
-            addNew = true;
         }
+
     }
 
 
@@ -158,13 +166,7 @@ public class AdminDashboardController implements Initializable {
             majorLabel.setText(majorLabel.getText() + newTeacherMajor.getText());
             tDeptLabel.setText((tDeptLabel.getText() + newTeacherDept.getText()));
             jdLabel.setText(jdLabel.getText() + (newTeacherJD.getValue() == null ? new Date().toString() : newTeacherJD.getValue().toString()));
-            newTeacherName.setDisable(true);
-            newTeacherUNID.setDisable(true);
-            newTeacherPosition.setDisable(true);
-            newTeacherMajor.setDisable(true);
-            newTeacherDept.setDisable(true);
-            newTeacherJD.setDisable(true);
-            newTeacherPass.setDisable(true);
+            disableTeachersFields(true);
             addNewTeacher.setText("Add Another");
             addNewT = false;
         } else {
@@ -175,6 +177,24 @@ public class AdminDashboardController implements Initializable {
             tDeptLabel.setText("Department: ");
             jdLabel.setText("Joining Date: ");
             previewT.setVisible(false);
+            disableTeachersFields(false);
+            clearTeachersFields();
+            addNewTeacher.setText("Add");
+            addNewTeacher.setDisable(true);
+            addNewT = true;
+        }
+    }
+
+    private void disableTeachersFields(boolean disable) {
+        if(disable) {
+            newTeacherName.setDisable(true);
+            newTeacherUNID.setDisable(true);
+            newTeacherPosition.setDisable(true);
+            newTeacherMajor.setDisable(true);
+            newTeacherDept.setDisable(true);
+            newTeacherJD.setDisable(true);
+            newTeacherPass.setDisable(true);
+        } else {
             newTeacherName.setDisable(false);
             newTeacherUNID.setDisable(false);
             newTeacherPosition.setDisable(false);
@@ -182,10 +202,6 @@ public class AdminDashboardController implements Initializable {
             newTeacherDept.setDisable(false);
             newTeacherJD.setDisable(false);
             newTeacherPass.setDisable(false);
-            clearTeachersFields();
-            addNewTeacher.setText("Add");
-            addNewTeacher.setDisable(true);
-            addNewT = true;
         }
     }
 
@@ -206,9 +222,6 @@ public class AdminDashboardController implements Initializable {
         newTeacherDept.clear();
         newTeacherJD.setValue(null);
         newTeacherPass.clear();
-    }
-    private void disableStudentFields() {
-
     }
 
     private void TextFieldChangedListener(JFXTextField[] textFields, JFXButton button) {
@@ -362,7 +375,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void searchStudent() {
-        searchResult.setVisible(false);
+        zeroSearchResult.setVisible(false);
         boolean checked = false;
         DBCollection collection = getFrom("students");
         BasicDBObject query = new BasicDBObject("id", searchStud.getText());
@@ -378,7 +391,7 @@ public class AdminDashboardController implements Initializable {
             getGender(object.get("gender").toString(), male, female);
             checked = true;
         }
-        if (!checked) searchResult.setVisible(true);
+        if (!checked) zeroSearchResult.setVisible(true);
     }
 
     public void cancelDelete() {

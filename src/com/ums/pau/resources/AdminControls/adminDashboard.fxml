@@ -236,7 +236,7 @@
                                         <Insets left="15.0" />
                                     </padding>
                                 </JFXTextField>
-                                <Label fx:id="searchResult" layoutX="181.0" layoutY="68.0" text="No records found!" textFill="RED" visible="false" />
+                                <Label fx:id="zeroSearchResult" layoutX="181.0" layoutY="68.0" text="No records found!" textFill="RED" visible="false" />
                                 <FontAwesomeIconView fill="#6f6f6f" glyphName="SEARCH" layoutX="440.0" layoutY="35.0" onMouseClicked="#searchStudent" size="30" />
                             </children>
                         </Pane>
