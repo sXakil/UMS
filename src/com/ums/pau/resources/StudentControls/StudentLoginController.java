@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.mongodb.*;
 import com.ums.pau.BCrypt;
 import com.ums.pau.SceneSwitcher;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
@@ -31,6 +32,10 @@ public class StudentLoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         login.setDefaultButton(true);
+        login.disableProperty().bind(
+                Bindings.isEmpty(studentID.textProperty())
+                        .or(Bindings.isEmpty(passWord.textProperty()))
+        );
     }
 
     @FXML

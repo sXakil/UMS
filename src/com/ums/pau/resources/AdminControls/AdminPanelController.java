@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.ums.pau.SceneSwitcher;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
@@ -24,6 +25,9 @@ public class AdminPanelController implements Initializable {
     }
 
     public void validate() throws IOException {
+        wrongIDFormat.setVisible(false);
+        wrongID.setVisible(false);
+        wrongPass.setVisible(false);
         //TODO: Add admins
         if(adminID.getText().equals("a") || adminPass.getText().equals("adminPassword")) {
             new SceneSwitcher().switchSceneTo("resources/AdminControls/adminDashboard.fxml");
@@ -50,5 +54,10 @@ public class AdminPanelController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         login.setDefaultButton(true);
+
+        login.disableProperty().bind(
+                Bindings.isEmpty(adminID.textProperty())
+                        .or(Bindings.isEmpty(adminPass.textProperty()))
+        );
     }
 }

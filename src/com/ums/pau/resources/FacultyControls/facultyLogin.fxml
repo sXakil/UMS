@@ -35,7 +35,7 @@
                       <Font name="System Bold" size="28.0" />
                   </font>
               </Label>
-              <JFXTextField fx:id="userName" focusColor="cyan" labelFloat="true" layoutX="87.0" layoutY="153.0" prefHeight="48.0" prefWidth="380.0" promptText="Enter your ID" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff;" unFocusColor="WHITE" />
+              <JFXTextField fx:id="teacherID" focusColor="cyan" labelFloat="true" layoutX="87.0" layoutY="153.0" prefHeight="48.0" prefWidth="380.0" promptText="Enter your ID" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff;" unFocusColor="WHITE" />
               <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="54.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@../../bin/pictures/man-user.png" />

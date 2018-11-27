@@ -12,18 +12,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DatabaseHandler {
-    public static MongoCollection<Document> insertInto(String collectionName) {
+    static private MongoClient initMongo() {
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-        MongoDatabase db = mongoClient.getDatabase("UMS");
+        return new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+    }
+
+    public static MongoCollection<Document> insertInto(String collectionName) {
+        MongoDatabase db = initMongo().getDatabase("UMS");
         return db.getCollection(collectionName);
     }
+
     public static DBCollection getFrom(String collectionName) {
-        Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
-        mongoLogger.setLevel(Level.SEVERE);
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-        DB db = mongoClient.getDB("UMS");
+        DB db = initMongo().getDB("UMS");
         return db.getCollection(collectionName);
     }
 }

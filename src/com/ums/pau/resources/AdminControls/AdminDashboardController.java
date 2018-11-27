@@ -189,6 +189,15 @@ public class AdminDashboardController implements Initializable {
         }
     }
 
+    private void clearStudentFields() {
+        newStudName.clear();
+        newStudID.clear();
+        newStudDept.clear();
+        newStudSes.clear();
+        newStudAdDate.setValue(null);
+        newStudPass.clear();
+    }
+
     private void clearTeachersFields() {
         newTeacherUNID.clear();
         newTeacherName.clear();
@@ -197,6 +206,9 @@ public class AdminDashboardController implements Initializable {
         newTeacherDept.clear();
         newTeacherJD.setValue(null);
         newTeacherPass.clear();
+    }
+    private void disableStudentFields() {
+
     }
 
     private void TextFieldChangedListener(JFXTextField[] textFields, JFXButton button) {
@@ -290,15 +302,6 @@ public class AdminDashboardController implements Initializable {
 
     public void toDeleteFac() {
 
-    }
-
-    private void clearStudentFields() {
-        newStudName.clear();
-        newStudID.clear();
-        newStudDept.clear();
-        newStudSes.clear();
-        newStudAdDate.setValue(null);
-        newStudPass.clear();
     }
 
 

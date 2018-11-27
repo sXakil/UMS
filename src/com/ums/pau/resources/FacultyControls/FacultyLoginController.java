@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.ums.pau.SceneSwitcher;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class FacultyLoginController implements Initializable {
     @FXML
-    public JFXTextField userName;
+    public JFXTextField teacherID;
     @FXML
     public JFXPasswordField passWord;
     @FXML
@@ -26,7 +27,7 @@ public class FacultyLoginController implements Initializable {
     @FXML
     public void checkLogin() throws IOException {
         //TODO: add verification
-        if (userName.getText().equals("r") || passWord.getText().equals("toor")) {
+        if (teacherID.getText().equals("r") || passWord.getText().equals("toor")) {
             new SceneSwitcher().switchSceneTo("resources/FacultyControls/facultyDashboard.fxml");
         } else error.setVisible(true);
     }
@@ -48,5 +49,9 @@ public class FacultyLoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         login.setDefaultButton(true);
+        login.disableProperty().bind(
+                Bindings.isEmpty(teacherID.textProperty())
+                        .or(Bindings.isEmpty(passWord.textProperty()))
+        );
     }
 }

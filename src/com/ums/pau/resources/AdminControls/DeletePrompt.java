@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import static com.ums.pau.resources.StudentControls.StudentDashboardController.getCollection;
+import static com.ums.pau.DatabaseHandler.getFrom;
 
 public class DeletePrompt implements Initializable {
     public Label confirmLabel;
@@ -32,20 +32,16 @@ public class DeletePrompt implements Initializable {
         stage.close();
     }
 
-    private DBCollection dataRetriever(String collName) {
-        return getCollection(collName);
-    }
-
     public void doDelete() {
         wrong.setVisible(false);
         if (confirm.getText().equals(conf)) {
-            DBCollection collection = dataRetriever("students");
+            DBCollection collection = getFrom("students");
             BasicDBObject query = new BasicDBObject("id", AdminDashboardController.toBeDeleted);
-            DBCollection backup = dataRetriever("UMSBackup");
+            DBCollection backup = getFrom("UMSBackup");
             backup.insert(collection.findOne(query));
             collection.findAndRemove(query);
             if (AdminDashboardController.delAll) {
-                DBCollection result = dataRetriever("results");
+                DBCollection result = getFrom("results");
                 DBCursor cursor = result.find(query);
                 while (cursor.hasNext()) {
                     DBObject object = cursor.next();
