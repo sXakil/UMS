@@ -42,7 +42,7 @@ public class AdminDashboardController implements Initializable {
     public JFXTextField newTeacherUNID;
     public Label addFac;
     public JFXTextField searchFacTF;
-    public Label facSearchResult;
+    public Label zeroFacFound;
     public Pane modifyFac;
     @FXML
     private JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass;
@@ -122,6 +122,14 @@ public class AdminDashboardController implements Initializable {
             addNewStud.setDisable(true);
             addNew = true;
         }
+    }
+    private void clearStudentFields() {
+        newStudName.clear();
+        newStudID.clear();
+        newStudDept.clear();
+        newStudSes.clear();
+        newStudAdDate.setValue(null);
+        newStudPass.clear();
     }
     private void disableStudentsFields(boolean disable) {
         if(disable) {
@@ -203,15 +211,6 @@ public class AdminDashboardController implements Initializable {
             newTeacherJD.setDisable(false);
             newTeacherPass.setDisable(false);
         }
-    }
-
-    private void clearStudentFields() {
-        newStudName.clear();
-        newStudID.clear();
-        newStudDept.clear();
-        newStudSes.clear();
-        newStudAdDate.setValue(null);
-        newStudPass.clear();
     }
 
     private void clearTeachersFields() {
@@ -436,8 +435,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void searchFac() {
-
-        facSearchResult.setVisible(false);
+        zeroFacFound.setVisible(false);
         boolean checked = false;
         DBCollection collection = getFrom("teachers");
         BasicDBObject query = new BasicDBObject("uNID", searchFacTF.getText());
@@ -453,7 +451,7 @@ public class AdminDashboardController implements Initializable {
             getGender(object.get("gender").toString(), maleT, femaleT);
             checked = true;
         }
-        if (!checked) facSearchResult.setVisible(true);
+        if (!checked) zeroFacFound.setVisible(true);
     }
 
     private void getGender(String string, JFXCheckBox maleT, JFXCheckBox femaleT) {

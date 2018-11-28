@@ -8,7 +8,7 @@
     </properties>
     <root id="root">
       <element id="archive" name="JavaFXApp.jar">
-        <element id="module-output" name="UMS (beta)" />
+        <element id="module-output" name="UMS" />
       </element>
     </root>
   </artifact>

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/UMS (beta).iml" filepath="$PROJECT_DIR$/UMS (beta).iml" />
+      <module fileurl="file://$PROJECT_DIR$/UMS.iml" filepath="$PROJECT_DIR$/UMS.iml" />
     </modules>
   </component>
 </project>
