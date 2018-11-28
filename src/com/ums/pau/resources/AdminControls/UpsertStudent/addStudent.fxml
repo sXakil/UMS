@@ -88,7 +88,7 @@
                 <Font name="System Bold" size="34.0" />
             </font>
         </Label>
-        <Pane fx:id="modify" layoutX="242.0" layoutY="102.0">
+        <Pane fx:id="modifyStudent" visible="false" layoutX="242.0" layoutY="102.0">
             <children>
                 <JFXTextField fx:id="searchStud" focusColor="#405aa800" prefHeight="50.0" prefWidth="490.0" promptText="Search by ID" style="-fx-background-color: #fff; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 1; -fx-border-color: #000;" unFocusColor="#4d4d4d00">
                     <padding>

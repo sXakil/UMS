@@ -6,21 +6,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="124.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.DeleteStudent.DeletePrompt">
-        <Button layoutX="23.0" layoutY="84.0" mnemonicParsing="false" onAction="#closeWindow" text="Cancel"/>
-        <Button layoutX="364.0" layoutY="84.0" mnemonicParsing="false" onAction="#doDelete" text="Confirm"/>
-        <Label layoutX="10.0" layoutY="9.0" prefHeight="26.0" prefWidth="418.0"
-               text="Write the word &quot;CONFIRM&quot; in exact case as shown below.">
+<AnchorPane prefHeight="223.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.DeleteStudent.DeletePrompt">
+        <Button layoutX="31.0" layoutY="182.0" mnemonicParsing="false" onAction="#closeWindow" text="Cancel" />
+        <Button layoutX="372.0" layoutY="182.0" mnemonicParsing="false" onAction="#doDelete" text="Confirm" />
+        <Label layoutX="61.0" layoutY="112.0" prefHeight="26.0" prefWidth="350.0" text="Write the word &quot;CONFIRM&quot; in exact case as shown below.">
             <font>
-                <Font size="14.0"/>
+                <Font size="12.0" />
             </font>
         </Label>
-        <Label fx:id="confirmLabel" layoutX="68.0" layoutY="48.0" text="confirm">
+        <Label fx:id="confirmLabel" layoutX="97.0" layoutY="153.0" text="confirm">
             <font>
-                <Font name="System Bold" size="13.0"/>
+                <Font name="System Bold" size="13.0" />
             </font>
         </Label>
-        <TextField fx:id="confirm" onKeyReleased="#hide" layoutX="142.0" layoutY="43.0"/>
-        <Label fx:id="wrong" layoutX="330.0" layoutY="48.0" text="Wrong input!" textFill="RED"/>
+        <TextField fx:id="confirm" layoutX="171.0" layoutY="148.0" onKeyReleased="#hide" style="-fx-text-fill: red;" />
+        <Label fx:id="wrong" layoutX="356.0" layoutY="153.0" text="Wrong input!" textFill="RED" />
+   <Label fx:id="delName" layoutX="32.0" layoutY="9.0" text="Name: Student Name">
+      <font>
+         <Font name="System Bold" size="13.0" />
+      </font>
+   </Label>
+   <Label fx:id="delID" layoutX="32.0" layoutY="31.0" text="ID: 123456789" />
+   <Label fx:id="delDept" layoutX="32.0" layoutY="53.0" text="Deparment: CSE" />
+   <Label layoutX="32.0" layoutY="69.0" prefHeight="26.0" prefWidth="187.0" text="This student will be deleted." textFill="#e82e2e">
+      <font>
+         <Font name="System Italic" size="13.0" />
+      </font>
+   </Label>
 </AnchorPane>

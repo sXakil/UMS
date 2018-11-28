@@ -11,7 +11,8 @@ import java.util.ResourceBundle;
 public class AdminDashboardController implements Initializable {
 
     public StackPane stackPane;
-
+    public static boolean modStudent = false;
+    public static boolean modFaculty = false;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -27,12 +28,15 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void toAddStudentPane() throws IOException {
+        modStudent = false;
         stackPane.getChildren().clear();
         stackPane.getChildren().add(FXMLLoader.load(getClass().getResource("UpsertStudent/addStudent.fxml")));
     }
 
-    public void toModifyStudent() {
-
+    public void toModifyStudent() throws IOException {
+        modStudent = true;
+        stackPane.getChildren().clear();
+        stackPane.getChildren().add(FXMLLoader.load(getClass().getResource("UpsertStudent/addStudent.fxml")));
     }
 
     public void toDeleteStudent() throws IOException {
@@ -41,12 +45,15 @@ public class AdminDashboardController implements Initializable {
     }
 
     public void toAddTeacherPane() throws IOException {
+        modFaculty = false;
         stackPane.getChildren().clear();
         stackPane.getChildren().add(FXMLLoader.load(getClass().getResource("UpsertFaculty/addFaculty.fxml")));
     }
 
-    public void toModifyFac() {
-
+    public void toModifyFac() throws IOException {
+        modFaculty = true;
+        stackPane.getChildren().clear();
+        stackPane.getChildren().add(FXMLLoader.load(getClass().getResource("UpsertFaculty/addFaculty.fxml")));
     }
 
     public void toDeleteFac() {

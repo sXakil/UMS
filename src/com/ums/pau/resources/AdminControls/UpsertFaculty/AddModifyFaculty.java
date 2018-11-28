@@ -12,19 +12,25 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
 import com.ums.pau.BCrypt;
+import com.ums.pau.resources.AdminControls.AdminDashboardController;
 import com.ums.pau.resources.GenPass;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import static com.ums.pau.DatabaseHandler.getFrom;
 import static com.ums.pau.DatabaseHandler.insertInto;
 
-public class AddModifyFaculty {
+public class AddModifyFaculty implements Initializable {
     public JFXTextField newTeacherName, newTeacherPosition, newTeacherMajor, newTeacherDept, newTeacherPass;
     public Label tNotification, tNameLabel, positionLabel, majorLabel, tDeptLabel, jdLabel;
     public Pane previewT;
@@ -38,6 +44,8 @@ public class AddModifyFaculty {
 
 
     private static boolean addNewT = true;
+    public Pane modifyFaculty;
+
     public void addNewTeacher() {
         if(addNewT) {
             MongoCollection<Document> collection = insertInto("teachers");
@@ -184,5 +192,9 @@ public class AddModifyFaculty {
         TextFieldChangedListener(teacherTextFields, addNewTeacher);
     }
 
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        BooleanProperty b = new SimpleBooleanProperty(AdminDashboardController.modFaculty);
+        modifyFaculty.visibleProperty().bind(b);
+    }
 }

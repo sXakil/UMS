@@ -12,23 +12,29 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
 import com.ums.pau.BCrypt;
+import com.ums.pau.resources.AdminControls.AdminDashboardController;
 import com.ums.pau.resources.AdminControls.UpsertFaculty.AddModifyFaculty;
 import com.ums.pau.resources.GenPass;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import static com.ums.pau.DatabaseHandler.getFrom;
 import static com.ums.pau.DatabaseHandler.insertInto;
 
 
-public class AddModifyStudent {
+public class AddModifyStudent implements Initializable {
 
     public JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass;
     public JFXDatePicker newStudAdDate;
@@ -38,7 +44,7 @@ public class AddModifyStudent {
     public JFXButton addNewStud;
     public Label zeroSearchResult;
     public JFXTextField searchStud;
-    public Pane modify;
+    public Pane modifyStudent;
     public Label addStudTitle;
 
     private static boolean isValid = false;
@@ -183,5 +189,10 @@ public class AddModifyStudent {
         GenPass gp = new GenPass();
         newStudPass.setText(gp.getString());
         studentTextListener();
+    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        BooleanProperty b = new SimpleBooleanProperty(AdminDashboardController.modStudent);
+        modifyStudent.visibleProperty().bind(b);
     }
 }

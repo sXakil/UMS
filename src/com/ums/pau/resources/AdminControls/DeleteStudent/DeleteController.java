@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -27,7 +26,9 @@ public class DeleteController {
     public JFXCheckBox includeResult;
 
     static Stage prompt;
-    static String toBeDeleted;
+    static String dID;
+    static String dName;
+    static String dDept;
 
     public void cancelDelete() {
         delConfirmation.setVisible(false);
@@ -36,8 +37,7 @@ public class DeleteController {
 
     static boolean delAll = false;
     public void promptDelete() throws IOException {
-        toBeDeleted = delID.getText();
-        Parent root = FXMLLoader.load(getClass().getResource("DeleteStudent/deletePrompt.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("deletePrompt.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -46,7 +46,7 @@ public class DeleteController {
         prompt = stage;
         delAll = includeResult.isSelected();
         stage.show();
-        delConfirmation.setDisable(true);
+        delConfirmation.setVisible(false);
     }
 
     public void delSearchStudent() {
@@ -58,9 +58,12 @@ public class DeleteController {
         DBCursor cursor = collection.find(query);
         while (cursor.hasNext()) {
             DBObject object = cursor.next();
-            delID.setText(object.get("id").toString());
-            delName.setText(object.get("name").toString());
-            delDept.setText(object.get("dept").toString());
+            dID = object.get("id").toString();
+            delID.setText(dID);
+            dName = object.get("name").toString();
+            delName.setText(dName);
+            dDept = object.get("dept").toString();
+            delDept.setText(dDept);
             delAdDate.setText(LocalDate.parse(object.get("admissionDate").toString()).toString());
             delGen.setText(object.get("gender").toString().equals("Male") ? "Male" : "Female");
             delConfirmation.setVisible(true);

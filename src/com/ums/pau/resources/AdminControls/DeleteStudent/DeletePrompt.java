@@ -19,12 +19,16 @@ public class DeletePrompt implements Initializable {
     public TextField confirm;
     public Label wrong;
     private static String conf;
+    public Label delName, delID, delDept;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         wrong.setVisible(false);
         conf = randomConfirm();
         confirmLabel.setText(conf);
+        delName.setText("Name: " + DeleteController.dName);
+        delID.setText("ID: " + DeleteController.dID);
+        delDept.setText("Department: " + DeleteController.dDept);
     }
 
     public void closeWindow() {
@@ -36,7 +40,7 @@ public class DeletePrompt implements Initializable {
         wrong.setVisible(false);
         if (confirm.getText().equals(conf)) {
             DBCollection collection = getFrom("students");
-            BasicDBObject query = new BasicDBObject("id", DeleteController.toBeDeleted);
+            BasicDBObject query = new BasicDBObject("id", DeleteController.dID);
             DBCollection backup = getFrom("UMSBackup");
             backup.insert(collection.findOne(query));
             collection.findAndRemove(query);
