@@ -41,18 +41,18 @@ public class StudentLoginController implements Initializable {
     @FXML
     private void checkLogin() throws IOException {
         boolean studentExists = false;
-        String givenPass = null;
+        String passInDB = null;
         DBCollection collection = getFrom("students");
         BasicDBObject query = new BasicDBObject("id", studentID.getText());
         DBCursor results = collection.find(query);
         try {
             DBObject object = results.next();
             studentExists = true;
-            givenPass = object.get("password").toString();
+            passInDB = object.get("password").toString();
         } catch (Exception ne) {
             System.out.println("Empty input!");
         }
-        if (studentExists && BCrypt.checkPassword(passWord.getText(), givenPass)) {
+        if (studentExists && BCrypt.checkPassword(passWord.getText(), passInDB)) {
             id = studentID.getText();
             new SceneSwitcher().switchSceneTo("resources/StudentControls/studentDashboard.fxml");
         } else error.setVisible(true);

@@ -181,7 +181,7 @@
                   textFill="#e19729" visible="false" wrapText="true"/>
            <Hyperlink layoutX="512.0" layoutY="327.0" onAction="#forgotPass" text="Forgotten password?"
                       textFill="#05eb93"/>
-           <Label layoutX="268.0" layoutY="66.0" text="Change Passowrd" textFill="WHITE">
+           <Label layoutX="268.0" layoutY="66.0" text="Change Password" textFill="WHITE">
                <font>
                    <Font name="Chilanka Regular" size="54.0"/>
                </font>

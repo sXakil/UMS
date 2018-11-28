@@ -11,11 +11,8 @@ import javafx.scene.layout.*;
 import org.bson.Document;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import static com.ums.pau.DatabaseHandler.*;
-
-import static com.ums.pau.resources.StudentControls.StudentDashboardController.markToCGPA;
 
 
 public class FacultyDashboardController implements Initializable {
@@ -34,6 +31,7 @@ public class FacultyDashboardController implements Initializable {
     public Label failed, success;
     public JFXTextField markTF;
     public JFXTextArea commentTF;
+    public Label facName;
 
 
     @Override
@@ -42,6 +40,7 @@ public class FacultyDashboardController implements Initializable {
         success.setVisible(false);
         isValid = false;
         resultBTN.setDisable(true);
+        facName.setText(FacultyLoginController.facName);
         semCB.getItems().setAll("1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th");
         DBCollection collection = getFrom("students");
         DBCursor students = collection.find();
@@ -51,7 +50,6 @@ public class FacultyDashboardController implements Initializable {
     }
 
     private void editorFill(String id) {
-        getCGPA(id);
         isValid = false;
         DBCollection collection = getFrom("students");
         BasicDBObject dbObject = new BasicDBObject("id", id);
@@ -132,7 +130,6 @@ public class FacultyDashboardController implements Initializable {
             String name = object.get("name").toString();
             String dept = object.get("dept").toString();
             String gender = object.get("gender").toString();
-            //System.out.println(id + " " + name + " " + dept + " " + gender);
 
             HBox hb = new HBox();
             hb.setId("hBox-list");
@@ -164,39 +161,6 @@ public class FacultyDashboardController implements Initializable {
         }
     }
 
-    private String toGrade(String mark) {
-        double m = Double.parseDouble(mark);
-        return markToCGPA(m);
-    }
-
-    private void getCGPA(String id) {
-        DBCollection collection = getFrom("results");
-        BasicDBObject query = new BasicDBObject("id", id);
-        DBCursor cursor = collection.find(query);
-        DBObject doc;
-        Double gp, cc;
-        double totalGradePoint = 0, totalCredit = 0, gpMultiple = 0, gpDivisor = 0;
-        while (cursor.hasNext()) {
-            doc = cursor.next();
-            String s = toGrade(doc.get("mark").toString());
-            gp = Double.parseDouble(s);
-            cc = Double.parseDouble(doc.get("course_credit").toString());
-            totalGradePoint += gp;
-            totalCredit += cc;
-            if (cc == 3.00) {
-                gpMultiple += gp * 4;
-                gpDivisor += 4;
-            } else if (cc == 1.00) {
-                gpMultiple += gp;
-                gpDivisor += 1;
-            }
-        }
-        double cgp = gpMultiple / gpDivisor;
-        DecimalFormat df = new DecimalFormat("#.##");
-        cgp = cgp > 1.0 ? Double.valueOf(df.format(cgp)) : 0.0;
-        System.out.println(totalGradePoint + " " + totalCredit + " " + cgp);
-    }
-
     public void enterResult() {
         resultBTN.setText("Enter");
         DBCollection collection = getFrom("results");
@@ -216,11 +180,11 @@ public class FacultyDashboardController implements Initializable {
                     .append("course_code", courseTF.getText().toUpperCase().replaceAll("[ \\-]", ""))
                     .append("mark", markTF.getText())
                     .append("course_credit", c3.isSelected() ? "3" : "1")
-                    .append("comment", commentTF.getText() == null ? "" : commentTF.getText());
+                    .append("comment", commentTF.getText() == null ? "" : commentTF.getText())
+                    .append("added_by", FacultyLoginController.facName);
             Document doc = new Document(dbObject);
             grades.insertOne(doc);
             editorFill(idTF.getText());
-            idTF.clear();
             semCB.getSelectionModel().clearSelection();
             courseTF.clear();
             markTF.clear();

@@ -17,78 +17,71 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.FacultyControls.FacultyDashboardController">
     <children>
-        <Pane fx:id="prevPane" layoutX="613.0" layoutY="2.0" prefHeight="70.0" prefWidth="563.0">
+      <Label fx:id="facName" prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: lightseagreen;" text="Hello, Faculty Name!" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+        <Pane fx:id="prevPane" layoutX="601.0" prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: mediumseagreen;">
             <children>
-                <Label fx:id="nameLab" alignment="CENTER" layoutX="114.0" layoutY="35.0" prefHeight="20.0"
-                       prefWidth="335.0" text="This Student">
+                <Label fx:id="nameLab" alignment="CENTER" layoutX="114.0" layoutY="35.0" prefHeight="20.0" prefWidth="335.0" text="This Student" textFill="WHITE">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="200.0" layoutY="10.0" prefHeight="19.0" prefWidth="164.0" text="Enter the result for">
+                <Label layoutX="200.0" layoutY="10.0" prefHeight="19.0" prefWidth="164.0" text="Enter the result for" textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="15.0"/>
+                        <Font name="System Bold" size="15.0" />
                     </font>
                 </Label>
             </children>
         </Pane>
-      <ScrollPane layoutY="114.0" prefHeight="686.0" prefWidth="600.0">
+      <ScrollPane layoutY="200.0" prefHeight="600.0" prefWidth="600.0">
          <content>
             <VBox fx:id="vBox" prefWidth="596.0" />
          </content>
       </ScrollPane>
-        <JFXTextField fx:id="searchToEdit" focusColor="#00cf9b00" layoutX="74.0" layoutY="26.0" maxWidth="452.0"
-                      minWidth="289.0" prefHeight="46.0" prefWidth="452.0" promptText="Search with the ID"
-                      style="-fx-background-color: #fff; -fx-border-color: #000; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;"
-                      unFocusColor="#d9d9d900" AnchorPane.leftAnchor="74.0"/>
-        <JFXButton id="BTNS" fx:id="resultBTN" buttonType="RAISED" layoutX="824.0" layoutY="335.0"
-                   onAction="#enterResult" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: #ff5656;"
-                   text="Enter" textFill="WHITE">
+        <JFXTextField fx:id="searchToEdit" focusColor="#00cf9b00" layoutX="74.0" layoutY="123.0" maxWidth="452.0" minWidth="289.0" prefHeight="46.0" prefWidth="452.0" promptText="Search with the ID" style="-fx-background-color: #fff; -fx-border-color: #000; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;" unFocusColor="#d9d9d900" AnchorPane.leftAnchor="74.0" />
+        <JFXButton id="BTNS" fx:id="resultBTN" buttonType="RAISED" layoutX="824.0" layoutY="335.0" onAction="#enterResult" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: #ff5656;" text="Enter" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="15" />
          </graphic>
       </JFXButton>
-      <FontAwesomeIconView id="search" fill="#6f6f6f" glyphName="SEARCH" layoutX="480.0" layoutY="60.0" onMouseClicked="#findToEdit" size="30" />
-        <JFXTextField fx:id="idTF" labelFloat="true" layoutX="704.0" layoutY="89.0" onKeyReleased="#filled"
-                      promptText="ID"/>
-        <JFXTextField fx:id="courseTF" labelFloat="true" layoutX="704.0" layoutY="133.0" onKeyReleased="#filled"
-                      promptText="Course Code"/>
-        <JFXButton id="BTNS" buttonType="RAISED" layoutX="22.0" layoutY="734.0" onAction="#logOut" prefHeight="46.0"
-                   prefWidth="124.0" style="-fx-background-color: #444466; -fx-background-radius: 20;" text="Log Out"
-                   textFill="WHITE">
+      <FontAwesomeIconView id="search" fill="#6f6f6f" glyphName="SEARCH" layoutX="479.0" layoutY="155.0" onMouseClicked="#findToEdit" size="30" />
+        <JFXTextField fx:id="idTF" labelFloat="true" layoutX="704.0" layoutY="89.0" onKeyReleased="#filled" promptText="ID" />
+        <JFXTextField fx:id="courseTF" labelFloat="true" layoutX="704.0" layoutY="133.0" onKeyReleased="#filled" promptText="Course Code" />
+        <JFXButton id="BTNS" buttonType="RAISED" layoutX="22.0" layoutY="734.0" onAction="#logOut" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: #444466; -fx-background-radius: 20;" text="Log Out" textFill="WHITE">
             <graphic>
-                <MaterialDesignIconView fill="WHITE" glyphName="LOGOUT" size="15"/>
+                <MaterialDesignIconView fill="WHITE" glyphName="LOGOUT" size="15" />
             </graphic>
         </JFXButton>
         <ScrollPane hbarPolicy="NEVER" layoutX="619.0" layoutY="417.0" prefHeight="380.0" prefWidth="570.0">
             <content>
                 <VBox fx:id="resultVBox" alignment="CENTER" prefWidth="560.0">
                     <padding>
-                        <Insets topRightBottomLeft="10.0"/>
+                        <Insets topRightBottomLeft="10.0" />
                     </padding>
                 </VBox>
             </content>
         </ScrollPane>
-        <JFXComboBox fx:id="semCB" layoutX="918.0" layoutY="89.0" onAction="#filled" prefHeight="26.0" prefWidth="155.0"
-                     promptText="Semester" visibleRowCount="6"/>
-        <JFXCheckBox fx:id="c3" layoutX="810.0" layoutY="182.0" onAction="#isThree" selected="true" text="3"/>
-        <JFXCheckBox fx:id="c1" layoutX="859.0" layoutY="182.0" onAction="#isOne" text="1"/>
-        <Label layoutX="704.0" layoutY="183.0" text="Course Credit: "/>
-        <Label fx:id="success" layoutX="761.0" layoutY="307.0" text="New grade uploaded successfully!"
-               textFill="#2ac32d" visible="false">
+        <JFXComboBox fx:id="semCB" layoutX="918.0" layoutY="89.0" onAction="#filled" prefHeight="26.0" prefWidth="155.0" promptText="Semester" visibleRowCount="6" />
+        <JFXCheckBox fx:id="c3" layoutX="810.0" layoutY="182.0" onAction="#isThree" selected="true" text="3" />
+        <JFXCheckBox fx:id="c1" layoutX="859.0" layoutY="182.0" onAction="#isOne" text="1" />
+        <Label layoutX="704.0" layoutY="183.0" text="Course Credit: " />
+        <Label fx:id="success" layoutX="761.0" layoutY="307.0" text="New grade uploaded successfully!" textFill="#2ac32d" visible="false">
             <font>
-                <Font name="System Bold" size="13.0"/>
+                <Font name="System Bold" size="13.0" />
             </font>
         </Label>
-        <Label fx:id="failed" layoutX="788.0" layoutY="306.0" text="Invalid or duplicate grade!" textFill="#d01a1a"
-               visible="false">
+        <Label fx:id="failed" layoutX="788.0" layoutY="306.0" text="Invalid or duplicate grade!" textFill="#d01a1a" visible="false">
             <font>
-                <Font name="System Bold" size="13.0"/>
+                <Font name="System Bold" size="13.0" />
             </font>
         </Label>
-        <JFXTextArea fx:id="commentTF" labelFloat="true" layoutX="702.0" layoutY="220.0" prefHeight="70.0"
-                     prefWidth="372.0" promptText="Comment (optional)"/>
-        <JFXTextField fx:id="markTF" labelFloat="true" layoutX="918.0" layoutY="133.0" onKeyReleased="#filled"
-                      prefHeight="26.0" prefWidth="155.0" promptText="Mark (0-100)"/>
+        <JFXTextArea fx:id="commentTF" labelFloat="true" layoutX="702.0" layoutY="220.0" prefHeight="70.0" prefWidth="372.0" promptText="Comment (optional)" />
+        <JFXTextField fx:id="markTF" labelFloat="true" layoutX="918.0" layoutY="133.0" onKeyReleased="#filled" prefHeight="26.0" prefWidth="155.0" promptText="Mark (0-100)" />
     </children>
 </AnchorPane>

@@ -81,7 +81,7 @@ public class StudentDashboardController implements Initializable {
             Label credit = new Label(object.get("course_credit").toString());
             credit.setId("itemS");
 
-            Label cgpa = new Label(getGrade(object.get("mark").toString()));
+            Label cgpa = new Label(markToCGPA(Double.parseDouble(object.get("mark").toString())));
             cgpa.setId("itemS");
 
             hBox.getChildren().addAll(semester, course, credit, mark, cgpa);
@@ -90,12 +90,8 @@ public class StudentDashboardController implements Initializable {
     }
 
 
-    private String getGrade(String mark) {
-        double m = Double.parseDouble(mark);
-        return markToCGPA(m);
-    }
 
-    public static String markToCGPA(double m) {
+    private String markToCGPA(double m) {
         if (m >= 80) return "4.00";
         else if (m >= 75) return "3.75";
         else if (m >= 70) return "3.50";

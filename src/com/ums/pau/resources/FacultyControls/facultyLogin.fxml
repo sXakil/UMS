@@ -57,7 +57,7 @@
                       <Font size="15.0" />
                   </font>
               </Hyperlink>
-              <Label fx:id="error" layoutX="21.0" layoutY="376.0" prefHeight="0.0" prefWidth="462.0" text="Contact the UMS section with an aplication and necessary credentials." textAlignment="CENTER" textFill="#eb8e6f" visible="false" wrapText="true" />
+              <Label fx:id="error" layoutX="21.0" layoutY="376.0" prefHeight="0.0" prefWidth="462.0" text="Contact the UMS section with an application and necessary credentials." textAlignment="CENTER" textFill="#eb8e6f" visible="false" wrapText="true" />
          </children>
          <effect>
             <DropShadow height="102.96" radius="48.705" width="93.86" />
