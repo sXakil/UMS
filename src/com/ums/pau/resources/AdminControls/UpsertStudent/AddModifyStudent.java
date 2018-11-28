@@ -15,6 +15,7 @@ import com.ums.pau.BCrypt;
 import com.ums.pau.resources.AdminControls.AdminDashboardController;
 import com.ums.pau.resources.AdminControls.UpsertFaculty.AddModifyFaculty;
 import com.ums.pau.resources.GenPass;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.Initializable;
@@ -23,6 +24,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
@@ -33,22 +35,17 @@ import java.util.ResourceBundle;
 import static com.ums.pau.DatabaseHandler.getFrom;
 import static com.ums.pau.DatabaseHandler.insertInto;
 
-
 public class AddModifyStudent implements Initializable {
 
-    public JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass;
+    public JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass, searchStud;
     public JFXDatePicker newStudAdDate;
-    public Label notification, nameLabel, idLabel, deptLabel, adDateLabel, sessionLabel;
-    public Pane preview;
+    public Label notification, nameLabel, idLabel, deptLabel, adDateLabel, sessionLabel, addStudTitle, zeroSearchResult;
     public JFXCheckBox male, female;
     public JFXButton addNewStud;
-    public Label zeroSearchResult;
-    public JFXTextField searchStud;
-    public Pane modifyStudent;
-    public Label addStudTitle;
+    public Pane preview, modifyStudent;
 
-    private static boolean isValid = false;
     private static boolean addNew = true;
+
     public void addNewStudent() {
         if(addNew) {
             MongoCollection<Document> collection = insertInto("students");
@@ -134,23 +131,6 @@ public class AddModifyStudent implements Initializable {
         }
     }
 
-    public void studentTextListener() {
-        JFXTextField[] studentTextFields = {newStudName, newStudID, newStudDept, newStudSes, newStudPass};
-        TextFieldChangedListener(studentTextFields, addNewStud);
-    }
-    private void TextFieldChangedListener(JFXTextField[] textFields, JFXButton button) {
-        for (JFXTextField fields : textFields) {
-            if(fields.getText() == null || fields.getText().length() == 0) {
-                isValid = false;
-                break;
-            } else {
-                isValid = true;
-            }
-        }
-        if(isValid) button.setDisable(false);
-        else button.setDisable(true);
-    }
-
 
     public void searchStudent() {
         zeroSearchResult.setVisible(false);
@@ -188,11 +168,19 @@ public class AddModifyStudent implements Initializable {
     public void genPass() {
         GenPass gp = new GenPass();
         newStudPass.setText(gp.getString());
-        studentTextListener();
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         BooleanProperty b = new SimpleBooleanProperty(AdminDashboardController.modStudent);
         modifyStudent.visibleProperty().bind(b);
+
+        addNewStud.disableProperty().bind(
+                Bindings.isEmpty(newStudID.textProperty())
+                        .or(Bindings.isEmpty(newStudName.textProperty()))
+                        .or(Bindings.isEmpty(newStudDept.textProperty()))
+                        .or(Bindings.isEmpty(newStudSes.textProperty()))
+                        .or(Bindings.isNull(newStudAdDate.getEditor().textProperty()))
+                        .or(Bindings.isEmpty(newStudPass.textProperty()))
+        );
     }
 }

@@ -14,6 +14,7 @@ import com.mongodb.client.model.UpdateOptions;
 import com.ums.pau.BCrypt;
 import com.ums.pau.resources.AdminControls.AdminDashboardController;
 import com.ums.pau.resources.GenPass;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.Initializable;
@@ -32,14 +33,13 @@ import static com.ums.pau.DatabaseHandler.insertInto;
 
 public class AddModifyFaculty implements Initializable {
     public JFXTextField newTeacherName, newTeacherPosition, newTeacherMajor, newTeacherDept, newTeacherPass;
-    public Label tNotification, tNameLabel, positionLabel, majorLabel, tDeptLabel, jdLabel;
-    public Pane previewT;
+    public Label notification, nameLabel, positionLabel, majorLabel, deptLabel, jdLabel;
+    public Pane preview;
     public JFXButton addNewTeacher;
     public JFXDatePicker newTeacherJD;
     public JFXTextField newTeacherUNID;
-    public JFXCheckBox maleT, femaleT;
+    public JFXCheckBox male, female;
     public Label zeroFacFound;
-    private static boolean isValid = false;
     public JFXTextField searchFacTF;
 
 
@@ -58,28 +58,28 @@ public class AddModifyFaculty implements Initializable {
                             .append("department", newTeacherDept.getText())
                             .append("joiningDate", newTeacherJD.getValue() == null ? new Date() : newTeacherJD.getValue().toString())
                             .append("password", BCrypt.hashPassword(newTeacherPass.getText(), BCrypt.genSalt()))
-                            .append("gender", maleT.isSelected() ? "Male" : "Female")
+                            .append("gender", male.isSelected() ? "Male" : "Female")
                             .append("added_on", new Date()));
             Bson filter = Filters.eq("uNID", newTeacherUNID.getText());
             UpdateOptions options = new UpdateOptions().upsert(true);
             collection.updateOne(filter, update, options);
-            previewT.setVisible(true);
-            tNameLabel.setText(tNameLabel.getText() + newTeacherName.getText());
+            preview.setVisible(true);
+            nameLabel.setText(nameLabel.getText() + newTeacherName.getText());
             positionLabel.setText(positionLabel.getText() + newTeacherPosition.getText());
             majorLabel.setText(majorLabel.getText() + newTeacherMajor.getText());
-            tDeptLabel.setText((tDeptLabel.getText() + newTeacherDept.getText()));
+            deptLabel.setText((deptLabel.getText() + newTeacherDept.getText()));
             jdLabel.setText(jdLabel.getText() + (newTeacherJD.getValue() == null ? new Date().toString() : newTeacherJD.getValue().toString()));
             disableTeachersFields(true);
             addNewTeacher.setText("Add Another");
             addNewT = false;
         } else {
-            tNotification.setText(tNotification.getText());
-            tNameLabel.setText("Name: ");
+            notification.setText(notification.getText());
+            nameLabel.setText("Name: ");
             positionLabel.setText("Position: ");
             majorLabel.setText("Major: ");
-            tDeptLabel.setText("Department: ");
+            deptLabel.setText("Department: ");
             jdLabel.setText("Joining Date: ");
-            previewT.setVisible(false);
+            preview.setVisible(false);
             disableTeachersFields(false);
             clearTeachersFields();
             addNewTeacher.setText("Add");
@@ -132,7 +132,7 @@ public class AddModifyFaculty implements Initializable {
             newTeacherPosition.setText(object.get("position").toString());
             newTeacherMajor.setText(object.get("major").toString());
             newTeacherJD.setValue(LocalDate.parse(object.get("joiningDate").toString()));
-            getGender(object.get("gender").toString(), maleT, femaleT);
+            getGender(object.get("gender").toString(), male, female);
             checked = true;
         }
         if (!checked) zeroFacFound.setVisible(true);
@@ -154,47 +154,36 @@ public class AddModifyFaculty implements Initializable {
     public void genTPass() {
         GenPass gp = new GenPass();
         newTeacherPass.setText(gp.getString());
-        teacherTextListener();
     }
 
 
 
-    public void isMaleT() {
-        if(!maleT.isSelected())
-            femaleT.setSelected(true);
+    public void isMale() {
+        if(!male.isSelected())
+            female.setSelected(true);
         else
-            femaleT.setSelected(false);
+            female.setSelected(false);
     }
-    public void isFemaleT() {
-        if(!femaleT.isSelected())
-            maleT.setSelected(true);
+    public void isFemale() {
+        if(!female.isSelected())
+            male.setSelected(true);
         else
-            maleT.setSelected(false);
+            male.setSelected(false);
     }
 
-    private void TextFieldChangedListener(JFXTextField[] textFields, JFXButton button) {
-        for (JFXTextField fields : textFields) {
-            if(fields.getText() == null || fields.getText().length() == 0) {
-                isValid = false;
-                break;
-            } else {
-                isValid = true;
-            }
-        }
-        if(isValid) button.setDisable(false);
-        else button.setDisable(true);
-    }
-
-
-
-    public void teacherTextListener() {
-        JFXTextField[] teacherTextFields = {newTeacherName, newTeacherPosition, newTeacherMajor, newTeacherDept, newTeacherPass};
-        TextFieldChangedListener(teacherTextFields, addNewTeacher);
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         BooleanProperty b = new SimpleBooleanProperty(AdminDashboardController.modFaculty);
         modifyFaculty.visibleProperty().bind(b);
+        addNewTeacher.disableProperty().bind(
+                Bindings.isEmpty(newTeacherName.textProperty())
+                        .or(Bindings.isEmpty(newTeacherUNID.textProperty()))
+                        .or(Bindings.isEmpty(newTeacherDept.textProperty()))
+                        .or(Bindings.isEmpty(newTeacherPosition.textProperty()))
+                        .or(Bindings.isNull(newTeacherJD.getEditor().textProperty()))
+                        .or(Bindings.isEmpty(newTeacherMajor.textProperty()))
+                        .or(Bindings.isEmpty(newTeacherPass.textProperty()))
+        );
     }
 }

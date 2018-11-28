@@ -15,14 +15,14 @@
     <children>
         <VBox layoutX="58.0" layoutY="186.0" prefHeight="570.0" prefWidth="365.0" spacing="30.0">
             <children>
-                <JFXTextField fx:id="newStudName" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="40.0" prefWidth="245.0" promptText="Name" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                <JFXTextField fx:id="newStudID" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="40.0" prefWidth="245.0" promptText="ID" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                <JFXTextField fx:id="newStudDept" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="40.0" prefWidth="245.0" promptText="Department" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                <JFXTextField fx:id="newStudSes" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="40.0" prefWidth="245.0" promptText="Session" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newStudName" focusColor="#0947ff" labelFloat="true" prefHeight="40.0" prefWidth="245.0" promptText="Name" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newStudID" focusColor="#0947ff" labelFloat="true" prefHeight="40.0" prefWidth="245.0" promptText="ID" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newStudDept" focusColor="#0947ff" labelFloat="true" prefHeight="40.0" prefWidth="245.0" promptText="Department" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newStudSes" focusColor="#0947ff" labelFloat="true" prefHeight="40.0" prefWidth="245.0" promptText="Session" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
                 <JFXDatePicker fx:id="newStudAdDate" defaultColor="#0947ff" prefHeight="40.0" prefWidth="245.0" promptText="Date of Admission" style="-fx-prompt-text-fill: #009688;" />
                 <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="345.0" spacing="10.0">
                     <children>
-                        <JFXTextField fx:id="newStudPass" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="40.0" prefWidth="220.0" promptText="Password" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                        <JFXTextField fx:id="newStudPass" focusColor="#0947ff" labelFloat="true" prefHeight="40.0" prefWidth="220.0" promptText="Password" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
                         <JFXButton onAction="#genPass" style="-fx-background-color: blue;" text="Generate" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="13.0" />

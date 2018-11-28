@@ -19,7 +19,7 @@
                 <Font name="System Bold" size="13.0" />
             </font>
         </Label>
-        <TextField fx:id="confirm" layoutX="171.0" layoutY="148.0" onKeyReleased="#hide" style="-fx-text-fill: red;" />
+        <TextField fx:id="confirm" layoutX="171.0" layoutY="148.0" onKeyReleased="#hide" style="-fx-text-fill: red; -fx-font-weight: bold" />
         <Label fx:id="wrong" layoutX="356.0" layoutY="153.0" text="Wrong input!" textFill="RED" />
    <Label fx:id="delName" layoutX="32.0" layoutY="9.0" text="Name: Student Name">
       <font>

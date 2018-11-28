@@ -26,11 +26,11 @@
         </Pane>
         <VBox layoutX="68.0" layoutY="170.0" prefHeight="570.0" prefWidth="365.0" spacing="25.0">
             <children>
-                <JFXTextField fx:id="newTeacherName" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Name" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                <JFXTextField fx:id="newTeacherUNID" focusColor="#0947ff" labelFloat="true" layoutX="20.0" layoutY="86.0" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="uNID" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                <JFXTextField fx:id="newTeacherDept" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Department" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                <JFXTextField fx:id="newTeacherPosition" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Position" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                <JFXTextField fx:id="newTeacherMajor" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Major" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newTeacherName" focusColor="#0947ff" labelFloat="true" prefHeight="41.0" prefWidth="245.0" promptText="Name" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newTeacherUNID" focusColor="#0947ff" labelFloat="true" layoutX="20.0" layoutY="86.0" prefHeight="41.0" prefWidth="245.0" promptText="uNID" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newTeacherDept" focusColor="#0947ff" labelFloat="true" prefHeight="41.0" prefWidth="245.0" promptText="Department" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newTeacherPosition" focusColor="#0947ff" labelFloat="true" prefHeight="41.0" prefWidth="245.0" promptText="Position" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newTeacherMajor" focusColor="#0947ff" labelFloat="true" prefHeight="41.0" prefWidth="245.0" promptText="Major" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
                 <JFXDatePicker fx:id="newTeacherJD" defaultColor="#0947ff" prefHeight="41.0" prefWidth="245.0" promptText="Joining Date" style="-fx-prompt-text-fill: #009688;" />
                 <HBox prefHeight="48.0" prefWidth="374.0" spacing="20.0">
                     <children>
@@ -44,8 +44,8 @@
                 </HBox>
                 <HBox prefHeight="16.0" prefWidth="374.0" spacing="25.0">
                     <children>
-                        <JFXCheckBox fx:id="maleT" onAction="#isMaleT" selected="true" text="Male" />
-                        <JFXCheckBox fx:id="femaleT" onAction="#isFemaleT" text="Female" />
+                        <JFXCheckBox fx:id="male" onAction="#isMale" selected="true" text="Male" />
+                        <JFXCheckBox fx:id="female" onAction="#isFemale" text="Female" />
                     </children>
                 </HBox>
                 <JFXButton fx:id="addNewTeacher" alignment="CENTER" disable="true" onAction="#addNewTeacher" prefHeight="41.0" prefWidth="399.0" style="-fx-background-color: #11aa11;" text="Add" textFill="WHITE">
@@ -61,9 +61,9 @@
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
         </VBox>
-        <Pane fx:id="previewT" layoutX="571.0" layoutY="209.0" prefHeight="186.0" prefWidth="270.0" visible="false">
+        <Pane fx:id="preview" layoutX="571.0" layoutY="209.0" prefHeight="186.0" prefWidth="270.0" visible="false">
             <children>
-                <Label fx:id="tNameLabel" layoutX="17.0" layoutY="49.0" text="Name: ">
+                <Label fx:id="nameLabel" layoutX="17.0" layoutY="49.0" text="Name: ">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -78,7 +78,7 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Label fx:id="tDeptLabel" layoutX="17.0" layoutY="128.0" text="Department: ">
+                <Label fx:id="deptLabel" layoutX="17.0" layoutY="128.0" text="Department: ">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -88,7 +88,7 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Label fx:id="tNotification" layoutX="18.0" layoutY="14.0" text="New Faculty Added Successfully!" textFill="#04a158">
+                <Label fx:id="notification" layoutX="18.0" layoutY="14.0" text="New Faculty Added Successfully!" textFill="#04a158">
                     <font>
                         <Font size="14.0" />
                     </font>
