@@ -1,14 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+
 <Pane prefHeight="800.0" prefWidth="974.0" style="-fx-background-color: #F5FAFA;" stylesheets="@../../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.DeleteFaculty.DeleteController">
 <children>
-        <Label layoutX="263.0" layoutY="32.0" text="Delete a Student record">
+        <Label layoutX="263.0" layoutY="32.0" text="Delete a Faculty record">
             <font>
                 <Font name="System Bold" size="34.0" />
             </font>
@@ -43,7 +46,7 @@
                                 <Font size="16.0" />
                             </font>
                         </Label>
-                        <Label fx:id="delGen" alignment="CENTER" prefHeight="52.0" prefWidth="105.0" style="-fx-background-color: #222266;" text="Gender" textFill="WHITE">
+                        <Label fx:id="delGen" alignment="CENTER" prefHeight="52.0" prefWidth="105.0" style="-fx-background-color: #222266;" text="Position" textFill="WHITE">
                             <font>
                                 <Font size="16.0" />
                             </font>
@@ -55,7 +58,7 @@
                         </Label>
                     </children>
                 </HBox>
-                <Label layoutX="250.0" layoutY="67.0" prefHeight="19.0" prefWidth="634.0" text="Are you absolutely sure you want to delete this student from the databse?" textFill="#ff6161">
+                <Label layoutX="250.0" layoutY="67.0" prefHeight="19.0" prefWidth="634.0" text="Are you absolutely sure you want to delete this Faculty from the databse?" textFill="#ff6161">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>

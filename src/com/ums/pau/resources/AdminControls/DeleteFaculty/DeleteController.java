@@ -52,7 +52,7 @@ public class DeleteController {
         delConfirmation.setVisible(false);
         boolean checked = false;
         DBCollection collection = getFrom("teachers");
-        BasicDBObject query = new BasicDBObject("id", delSearchTF.getText().replaceAll("-", ""));
+        BasicDBObject query = new BasicDBObject("uNID", delSearchTF.getText().replaceAll("-", ""));
         DBCursor cursor = collection.find(query);
         while (cursor.hasNext()) {
             DBObject object = cursor.next();
