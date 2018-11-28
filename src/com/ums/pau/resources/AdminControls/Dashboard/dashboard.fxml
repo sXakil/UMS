@@ -1,0 +1,35 @@
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<Pane prefHeight="800.0" prefWidth="974.0" stylesheets="@../../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.Dashboard.DashboardController">
+        <Circle id="circle" fill="#2197ff0d" layoutX="301.0" layoutY="369.0" onMouseClicked="#showStudList" radius="100.0" stroke="#2eddd5" strokeType="INSIDE" strokeWidth="5.0" />
+        <Label alignment="CENTER" layoutX="201.0" layoutY="324.0" onMouseClicked="#showStudList" prefHeight="43.0" prefWidth="200.0" text="Total Student" textFill="#2eddd5">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Circle id="circle" fill="#2197ff0d" layoutX="673.0" layoutY="367.0" onMouseClicked="#showFacList" radius="100.0" stroke="#2888e8" strokeType="INSIDE" strokeWidth="5.0" />
+        <Label alignment="CENTER" layoutX="573.0" layoutY="322.0" onMouseClicked="#showFacList" prefHeight="43.0" prefWidth="200.0" text="Total Faculties" textFill="#2787e7">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="totalFac" alignment="CENTER" layoutX="573.0" layoutY="359.0" onMouseClicked="#showFacList" prefHeight="70.0" prefWidth="200.0" text="19" textFill="#2787e7">
+            <font>
+                <Font name="System Bold" size="50.0" />
+            </font>
+        </Label>
+        <Label fx:id="totalStud" alignment="CENTER" layoutX="200.0" layoutY="359.0" onMouseClicked="#showStudList" prefHeight="70.0" prefWidth="200.0" text="159" textFill="#2eddd5">
+            <font>
+                <Font name="System Bold" size="50.0" />
+            </font>
+        </Label>
+        <Label layoutX="373.0" layoutY="91.0" text="STATISTICS">
+            <font>
+                <Font name="System Bold" size="34.0" />
+            </font>
+        </Label>
+        <Line endX="-100.0" endY="312.0" layoutX="582.0" layoutY="237.0" startX="-100.0" stroke="#e88e4a" strokeWidth="5.0" />
+</Pane>

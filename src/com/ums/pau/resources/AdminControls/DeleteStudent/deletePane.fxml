@@ -1,0 +1,71 @@
+<?import javafx.scene.layout.Pane?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+
+<Pane prefHeight="800.0" prefWidth="974.0" style="-fx-background-color: #F5FAFA;" stylesheets="@../../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.DeleteStudent.DeleteController">
+<children>
+        <Label layoutX="263.0" layoutY="32.0" text="Delete a Student record">
+            <font>
+                <Font name="System Bold" size="34.0" />
+            </font>
+        </Label>
+        <Pane layoutX="242.0" layoutY="102.0">
+            <children>
+                <JFXTextField fx:id="delSearchTF" focusColor="#405aa800" prefHeight="50.0" prefWidth="490.0" promptText="Search by ID" style="-fx-background-color: #fff; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 1; -fx-border-color: #000;" unFocusColor="#4d4d4d00">
+                    <padding>
+                        <Insets left="15.0" />
+                    </padding>
+                </JFXTextField>
+                <Label fx:id="delSearch" layoutX="181.0" layoutY="63.0" text="No records found!" textFill="RED" visible="false" />
+                <FontAwesomeIconView fill="#6f6f6f" glyphName="SEARCH" layoutX="440.0" layoutY="35.0" onMouseClicked="#delSearchStudent" size="30" />
+            </children>
+        </Pane>
+        <Pane fx:id="delConfirmation" layoutX="38.0" layoutY="213.0" prefHeight="131.0" prefWidth="885.0" visible="false">
+            <children>
+                <HBox prefHeight="52.0" prefWidth="885.0">
+                    <children>
+                        <Label fx:id="delName" alignment="CENTER" prefHeight="52.0" prefWidth="346.0" style="-fx-background-color: #222244;" text="Name" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="delID" alignment="CENTER" prefHeight="52.0" prefWidth="156.0" style="-fx-background-color: #222266;" text="ID" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="delDept" alignment="CENTER" prefHeight="52.0" prefWidth="112.0" style="-fx-background-color: #222244;" text="Department" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="delGen" alignment="CENTER" prefHeight="52.0" prefWidth="105.0" style="-fx-background-color: #222266;" text="Gender" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="delAdDate" alignment="CENTER" prefHeight="52.0" prefWidth="170.0" style="-fx-background-color: #222244;" text="Adimssion Date" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <Label layoutX="250.0" layoutY="67.0" prefHeight="19.0" prefWidth="634.0" text="Are you absolutely sure you want to delete this student from the databse?" textFill="#ff6161">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <JFXButton layoutX="777.0" layoutY="97.0" onAction="#cancelDelete" prefHeight="26.0" prefWidth="41.0" style="-fx-background-color: mediumseagreen;" text="No" textFill="WHITE" />
+                <JFXButton layoutX="833.0" layoutY="97.0" onAction="#promptDelete" style="-fx-background-color: coral;" text="Yes" textFill="WHITE" />
+                <JFXCheckBox fx:id="includeResult" layoutX="14.0" layoutY="108.0" text="Including the result record." />
+            </children>
+        </Pane>
+    </children>
+</Pane>

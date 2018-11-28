@@ -7,12 +7,11 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="124.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.DeletePrompt">
-    <children>
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.DeleteStudent.DeletePrompt">
         <Button layoutX="23.0" layoutY="84.0" mnemonicParsing="false" onAction="#closeWindow" text="Cancel"/>
         <Button layoutX="364.0" layoutY="84.0" mnemonicParsing="false" onAction="#doDelete" text="Confirm"/>
         <Label layoutX="10.0" layoutY="9.0" prefHeight="26.0" prefWidth="418.0"
-               text="Write the word &quot;CONFIRM&quot; in eaxact case as shown below.">
+               text="Write the word &quot;CONFIRM&quot; in exact case as shown below.">
             <font>
                 <Font size="14.0"/>
             </font>
@@ -24,5 +23,4 @@
         </Label>
         <TextField fx:id="confirm" onKeyReleased="#hide" layoutX="142.0" layoutY="43.0"/>
         <Label fx:id="wrong" layoutX="330.0" layoutY="48.0" text="Wrong input!" textFill="RED"/>
-    </children>
 </AnchorPane>

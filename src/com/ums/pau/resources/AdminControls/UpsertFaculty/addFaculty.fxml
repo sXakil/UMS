@@ -1,0 +1,104 @@
+<?import javafx.scene.layout.Pane?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+
+
+<Pane prefHeight="800.0" prefWidth="974.0" style="-fx-background-color: #F5FAFA;" stylesheets="@../../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.UpsertFaculty.AddModifyFaculty">
+    <children>
+        <Pane fx:id="modifyFac" layoutX="188.0" layoutY="86.0">
+            <children>
+                <JFXTextField fx:id="searchFacTF" focusColor="#405aa800" prefHeight="50.0" prefWidth="490.0" promptText="Search by ID" style="-fx-background-color: #fff; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 1; -fx-border-color: #000;" unFocusColor="#4d4d4d00">
+                    <padding>
+                        <Insets left="15.0" />
+                    </padding>
+                </JFXTextField>
+                <Label fx:id="zeroFacFound" layoutX="181.0" layoutY="68.0" text="No records found!" textFill="RED" visible="false" />
+                <FontAwesomeIconView fill="#6f6f6f" glyphName="SEARCH" layoutX="440.0" layoutY="35.0" onMouseClicked="#searchFac" size="30" />
+            </children>
+        </Pane>
+        <VBox layoutX="68.0" layoutY="170.0" prefHeight="570.0" prefWidth="365.0" spacing="25.0">
+            <children>
+                <JFXTextField fx:id="newTeacherName" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Name" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newTeacherUNID" focusColor="#0947ff" labelFloat="true" layoutX="20.0" layoutY="86.0" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="uNID" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newTeacherDept" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Department" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newTeacherPosition" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Position" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXTextField fx:id="newTeacherMajor" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Major" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                <JFXDatePicker fx:id="newTeacherJD" defaultColor="#0947ff" prefHeight="41.0" prefWidth="245.0" promptText="Joining Date" style="-fx-prompt-text-fill: #009688;" />
+                <HBox prefHeight="48.0" prefWidth="374.0" spacing="20.0">
+                    <children>
+                        <JFXTextField fx:id="newTeacherPass" focusColor="#0947ff" labelFloat="true" prefHeight="41.0" prefWidth="220.0" promptText="Password" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
+                        <JFXButton onAction="#genTPass" prefHeight="26.0" prefWidth="97.0" style="-fx-background-color: blue;" text="Generate" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </JFXButton>
+                    </children>
+                </HBox>
+                <HBox prefHeight="16.0" prefWidth="374.0" spacing="25.0">
+                    <children>
+                        <JFXCheckBox fx:id="maleT" onAction="#isMaleT" selected="true" text="Male" />
+                        <JFXCheckBox fx:id="femaleT" onAction="#isFemaleT" text="Female" />
+                    </children>
+                </HBox>
+                <JFXButton fx:id="addNewTeacher" alignment="CENTER" disable="true" onAction="#addNewTeacher" prefHeight="41.0" prefWidth="399.0" style="-fx-background-color: #11aa11;" text="Add" textFill="WHITE">
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="16.0" />
+                    </graphic>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </JFXButton>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+        <Pane fx:id="previewT" layoutX="571.0" layoutY="209.0" prefHeight="186.0" prefWidth="270.0" visible="false">
+            <children>
+                <Label fx:id="tNameLabel" layoutX="17.0" layoutY="49.0" text="Name: ">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="positionLabel" layoutX="16.0" layoutY="75.0" text="Position: ">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="majorLabel" layoutX="17.0" layoutY="100.0" text="Major: ">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="tDeptLabel" layoutX="17.0" layoutY="128.0" text="Department: ">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="jdLabel" layoutX="17.0" layoutY="155.0" text="Joining Date: ">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="tNotification" layoutX="18.0" layoutY="14.0" text="New Faculty Added Successfully!" textFill="#04a158">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Label fx:id="addFac" layoutX="300.0" layoutY="27.0" text="Add a new Faculty">
+            <font>
+                <Font name="System Bold" size="34.0" />
+            </font>
+        </Label>
+    </children>
+</Pane>

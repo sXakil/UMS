@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #F0FBFF;" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.AdminDashboardController">
-    <children>
         <Pane prefHeight="800.0" prefWidth="226.0" style="-fx-background-color: #333388;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
                 <VBox layoutX="13.0" layoutY="99.0" prefHeight="418.0" prefWidth="200.0">
-                    <children>
                         <Label alignment="CENTER" prefHeight="43.0" prefWidth="200.0" text="Student" textFill="WHITE">
                             <font>
                                 <Font name="DejaVu Serif Bold" size="15.0" />
@@ -102,7 +93,6 @@
                                 <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="18" />
                             </graphic>
                         </JFXButton>
-                    </children>
                 </VBox>
                 <JFXButton buttonType="RAISED" layoutX="13.0" layoutY="15.0" onAction="#toDashboardPane" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #444488;" text="Dashboard" textFill="WHITE">
                     <font>
@@ -116,285 +106,8 @@
                     </font>
                 </JFXButton>
                 <MaterialDesignIconView fill="WHITE" glyphName="LOGOUT" layoutX="50.0" layoutY="755.0" size="18" />
-            </children>
         </Pane>
-        <StackPane layoutX="226.0" prefHeight="800.0" prefWidth="974.0">
-            <children>
-                <Pane fx:id="dashBoardPane" prefHeight="800.0" prefWidth="974.0">
-                    <children>
-                        <Circle id="circle" fill="#2197ff0d" layoutX="301.0" layoutY="369.0" onMouseClicked="#showStudList" radius="100.0" stroke="#2eddd5" strokeType="INSIDE" strokeWidth="5.0" />
-                        <Label alignment="CENTER" layoutX="201.0" layoutY="324.0" onMouseClicked="#showStudList" prefHeight="43.0" prefWidth="200.0" text="Total Student" textFill="#2eddd5">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                        <Circle id="circle" fill="#2197ff0d" layoutX="673.0" layoutY="367.0" onMouseClicked="#showFacList" radius="100.0" stroke="#2888e8" strokeType="INSIDE" strokeWidth="5.0" />
-                        <Label alignment="CENTER" layoutX="573.0" layoutY="322.0" onMouseClicked="#showFacList" prefHeight="43.0" prefWidth="200.0" text="Total Faculties" textFill="#2787e7">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="totalFac" alignment="CENTER" layoutX="573.0" layoutY="359.0" onMouseClicked="#showFacList" prefHeight="70.0" prefWidth="200.0" text="19" textFill="#2787e7">
-                            <font>
-                                <Font name="System Bold" size="50.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="totalStud" alignment="CENTER" layoutX="200.0" layoutY="359.0" onMouseClicked="#showStudList" prefHeight="70.0" prefWidth="200.0" text="159" textFill="#2eddd5">
-                            <font>
-                                <Font name="System Bold" size="50.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="373.0" layoutY="91.0" text="STATISTICS">
-                            <font>
-                                <Font name="System Bold" size="34.0" />
-                            </font>
-                        </Label>
-                        <Line endX="-100.0" endY="312.0" layoutX="582.0" layoutY="237.0" startX="-100.0" stroke="#e88e4a" strokeWidth="5.0" />
-                    </children>
-                </Pane>
-                <Pane fx:id="addStudPane" prefHeight="800.0" prefWidth="974.0" visible="false">
-                    <children>
-                        <VBox layoutX="58.0" layoutY="186.0" prefHeight="570.0" prefWidth="365.0" spacing="30.0">
-                            <children>
-                                <JFXTextField fx:id="newStudName" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="40.0" prefWidth="245.0" promptText="Name" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                <JFXTextField fx:id="newStudID" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="40.0" prefWidth="245.0" promptText="ID" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                <JFXTextField fx:id="newStudDept" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="40.0" prefWidth="245.0" promptText="Department" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                <JFXTextField fx:id="newStudSes" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="40.0" prefWidth="245.0" promptText="Session" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                <JFXDatePicker fx:id="newStudAdDate" defaultColor="#0947ff" prefHeight="40.0" prefWidth="245.0" promptText="Date of Admission" style="-fx-prompt-text-fill: #009688;" />
-                                <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="345.0" spacing="10.0">
-                                    <children>
-                                        <JFXTextField fx:id="newStudPass" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="40.0" prefWidth="220.0" promptText="Password" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                        <JFXButton onAction="#genPass" style="-fx-background-color: blue;" text="Generate" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="13.0" />
-                                            </font>
-                                        </JFXButton>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="345.0" spacing="20.0">
-                                    <children>
-                                        <JFXCheckBox fx:id="male" onAction="#isMale" selected="true" text="Male" />
-                                        <JFXCheckBox fx:id="female" onAction="#isFemale" text="Female" />
-                                    </children>
-                                </HBox>
-                                <JFXButton fx:id="addNewStud" alignment="CENTER" disable="true" onAction="#addNewStudent" prefHeight="40.0" prefWidth="245.0" style="-fx-background-color: #11aa11;" text="Add" textFill="WHITE">
-                                    <graphic>
-                                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="16.0" />
-                                    </graphic>
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </JFXButton>
-                            </children>
-                            <padding>
-                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                            </padding>
-                        </VBox>
-                        <Pane fx:id="preview" layoutX="494.0" layoutY="186.0" prefHeight="455.0" prefWidth="270.0" visible="false">
-                            <children>
-                                <Label fx:id="nameLabel" layoutX="17.0" layoutY="49.0" text="Name: ">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="idLabel" layoutX="16.0" layoutY="75.0" text="ID: ">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="deptLabel" layoutX="17.0" layoutY="100.0" text="Department: ">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="sessionLabel" layoutX="17.0" layoutY="128.0" text="Session: ">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="adDateLabel" layoutX="17.0" layoutY="155.0" text="Date of Admission: ">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="notification" layoutX="18.0" layoutY="14.0" text="New Student Added Successfully!" textFill="#04a158">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-                        <Label fx:id="addStudTitle" layoutX="300.0" layoutY="27.0" text="Add a new Student">
-                            <font>
-                                <Font name="System Bold" size="34.0" />
-                            </font>
-                        </Label>
-                        <Pane fx:id="modify" layoutX="242.0" layoutY="102.0">
-                            <children>
-                                <JFXTextField fx:id="searchStud" focusColor="#405aa800" prefHeight="50.0" prefWidth="490.0" promptText="Search by ID" style="-fx-background-color: #fff; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 1; -fx-border-color: #000;" unFocusColor="#4d4d4d00">
-                                    <padding>
-                                        <Insets left="15.0" />
-                                    </padding>
-                                </JFXTextField>
-                                <Label fx:id="zeroSearchResult" layoutX="181.0" layoutY="68.0" text="No records found!" textFill="RED" visible="false" />
-                                <FontAwesomeIconView fill="#6f6f6f" glyphName="SEARCH" layoutX="440.0" layoutY="35.0" onMouseClicked="#searchStudent" size="30" />
-                            </children>
-                        </Pane>
-                    </children>
-                </Pane>
-                <Pane fx:id="addTeacherPane" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="974.0" style="-fx-background-color: #F5FAFA;" visible="false">
-                    <children>
-                        <Pane fx:id="modifyFac" layoutX="188.0" layoutY="86.0">
-                            <children>
-                                <JFXTextField fx:id="searchFacTF" focusColor="#405aa800" prefHeight="50.0" prefWidth="490.0" promptText="Search by ID" style="-fx-background-color: #fff; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 1; -fx-border-color: #000;" unFocusColor="#4d4d4d00">
-                                    <padding>
-                                        <Insets left="15.0" />
-                                    </padding>
-                                </JFXTextField>
-                                <Label fx:id="zeroFacFound" layoutX="181.0" layoutY="68.0" text="No records found!" textFill="RED" visible="false" />
-                                <FontAwesomeIconView fill="#6f6f6f" glyphName="SEARCH" layoutX="440.0" layoutY="35.0" onMouseClicked="#searchFac" size="30" />
-                            </children>
-                        </Pane>
-                        <VBox layoutX="68.0" layoutY="170.0" prefHeight="570.0" prefWidth="365.0" spacing="25.0">
-                            <children>
-                                <JFXTextField fx:id="newTeacherName" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Name" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                <JFXTextField fx:id="newTeacherUNID" focusColor="#0947ff" labelFloat="true" layoutX="20.0" layoutY="86.0" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="uNID" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                <JFXTextField fx:id="newTeacherDept" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Department" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                <JFXTextField fx:id="newTeacherPosition" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Position" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                <JFXTextField fx:id="newTeacherMajor" focusColor="#0947ff" labelFloat="true" onKeyReleased="#teacherTextListener" prefHeight="41.0" prefWidth="245.0" promptText="Major" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                <JFXDatePicker fx:id="newTeacherJD" defaultColor="#0947ff" prefHeight="41.0" prefWidth="245.0" promptText="Joining Date" style="-fx-prompt-text-fill: #009688;" />
-                                <HBox prefHeight="48.0" prefWidth="374.0" spacing="20.0">
-                                    <children>
-                                        <JFXTextField fx:id="newTeacherPass" focusColor="#0947ff" labelFloat="true" onKeyReleased="#studentTextListener" prefHeight="41.0" prefWidth="220.0" promptText="Password" style="-fx-prompt-text-fill: #444488;" unFocusColor="#444488" />
-                                        <JFXButton onAction="#genTPass" prefHeight="26.0" prefWidth="97.0" style="-fx-background-color: blue;" text="Generate" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="13.0" />
-                                            </font>
-                                        </JFXButton>
-                                    </children>
-                                </HBox>
-                                <HBox prefHeight="16.0" prefWidth="374.0" spacing="25.0">
-                                    <children>
-                                        <JFXCheckBox fx:id="maleT" onAction="#isMaleT" selected="true" text="Male" />
-                                        <JFXCheckBox fx:id="femaleT" onAction="#isFemaleT" text="Female" />
-                                    </children>
-                                </HBox>
-                                <JFXButton fx:id="addNewTeacher" alignment="CENTER" disable="true" onAction="#addNewTeacher" prefHeight="41.0" prefWidth="399.0" style="-fx-background-color: #11aa11;" text="Add" textFill="WHITE">
-                                    <graphic>
-                                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="16.0" />
-                                    </graphic>
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </JFXButton>
-                            </children>
-                            <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </padding>
-                        </VBox>
-                        <Pane fx:id="previewT" layoutX="571.0" layoutY="209.0" prefHeight="186.0" prefWidth="270.0" visible="false">
-                            <children>
-                                <Label fx:id="tNameLabel" layoutX="17.0" layoutY="49.0" text="Name: ">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="positionLabel" layoutX="16.0" layoutY="75.0" text="Position: ">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="majorLabel" layoutX="17.0" layoutY="100.0" text="Major: ">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                        </Label>
-                                <Label fx:id="tDeptLabel" layoutX="17.0" layoutY="128.0" text="Department: ">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="jdLabel" layoutX="17.0" layoutY="155.0" text="Joining Date: ">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="tNotification" layoutX="18.0" layoutY="14.0" text="New Faculty Added Successfully!" textFill="#04a158">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-                        <Label fx:id="addFac" layoutX="300.0" layoutY="27.0" text="Add a new Faculty">
-                            <font>
-                                <Font name="System Bold" size="34.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </Pane>
-                <Pane fx:id="delStudentPane" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="974.0" visible="false">
-                    <children>
-                        <Label layoutX="263.0" layoutY="32.0" text="Delete a Student record">
-                            <font>
-                                <Font name="System Bold" size="34.0" />
-                            </font>
-                        </Label>
-                        <Pane layoutX="242.0" layoutY="102.0">
-                            <children>
-                                <JFXTextField fx:id="delSearchTF" focusColor="#405aa800" prefHeight="50.0" prefWidth="490.0" promptText="Search by ID" style="-fx-background-color: #fff; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 1; -fx-border-color: #000;" unFocusColor="#4d4d4d00">
-                                    <padding>
-                                        <Insets left="15.0" />
-                                    </padding>
-                                </JFXTextField>
-                                <Label fx:id="delSearch" layoutX="181.0" layoutY="63.0" text="No records found!" textFill="RED" visible="false" />
-                                <FontAwesomeIconView fill="#6f6f6f" glyphName="SEARCH" layoutX="440.0" layoutY="35.0" onMouseClicked="#delSearchStudent" size="30" />
-                            </children>
-                        </Pane>
-                        <Pane fx:id="delConfirmation" layoutX="38.0" layoutY="213.0" prefHeight="131.0" prefWidth="885.0" visible="false">
-                            <children>
-                                <HBox prefHeight="52.0" prefWidth="885.0">
-                                    <children>
-                                        <Label fx:id="delName" alignment="CENTER" prefHeight="52.0" prefWidth="346.0" style="-fx-background-color: #222244;" text="Name" textFill="WHITE">
-                                            <font>
-                                                <Font size="16.0" />
-                                            </font>
-                                        </Label>
-                                        <Label fx:id="delID" alignment="CENTER" prefHeight="52.0" prefWidth="156.0" style="-fx-background-color: #222266;" text="ID" textFill="WHITE">
-                                            <font>
-                                                <Font size="16.0" />
-                                            </font>
-                                        </Label>
-                                        <Label fx:id="delDept" alignment="CENTER" prefHeight="52.0" prefWidth="112.0" style="-fx-background-color: #222244;" text="Department" textFill="WHITE">
-                                            <font>
-                                                <Font size="16.0" />
-                                            </font>
-                                        </Label>
-                                        <Label fx:id="delGen" alignment="CENTER" prefHeight="52.0" prefWidth="105.0" style="-fx-background-color: #222266;" text="Gender" textFill="WHITE">
-                                            <font>
-                                                <Font size="16.0" />
-                                            </font>
-                                        </Label>
-                                        <Label fx:id="delAdDate" alignment="CENTER" prefHeight="52.0" prefWidth="170.0" style="-fx-background-color: #222244;" text="Adimssion Date" textFill="WHITE">
-                                            <font>
-                                                <Font size="16.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
-                                </HBox>
-                                <Label layoutX="250.0" layoutY="67.0" prefHeight="19.0" prefWidth="634.0" text="Are you absolutely sure you want to delete this student from the databse?" textFill="#ff6161">
-                                    <font>
-                                        <Font name="System Bold" size="15.0" />
-                                    </font>
-                                </Label>
-                                <JFXButton layoutX="777.0" layoutY="97.0" onAction="#cancelDelete" prefHeight="26.0" prefWidth="41.0" style="-fx-background-color: mediumseagreen;" text="No" textFill="WHITE" />
-                                <JFXButton layoutX="833.0" layoutY="97.0" onAction="#promptDelete" style="-fx-background-color: coral;" text="Yes" textFill="WHITE" />
-                                <JFXCheckBox fx:id="includeResult" layoutX="14.0" layoutY="108.0" text="Including the result record." />
-                            </children>
-                        </Pane>
-                    </children>
-                </Pane>
-            </children>
+        <StackPane fx:id="stackPane" layoutX="226.0" prefHeight="800.0" prefWidth="974.0">
+
         </StackPane>
-    </children>
 </AnchorPane>

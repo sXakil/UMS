@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #222244; -fx-border-color: #fff;" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.AllStudentsController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #222244; -fx-border-color: #fff;" stylesheets="@../../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.Dashboard.AllStudentsController">
     <children>
         <ScrollPane hbarPolicy="NEVER" layoutY="183.0" prefHeight="620.0" prefWidth="1000.0">
             <content>

@@ -1,4 +1,4 @@
-package com.ums.pau.resources.AdminControls;
+package com.ums.pau.resources.AdminControls.DeleteStudent;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -28,7 +28,7 @@ public class DeletePrompt implements Initializable {
     }
 
     public void closeWindow() {
-        Stage stage = AdminDashboardController.prompt;
+        Stage stage = DeleteController.prompt;
         stage.close();
     }
 
@@ -36,11 +36,11 @@ public class DeletePrompt implements Initializable {
         wrong.setVisible(false);
         if (confirm.getText().equals(conf)) {
             DBCollection collection = getFrom("students");
-            BasicDBObject query = new BasicDBObject("id", AdminDashboardController.toBeDeleted);
+            BasicDBObject query = new BasicDBObject("id", DeleteController.toBeDeleted);
             DBCollection backup = getFrom("UMSBackup");
             backup.insert(collection.findOne(query));
             collection.findAndRemove(query);
-            if (AdminDashboardController.delAll) {
+            if (DeleteController.delAll) {
                 DBCollection result = getFrom("results");
                 DBCursor cursor = result.find(query);
                 while (cursor.hasNext()) {

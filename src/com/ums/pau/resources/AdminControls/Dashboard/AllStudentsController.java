@@ -1,10 +1,11 @@
-package com.ums.pau.resources.AdminControls;
+package com.ums.pau.resources.AdminControls.Dashboard;
 
 import com.jfoenix.controls.JFXTextField;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.ums.pau.resources.AdminControls.AdminDashboardController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -56,7 +57,7 @@ public class AllStudentsController implements Initializable {
     }
 
     public void closeStudWindow() {
-        AdminDashboardController.studList.close();
+        DashboardController.studList.close();
     }
 
     public void searchStudent() {

@@ -1,8 +1,9 @@
-package com.ums.pau.resources.AdminControls;
+package com.ums.pau.resources.AdminControls.Dashboard;
 
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.ums.pau.resources.AdminControls.AdminDashboardController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -44,6 +45,6 @@ public class AllFacultiesController implements Initializable {
         }
     }
     public void closeFacWindow() {
-        AdminDashboardController.facList.close();
+        DashboardController.facList.close();
     }
 }
