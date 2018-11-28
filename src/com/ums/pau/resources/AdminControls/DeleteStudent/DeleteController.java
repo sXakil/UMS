@@ -25,7 +25,7 @@ public class DeleteController {
     public Label delName, delID, delDept, delGen, delAdDate;
     public JFXCheckBox includeResult;
 
-    static Stage prompt;
+    static Stage deletePrompt;
     static String dID;
     static String dName;
     static String dDept;
@@ -43,10 +43,11 @@ public class DeleteController {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
-        prompt = stage;
+        deletePrompt = stage;
         delAll = includeResult.isSelected();
         stage.show();
         delConfirmation.setVisible(false);
+        delSearchTF.clear();
     }
 
     public void delSearchStudent() {

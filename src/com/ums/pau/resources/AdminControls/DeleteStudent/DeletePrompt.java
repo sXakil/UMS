@@ -32,7 +32,7 @@ public class DeletePrompt implements Initializable {
     }
 
     public void closeWindow() {
-        Stage stage = DeleteController.prompt;
+        Stage stage = DeleteController.deletePrompt;
         stage.close();
     }
 
