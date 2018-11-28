@@ -13,7 +13,7 @@
 
 <Pane prefHeight="800.0" prefWidth="974.0" style="-fx-background-color: #F5FAFA;" stylesheets="@../../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.UpsertFaculty.AddModifyFaculty">
     <children>
-        <Pane fx:id="modifyFaculty" layoutX="188.0" layoutY="86.0">
+        <Pane fx:id="modifyFaculty" layoutX="242.0" layoutY="102.0">
             <children>
                 <JFXTextField fx:id="searchFacTF" focusColor="#405aa800" prefHeight="50.0" prefWidth="490.0" promptText="Search by ID" style="-fx-background-color: #fff; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 1; -fx-border-color: #000;" unFocusColor="#4d4d4d00">
                     <padding>
@@ -95,7 +95,7 @@
                 </Label>
             </children>
         </Pane>
-        <Label fx:id="addFac" layoutX="300.0" layoutY="27.0" text="Add a new Faculty">
+        <Label fx:id="addFacultyTitle" layoutX="300.0" layoutY="27.0" text="Add a new Faculty">
             <font>
                 <Font name="System Bold" size="34.0" />
             </font>

@@ -56,8 +56,9 @@ public class AdminDashboardController implements Initializable {
         stackPane.getChildren().add(FXMLLoader.load(getClass().getResource("UpsertFaculty/addFaculty.fxml")));
     }
 
-    public void toDeleteFac() {
-
+    public void toDeleteFac() throws IOException {
+        stackPane.getChildren().clear();
+        stackPane.getChildren().add(FXMLLoader.load(getClass().getResource("DeleteFaculty/deletePane.fxml")));
     }
 
     public void logOut() throws IOException {

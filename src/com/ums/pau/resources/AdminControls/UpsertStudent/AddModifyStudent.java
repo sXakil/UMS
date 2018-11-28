@@ -173,7 +173,8 @@ public class AddModifyStudent implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         BooleanProperty b = new SimpleBooleanProperty(AdminDashboardController.modStudent);
         modifyStudent.visibleProperty().bind(b);
-
+        if(modifyStudent.isVisible()) addStudTitle.setText("Modify a Student");
+        else addStudTitle.setText("Add a new Student");
         addNewStud.disableProperty().bind(
                 Bindings.isEmpty(newStudID.textProperty())
                         .or(Bindings.isEmpty(newStudName.textProperty()))

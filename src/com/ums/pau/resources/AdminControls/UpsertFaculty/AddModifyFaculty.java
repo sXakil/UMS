@@ -45,6 +45,7 @@ public class AddModifyFaculty implements Initializable {
 
     private static boolean addNewT = true;
     public Pane modifyFaculty;
+    public Label addFacultyTitle;
 
     public void addNewTeacher() {
         if(addNewT) {
@@ -176,6 +177,8 @@ public class AddModifyFaculty implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         BooleanProperty b = new SimpleBooleanProperty(AdminDashboardController.modFaculty);
         modifyFaculty.visibleProperty().bind(b);
+        if(modifyFaculty.isVisible()) addFacultyTitle.setText("Modify a Faculty");
+        else addFacultyTitle.setText("Add a new Faculty");
         addNewTeacher.disableProperty().bind(
                 Bindings.isEmpty(newTeacherName.textProperty())
                         .or(Bindings.isEmpty(newTeacherUNID.textProperty()))
