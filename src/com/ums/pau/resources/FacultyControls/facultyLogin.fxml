@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.FacultyControls.FacultyLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="830.0" prefWidth="1200.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.FacultyControls.FacultyLoginController">
     <children>
-      <ImageView fitHeight="800.0" fitWidth="1200.0" opacity="0.35" pickOnBounds="true">
+      <ImageView fitHeight="800.0" fitWidth="1200.0" layoutY="30.0" opacity="0.35" pickOnBounds="true">
          <image>
             <Image url="@../../bin/pictures/mountain.jpg" />
          </image>
@@ -23,7 +23,7 @@
             <ColorAdjust brightness="-0.22" hue="-1.0" saturation="-1.0" />
          </effect>
       </ImageView>
-      <Pane layoutX="350.0" layoutY="200.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #cccccc30; -fx-background-radius: 20;">
+      <Pane layoutX="350.0" layoutY="230.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #cccccc30; -fx-background-radius: 20;">
          <children>
               <Label layoutX="32.0" layoutY="33.0" prefHeight="35.0" prefWidth="185.0" text="Hello there," textFill="WHITE">
                   <font>
@@ -63,12 +63,12 @@
             <DropShadow height="102.96" radius="48.705" width="93.86" />
          </effect>
       </Pane>
-        <ImageView fitHeight="139.0" fitWidth="302.0" layoutX="478.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="139.0" fitWidth="302.0" layoutX="478.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../bin/pictures/logo.png" />
             </image>
         </ImageView>
-        <JFXButton buttonType="RAISED" layoutX="39.0" layoutY="721.0" onAction="#backToHome" prefHeight="48.0" prefWidth="152.0" style="-fx-background-color: #111f3aa7; -fx-background-radius: 10; -fx-border-radius: 10;" text=" Go Back" textFill="WHITE">
+        <JFXButton buttonType="RAISED" layoutX="39.0" layoutY="751.0" onAction="#backToHome" prefHeight="48.0" prefWidth="152.0" style="-fx-background-color: #111f3aa7; -fx-background-radius: 10; -fx-border-radius: 10;" text=" Go Back" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
@@ -80,5 +80,6 @@
                 </ImageView>
             </graphic>
         </JFXButton>
+        <fx:include source="../toolBar.fxml" />
     </children>
 </AnchorPane>

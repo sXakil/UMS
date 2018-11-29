@@ -6,22 +6,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
-    static Stage rootStage;
+    public static Stage rootStage;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("resources/LandingControls/landing.fxml"));
-        primaryStage.setTitle("UMS Portal");
-        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("bin/pictures/ico.jpg")));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/splash.fxml"));
         Scene newScene = new Scene(root);
         newScene.getStylesheets().add(getClass().getResource("resources/stylesheet/style.css").toExternalForm());
         primaryStage.setScene(newScene);
         primaryStage.setResizable(false);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.centerOnScreen();
+        primaryStage.setAlwaysOnTop(true);
         rootStage = primaryStage;
         primaryStage.show();
     }
-    public static void main (String[]args){
+
+    public static void main (String[]args) {
         launch(args);
     }
 }

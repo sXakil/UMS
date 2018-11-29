@@ -9,45 +9,45 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.LandingControls.LandingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="830.0" prefWidth="1200.0" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.LandingControls.LandingController">
    <children>
-      <ImageView fitHeight="800.0" fitWidth="1200.0">
+      <ImageView fitHeight="800.0" fitWidth="1200.0" layoutY="30.0">
          <image>
-            <Image url="@../../bin/pictures/bg.png"/>
+            <Image url="@../../bin/pictures/bg.png" />
          </image>
       </ImageView>
-      <Pane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #03cea4d8;"
-            stylesheets="@../stylesheet/style.css">
+      <Pane prefHeight="830.0" prefWidth="1200.0" style="-fx-background-color: #03cea4d8;" stylesheets="@../stylesheet/style.css">
          <children>
-            <ImageView id="logo" fitHeight="279.0" fitWidth="499.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="logo" fitHeight="279.0" fitWidth="499.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../bin/pictures/logo.png" />
                </image>
             </ImageView>
-            <JFXButton id="selectorBTN" layoutX="327.0" layoutY="484.0" onAction="#studentLogin" prefHeight="63.0" prefWidth="200.0" style="-fx-border-color: #ffffff; -fx-border-width: 4; -fx-border-radius: 30; -fx-background-radius: 30;" text="Student" textFill="#ffffff">
+            <JFXButton id="selectorBTN" layoutX="327.0" layoutY="527.0" onAction="#studentLogin" prefHeight="63.0" prefWidth="200.0" style="-fx-border-color: #ffffff; -fx-border-width: 4; -fx-border-radius: 30; -fx-background-radius: 30;" text="Student" textFill="#ffffff">
                <font>
                   <Font name="FreeSans Bold" size="36.0" />
                </font>
             </JFXButton>
-            <JFXButton id="selectorBTN" layoutX="673.0" layoutY="480.0" onAction="#adminLogin" prefHeight="63.0" prefWidth="200.0" style="-fx-border-color: #ffffff; -fx-border-width: 4; -fx-border-radius: 30; -fx-background-radius: 30;" text="Faculty" textFill="WHITE">
+            <JFXButton id="selectorBTN" layoutX="673.0" layoutY="523.0" onAction="#adminLogin" prefHeight="63.0" prefWidth="200.0" style="-fx-border-color: #ffffff; -fx-border-width: 4; -fx-border-radius: 30; -fx-background-radius: 30;" text="Faculty" textFill="WHITE">
                <font>
                   <Font name="FreeSans Bold" size="36.0" />
                </font>
             </JFXButton>
-            <Label layoutX="412.0" layoutY="306.0" prefHeight="85.0" prefWidth="98.0" text="Hi," textFill="WHITE">
+            <Label layoutX="412.0" layoutY="349.0" prefHeight="85.0" prefWidth="98.0" text="Hi," textFill="WHITE">
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>
             </Label>
-            <Label layoutX="461.0" layoutY="358.0" prefHeight="85.0" prefWidth="278.0" text="you are???" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="461.0" layoutY="401.0" prefHeight="85.0" prefWidth="278.0" text="you are???" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="50.0" />
                </font></Label>
-            <JFXButton id="adButton" contentDisplay="RIGHT" layoutX="1018.0" layoutY="747.0" onAction="#adminPanel" style="-fx-background-color: #111155; -fx-background-radius: 10;" text="Admin Panel" textFill="WHITE">
+            <JFXButton id="adButton" contentDisplay="RIGHT" layoutX="1018.0" layoutY="780.0" onAction="#adminPanel" style="-fx-background-color: #111155; -fx-background-radius: 10;" text="Admin Panel" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_RIGHT" />
                </graphic>
             </JFXButton>
          </children></Pane>
+      <fx:include source="../toolBar.fxml"/>
    </children>
 </AnchorPane>

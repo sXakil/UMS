@@ -40,7 +40,7 @@ public class FacultyDashboardController implements Initializable {
         success.setVisible(false);
         isValid = false;
         resultBTN.setDisable(true);
-        facName.setText(FacultyLoginController.facName);
+        facName.setText("Hello, " + FacultyLoginController.facName);
         semCB.getItems().setAll("1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th");
         DBCollection collection = getFrom("students");
         DBCursor students = collection.find();

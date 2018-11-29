@@ -54,7 +54,6 @@ public class AdminPanelController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         login.setDefaultButton(true);
-
         login.disableProperty().bind(
                 Bindings.isEmpty(adminID.textProperty())
                         .or(Bindings.isEmpty(adminPass.textProperty()))

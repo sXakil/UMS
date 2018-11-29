@@ -1,10 +1,11 @@
 package com.ums.pau.resources.LandingControls;
 
 import com.ums.pau.SceneSwitcher;
-
 import java.io.IOException;
 
+
 public class LandingController {
+
     public void studentLogin() throws IOException {
         new SceneSwitcher().switchSceneTo("resources/StudentControls/studentLogin.fxml");
     }

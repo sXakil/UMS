@@ -12,78 +12,78 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.StudentControls.StudentLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="830.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.StudentControls.StudentLoginController">
     <children>
-        <Pane prefHeight="800.0" prefWidth="1200.0" />
-        <ImageView fitHeight="800.0" fitWidth="1200.0">
+        <Pane layoutY="30.0" prefHeight="800.0" prefWidth="1200.0" />
+        <ImageView fitHeight="800.0" fitWidth="1200.0" layoutY="30.0">
             <image>
                 <Image url="@../../bin/pictures/main-bg.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="800.0" fitWidth="1200.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../bin/pictures/lgin-bg.png" />
             </image>
         </ImageView>
-        <Pane layoutX="693.0" layoutY="117.0" prefHeight="563.0" prefWidth="397.0" style="-fx-background-color: #000000c7;">
+        <Pane layoutX="693.0" layoutY="147.0" prefHeight="563.0" prefWidth="397.0" style="-fx-background-color: #000000c7;">
             <effect>
                 <DropShadow blurType="GAUSSIAN" offsetX="-3.0" offsetY="-1.0" />
             </effect>
         </Pane>
-        <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="800.0" fitWidth="1200.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../bin/pictures/blue_bg.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="800.0" fitWidth="1200.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../bin/pictures/pc.png" />
             </image>
         </ImageView>
-        <Label layoutX="145.0" layoutY="198.0" prefHeight="35.0" prefWidth="185.0" text="Hello there," textFill="WHITE">
+        <Label layoutX="145.0" layoutY="228.0" prefHeight="35.0" prefWidth="185.0" text="Hello there," textFill="WHITE">
             <font>
                 <Font size="30.0" />
             </font>
         </Label>
-        <Label layoutX="145.0" layoutY="224.0" prefHeight="48.0" prefWidth="441.0" text="welcome to the UMS Portal." textFill="WHITE">
+        <Label layoutX="145.0" layoutY="254.0" prefHeight="48.0" prefWidth="441.0" text="welcome to the UMS Portal." textFill="WHITE">
             <font>
                 <Font name="System Bold" size="28.0" />
             </font>
         </Label>
-        <JFXTextField fx:id="studentID" focusColor="cyan" labelFloat="true" layoutX="200.0" layoutY="318.0" prefHeight="48.0" prefWidth="380.0" promptText="Enter your ID" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff;" unFocusColor="WHITE" />
-      <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="171.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+        <JFXTextField fx:id="studentID" focusColor="cyan" labelFloat="true" layoutX="200.0" layoutY="348.0" prefHeight="48.0" prefWidth="380.0" promptText="Enter your ID" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff;" unFocusColor="WHITE" />
+      <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="171.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../bin/pictures/man-user.png" />
          </image>
       </ImageView>
-        <JFXPasswordField fx:id="passWord" focusColor="cyan" labelFloat="true" layoutX="200.0" layoutY="410.0" prefHeight="48.0" prefWidth="380.0" promptText="Password" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff;" unFocusColor="WHITE" />
-      <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="171.0" layoutY="422.0" pickOnBounds="true" preserveRatio="true">
+        <JFXPasswordField fx:id="passWord" focusColor="cyan" labelFloat="true" layoutX="200.0" layoutY="440.0" prefHeight="48.0" prefWidth="380.0" promptText="Password" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff;" unFocusColor="WHITE" />
+      <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="171.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../bin/pictures/key.png" />
          </image>
       </ImageView>
-        <JFXButton fx:id="login" buttonType="RAISED" layoutX="453.0" layoutY="491.0" onAction="#checkLogin" prefHeight="42.0" prefWidth="127.0" style="-fx-background-color: cyan;" text="Sign In" textFill="#515050">
+        <JFXButton fx:id="login" buttonType="RAISED" layoutX="453.0" layoutY="521.0" onAction="#checkLogin" prefHeight="42.0" prefWidth="127.0" style="-fx-background-color: cyan;" text="Sign In" textFill="#515050">
             <font>
                 <Font size="16.0" />
             </font>
         </JFXButton>
-        <Hyperlink fx:id="forgotP" layoutX="286.0" layoutY="501.0" onAction="#forgotPass" text="Forgot password?" textFill="#294aa6">
+        <Hyperlink fx:id="forgotP" layoutX="286.0" layoutY="531.0" onAction="#forgotPass" text="Forgot password?" textFill="#294aa6">
             <font>
                 <Font size="15.0" />
             </font>
         </Hyperlink>
-        <Label layoutX="717.0" layoutY="492.0" lineSpacing="1.0" prefHeight="83.0" prefWidth="350.0" text="The UMS server will stay live from 7 am to 8 pm everyday except Friday and Saturday." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+        <Label layoutX="717.0" layoutY="522.0" lineSpacing="1.0" prefHeight="83.0" prefWidth="350.0" text="The UMS server will stay live from 7 am to 8 pm everyday except Friday and Saturday." textAlignment="CENTER" textFill="WHITE" wrapText="true">
             <font>
                 <Font size="15.0" />
             </font>
         </Label>
-        <Label fx:id="error" layoutX="128.0" layoutY="561.0" prefHeight="61.0" prefWidth="524.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 20;" text="Please contact the Software Engineering section on level X, with proper credential to retrieve your password." textAlignment="CENTER" textFill="#f23131" visible="false" wrapText="true" />
-      <ImageView fitHeight="150.0" fitWidth="239.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <Label fx:id="error" layoutX="128.0" layoutY="591.0" prefHeight="61.0" prefWidth="524.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 20;" text="Please contact the Software Engineering section on level X, with proper credential to retrieve your password." textAlignment="CENTER" textFill="#f23131" visible="false" wrapText="true" />
+      <ImageView fitHeight="150.0" fitWidth="239.0" layoutX="14.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../bin/pictures/logo.png" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" layoutX="39.0" layoutY="721.0" onAction="#backToHome" prefHeight="48.0" prefWidth="152.0" style="-fx-background-color: #111f3aa7; -fx-background-radius: 10; -fx-border-radius: 10;" text=" Go Back" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="39.0" layoutY="751.0" onAction="#backToHome" prefHeight="48.0" prefWidth="152.0" style="-fx-background-color: #111f3aa7; -fx-background-radius: 10; -fx-border-radius: 10;" text=" Go Back" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -95,5 +95,6 @@
             </ImageView>
          </graphic>
       </JFXButton>
+        <fx:include source="../toolBar.fxml" />
     </children>
 </AnchorPane>
