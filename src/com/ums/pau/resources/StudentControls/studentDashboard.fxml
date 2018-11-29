@@ -240,6 +240,6 @@
                </Label>
            </children>
        </Pane>
-       <fx:include source="../toolBar.fxml" />
+       <fx:include source="../headerBar.fxml" />
    </children>
 </AnchorPane>

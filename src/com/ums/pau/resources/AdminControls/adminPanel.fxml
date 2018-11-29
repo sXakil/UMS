@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="830.0" prefWidth="1200.0" style="-fx-background-color: #111125;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.AdminPanelController">
    <children>
-       <fx:include source="../toolBar.fxml" />
+       <fx:include source="../headerBar.fxml" />
       <FontAwesomeIconView fill="#dad8d8" glyphName="LOCK" layoutX="552.0" layoutY="237.0" size="150.0" />
       <JFXTextField fx:id="adminID" labelFloat="true" layoutX="422.0" layoutY="292.0" onKeyReleased="#validateEmail" prefHeight="57.0" prefWidth="356.0" promptText="uNID" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #fff;" unFocusColor="#a8a6a6" />
       <JFXPasswordField fx:id="adminPass" labelFloat="true" layoutX="422.0" layoutY="406.0" prefHeight="57.0" prefWidth="356.0" promptText="Passcode" style="-fx-prompt-text-fill: #cccccc; -fx-text-fill: #fff;" unFocusColor="#c3bfbf" />

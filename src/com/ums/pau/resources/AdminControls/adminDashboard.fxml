@@ -110,5 +110,5 @@
         <StackPane fx:id="stackPane" layoutX="226.0" layoutY="33.0" prefHeight="800.0" prefWidth="974.0">
 
         </StackPane>
-    <fx:include source="../toolBar.fxml" />
+    <fx:include source="../headerBar.fxml" />
 </AnchorPane>

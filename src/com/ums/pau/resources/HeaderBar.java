@@ -9,28 +9,24 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HeaderBar implements Initializable {
+
+    public ToolBar headerBar;
+    private Stage mainStage = Main.rootStage;
+    public void closeWindow() { mainStage.close(); }
+    public void minimizeWindow() { mainStage.setIconified(true); }
+
     private static double xOffset = 0;
     private static double yOffset = 0;
-    public ToolBar topBar;
-
-    public void closeWindow() {
-        Main.rootStage.close();
-    }
-
-    public void minimizeWindow() {
-        Main.rootStage.setIconified(true);
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Stage primaryStage = Main.rootStage;
-        topBar.setOnMousePressed(event -> {
-            xOffset = primaryStage.getX() - event.getScreenX();
-            yOffset = primaryStage.getY() - event.getScreenY();
+        headerBar.setOnMousePressed(event -> {
+            xOffset = mainStage.getX() - event.getScreenX();
+            yOffset = mainStage.getY() - event.getScreenY();
         });
-        topBar.setOnMouseDragged(event -> {
-            primaryStage.setX(event.getScreenX() + xOffset);
-            primaryStage.setY(event.getScreenY() + yOffset);
+        headerBar.setOnMouseDragged(event -> {
+            mainStage.setX(event.getScreenX() + xOffset);
+            mainStage.setY(event.getScreenY() + yOffset);
         });
     }
 }
