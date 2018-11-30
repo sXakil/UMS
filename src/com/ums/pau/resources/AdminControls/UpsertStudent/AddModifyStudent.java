@@ -87,7 +87,6 @@ public class AddModifyStudent implements Initializable {
             clearStudentFields();
             disableStudentsFields(false);
             addNewStud.setText("Add");
-            addNewStud.setDisable(true);
             addNew = true;
         }
     }
