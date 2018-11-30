@@ -17,7 +17,7 @@
     <children>
       <ImageView fitHeight="800.0" fitWidth="1200.0" layoutY="30.0" opacity="0.35" pickOnBounds="true">
          <image>
-            <Image url="@../../bin/pictures/mountain.jpg" />
+            <Image url="@../../bin/pictures/grad-man.jpg" />
          </image>
          <effect>
             <ColorAdjust brightness="-0.22" hue="-1.0" saturation="-1.0" />
