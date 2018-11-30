@@ -20,15 +20,11 @@ public class SplashController implements Initializable {
             try {
                 Thread.sleep(2000);
                 Platform.runLater(() -> {
-                    try {
-                        new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    try { new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml"); }
+                    catch (IOException e) { e.printStackTrace(); }
                 });
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
+            catch (InterruptedException e) { e.printStackTrace(); }
         }
     }
 }

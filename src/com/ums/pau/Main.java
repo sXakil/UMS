@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -17,6 +16,7 @@ public class Main extends Application {
         newScene.getStylesheets().add(getClass().getResource("resources/stylesheet/style.css").toExternalForm());
         primaryStage.setScene(newScene);
         primaryStage.setResizable(false);
+        primaryStage.setTitle("UMS");
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.centerOnScreen();
         primaryStage.setAlwaysOnTop(true);
