@@ -18,8 +18,8 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setTitle("UMS");
         primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("bin/pictures/ico.jpg")));
         primaryStage.centerOnScreen();
-        primaryStage.setAlwaysOnTop(true);
         rootStage = primaryStage;
         primaryStage.show();
     }

@@ -56,7 +56,7 @@ public class AddModifyFaculty implements Initializable {
                             .append("uNID", newTeacherUNID.getText())
                             .append("position", newTeacherPosition.getText())
                             .append("major", newTeacherMajor.getText())
-                            .append("department", newTeacherDept.getText())
+                            .append("department", newTeacherDept.getText().toUpperCase())
                             .append("joiningDate", newTeacherJD.getValue() == null ? new Date() : newTeacherJD.getValue().toString())
                             .append("password", BCrypt.hashPassword(newTeacherPass.getText(), BCrypt.genSalt()))
                             .append("gender", male.isSelected() ? "Male" : "Female")
@@ -84,7 +84,6 @@ public class AddModifyFaculty implements Initializable {
             disableTeachersFields(false);
             clearTeachersFields();
             addNewTeacher.setText("Add");
-            addNewTeacher.setDisable(true);
             addNewT = true;
         }
     }
