@@ -5,10 +5,10 @@ import com.jfoenix.controls.JFXTextField;
 import com.mongodb.*;
 import com.ums.pau.BCrypt;
 import com.ums.pau.SceneSwitcher;
+import com.ums.pau.resources.ForgottenPasswordPrompt;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Hyperlink;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,8 +23,6 @@ public class StudentLoginController implements Initializable {
     @FXML
     private javafx.scene.control.Label error;
     @FXML
-    private Hyperlink forgotP;
-    @FXML
     private JFXButton login;
 
     static String id;
@@ -36,10 +34,12 @@ public class StudentLoginController implements Initializable {
                 Bindings.isEmpty(studentID.textProperty())
                         .or(Bindings.isEmpty(passWord.textProperty()))
         );
+        error.setVisible(false);
     }
 
     @FXML
     private void checkLogin() throws IOException {
+        error.setVisible(false);
         boolean studentExists = false;
         String passInDB = null;
         DBCollection collection = getFrom("students");
@@ -59,9 +59,8 @@ public class StudentLoginController implements Initializable {
     }
 
     @FXML
-    private void forgotPass() {
-        error.setVisible(true);
-        forgotP.setVisible(false);
+    private void forgotPass() throws IOException {
+        new ForgottenPasswordPrompt().show();
     }
 
     @FXML

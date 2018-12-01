@@ -9,8 +9,8 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.ums.pau.BCrypt;
 import com.ums.pau.SceneSwitcher;
+import com.ums.pau.resources.ForgottenPasswordPrompt;
 import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
@@ -30,12 +30,13 @@ public class FacultyLoginController implements Initializable {
     @FXML
     private Label error;
     @FXML
-    private Hyperlink forgotP;
-    public JFXButton login;
+    private JFXButton login;
+
     static String facName = null;
 
     @FXML
     private void checkLogin() throws IOException {
+        error.setVisible(false);
         boolean facultyExists = false;
         String passInDB = null;
         DBCollection collection = getFrom("teachers");
@@ -54,10 +55,8 @@ public class FacultyLoginController implements Initializable {
         } else error.setVisible(true);
     }
 
-    public void forgotPass(ActionEvent event) {
-        event.getEventType();
-        error.setVisible(true);
-        forgotP.setVisible(false);
+    public void forgotPass() throws IOException {
+        new ForgottenPasswordPrompt().show();
     }
 
     public void backToHome() {
@@ -75,5 +74,6 @@ public class FacultyLoginController implements Initializable {
                 Bindings.isEmpty(teacherID.textProperty())
                         .or(Bindings.isEmpty(passWord.textProperty()))
         );
+        error.setVisible(false);
     }
 }

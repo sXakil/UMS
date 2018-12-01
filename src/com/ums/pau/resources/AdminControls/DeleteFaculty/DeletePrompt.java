@@ -2,6 +2,7 @@ package com.ums.pau.resources.AdminControls.DeleteFaculty;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import com.ums.pau.Main;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

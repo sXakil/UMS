@@ -6,10 +6,7 @@ import com.mongodb.*;
 import com.ums.pau.SceneSwitcher;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
@@ -58,16 +55,13 @@ public class StudentDashboardController implements Initializable {
 
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Subjects");
-        //xAxis.setUpperBound(12);
-        //xAxis.setLowerBound(0);
-        //xAxis.setTickUnit(1);
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Marks");
         @SuppressWarnings("unchecked")
-        LineChart<String, Double> lineChart = new LineChart(xAxis, yAxis);
+        LineChart<String, Number> lineChart = new LineChart(xAxis, yAxis);
         lineChart.setTitle("Academic Progress");
-        XYChart.Series<String, Double> dataSeries = new XYChart.Series<>();
-        dataSeries.setName("2014");
+        XYChart.Series<String, Number> dataSeries = new XYChart.Series<>();
+        dataSeries.setName("Marks obtained in different courses");
         query = new BasicDBObject("id", id);
         cursor = collection.find(query);
         query = new BasicDBObject("semester", 1);
@@ -75,7 +69,7 @@ public class StudentDashboardController implements Initializable {
         int j = 1;
         while (tc.hasNext()) {
             DBObject obj = tc.next();
-            XYChart.Data<String, Double> data = new XYChart.Data<>( String.valueOf(j++), Double.parseDouble(obj.get("mark").toString()));
+            XYChart.Data<String, Number> data = new XYChart.Data<>( String.valueOf(j++), Double.parseDouble(obj.get("mark").toString()));
             dataSeries.getData().add(data);
         }
 

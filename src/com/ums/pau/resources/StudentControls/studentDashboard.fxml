@@ -13,257 +13,304 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="830.0" prefWidth="1200.0" style="-fx-background-color: #fafaff;" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.StudentControls.StudentDashboardController">
-   <children>
-       <VBox alignment="TOP_RIGHT" layoutY="30.0" prefHeight="800.0" prefWidth="225.0" style="-fx-background-color: #ddddff;">
-         <children>
-             <Label alignment="BOTTOM_LEFT" prefHeight="42.0" prefWidth="225.0" style="-fx-background-color: #f0f3bd;" text="     Hello,">
-               <font>
-                   <Font name="Chilanka Regular" size="18.0" />
-               </font>
+<AnchorPane prefHeight="830.0" prefWidth="1200.0" style="-fx-background-color: #fafaff;"
+            stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ums.pau.resources.StudentControls.StudentDashboardController">
+    <children>
+        <VBox alignment="TOP_RIGHT" layoutY="30.0" prefHeight="800.0" prefWidth="225.0"
+              style="-fx-background-color: #ddddff;">
+            <children>
+                <Label alignment="BOTTOM_LEFT" prefHeight="42.0" prefWidth="225.0"
+                       style="-fx-background-color: #f0f3bd;" text="     Hello,">
+                    <font>
+                        <Font name="Chilanka Regular" size="18.0"/>
+                    </font>
+                </Label>
+                <Label id="std-btn" fx:id="studentName" alignment="TOP_CENTER" layoutX="23.0" layoutY="10.0"
+                       prefHeight="64.0" prefWidth="225.0" style="-fx-background-color: #f0f3bd;" text="Student Name"
+                       wrapText="true">
+                    <font>
+                        <Font name="Chilanka Regular" size="18.0"/>
+                    </font>
+                </Label>
+                <JFXButton id="std-btn" alignment="CENTER" onAction="#toHome" prefHeight="65.0" prefWidth="200.0"
+                           style="-fx-background-color: #02c39a; -fx-background-radius: 0;" text=" Dashboard"
+                           textFill="WHITE">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets top="25.0"/>
+                    </VBox.margin>
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="18"/>
+                    </graphic>
+                </JFXButton>
+                <JFXButton id="std-btn" alignment="CENTER" layoutX="23.0" layoutY="112.0" onAction="#toGrade"
+                           prefHeight="65.0" prefWidth="200.0"
+                           style="-fx-background-color: #00a896; -fx-background-radius: 0;" text=" Grade Report"
+                           textFill="WHITE">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="LIST" size="16"/>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </JFXButton>
+                <JFXButton id="std-btn" alignment="CENTER" layoutX="23.0" layoutY="184.0" onAction="#toCPass"
+                           prefHeight="65.0" prefWidth="200.0"
+                           style="-fx-background-color: #028090; -fx-background-radius: 0;" text=" Change Password"
+                           textFill="WHITE">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="KEY" size="16"/>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </JFXButton>
+                <JFXButton id="std-btn" alignment="CENTER" layoutX="23.0" layoutY="270.0" onAction="#toSupport"
+                           prefHeight="65.0" prefWidth="200.0"
+                           style="-fx-background-color: #05668d; -fx-background-radius: 0;" text=" Support"
+                           textFill="WHITE">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SUPPORT" size="16" text=""/>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </JFXButton>
+                <JFXButton buttonType="RAISED" layoutX="23.0" layoutY="256.0" onAction="#logOut" prefHeight="62.0"
+                           prefWidth="253.0" style="-fx-background-color: #dd6666; -fx-background-radius: 0;"
+                           text=" Log Out" textFill="WHITE">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="16"/>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets top="345.0"/>
+                    </VBox.margin>
+                </JFXButton>
+            </children>
+        </VBox>
+        <Pane fx:id="gradeReport" layoutX="225.0" layoutY="30.0" prefHeight="800.0" prefWidth="975.0"
+              style="-fx-background-color: #00a896;" visible="false">
+            <Pane id="paneScroll">
+                <children>
+                    <ScrollPane id="scroller" layoutX="18.0" layoutY="166.0" prefHeight="600.0" prefWidth="920.0"
+                                styleClass="edge-to-edge">
+                        <content>
+                            <VBox fx:id="vBox" prefWidth="820.0"/>
+                        </content>
+                    </ScrollPane>
+                    <Label layoutX="313.0" layoutY="40.0" text="Grade Report" textFill="WHITE">
+                        <font>
+                            <Font name="Chilanka Regular" size="54.0"/>
+                        </font>
+                    </Label>
+                </children>
+            </Pane>
+        </Pane>
+        <Pane fx:id="changePass" layoutX="225.0" layoutY="30.0" prefHeight="800.0" prefWidth="975.0"
+              style="-fx-background-color: #028090;" visible="false">
+            <JFXPasswordField fx:id="oldPass" focusColor="#27e74a" labelFloat="true" layoutX="315.0" layoutY="276.0"
+                              prefHeight="42.0" prefWidth="344.0" promptText="Old pasword"
+                              style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;" unFocusColor="WHITE"/>
+            <JFXPasswordField fx:id="newPass" focusColor="#27e74a" labelFloat="true" layoutX="317.0" layoutY="365.0"
+                              onKeyReleased="#validatePassword" prefHeight="42.0" prefWidth="344.0"
+                              promptText="New pasword" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;"
+                              unFocusColor="WHITE"/>
+            <JFXPasswordField fx:id="confirmPass" disable="true" focusColor="#27e74a" labelFloat="true" layoutX="317.0"
+                              layoutY="435.0" onKeyReleased="#didMatch" prefHeight="42.0" prefWidth="344.0"
+                              promptText="Confirm new password"
+                              style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;" unFocusColor="WHITE"/>
+            <JFXButton fx:id="changePassButton" layoutX="390.0" layoutY="526.0" onAction="#changePassword"
+                       prefHeight="42.0" prefWidth="200.0"
+                       style="-fx-background-color: #44bb44; -fx-background-radius: 10;" text="Change Password"
+                       textFill="WHITE">
+                <font>
+                    <Font size="17.0"/>
+                </font>
+            </JFXButton>
+            <Label fx:id="passSuccess" layoutX="265.0" layoutY="218.0" text="Password changed successfully!"
+                   textFill="#169754" visible="false">
+                <font>
+                    <Font size="18.0"/>
+                </font>
             </Label>
-             <Label id="std-btn" fx:id="studentName" alignment="TOP_CENTER" layoutX="23.0" layoutY="10.0" prefHeight="64.0" prefWidth="225.0" style="-fx-background-color: #f0f3bd;" text="Student Name" wrapText="true">
-               <font>
-                   <Font name="Chilanka Regular" size="18.0" />
-               </font>
+            <Label fx:id="wrongPass" layoutX="659.0" layoutY="288.0" text="Wrong password!" textFill="#e19729"
+                   visible="false">
+                <font>
+                    <Font size="14.0"/>
+                </font>
             </Label>
-             <JFXButton id="std-btn" alignment="CENTER" onAction="#toHome" prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #02c39a; -fx-background-radius: 0;" text=" Dashboard" textFill="WHITE">
-               <font>
-                   <Font size="16.0" />
-               </font>
-               <opaqueInsets>
-                   <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                   <Insets top="25.0" />
-               </VBox.margin>
-               <graphic>
-                   <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="18" />
-               </graphic>
-            </JFXButton>
-             <JFXButton id="std-btn" alignment="CENTER" layoutX="23.0" layoutY="112.0" onAction="#toGrade" prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #00a896; -fx-background-radius: 0;" text=" Grade Report" textFill="WHITE">
-               <font>
-                   <Font size="16.0" />
-               </font>
-               <opaqueInsets>
-                   <Insets />
-               </opaqueInsets>
-               <graphic>
-                   <FontAwesomeIconView fill="WHITE" glyphName="LIST" size="16" />
-               </graphic>
-               <VBox.margin>
-                   <Insets top="10.0" />
-               </VBox.margin>
-            </JFXButton>
-             <JFXButton id="std-btn" alignment="CENTER" layoutX="23.0" layoutY="184.0" onAction="#toCPass" prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #028090; -fx-background-radius: 0;" text=" Change Password" textFill="WHITE">
-               <font>
-                   <Font size="16.0" />
-               </font>
-               <opaqueInsets>
-                   <Insets />
-               </opaqueInsets>
-               <graphic>
-                   <FontAwesomeIconView fill="WHITE" glyphName="KEY" size="16" />
-               </graphic>
-               <VBox.margin>
-                   <Insets top="10.0" />
-               </VBox.margin>
-            </JFXButton>
-             <JFXButton id="std-btn" alignment="CENTER" layoutX="23.0" layoutY="270.0" onAction="#toSupport" prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #05668d; -fx-background-radius: 0;" text=" Support" textFill="WHITE">
-               <font>
-                   <Font size="16.0" />
-               </font>
-               <opaqueInsets>
-                   <Insets />
-               </opaqueInsets>
-               <graphic>
-                   <FontAwesomeIconView fill="WHITE" glyphName="SUPPORT" size="16" text="" />
-               </graphic>
-               <VBox.margin>
-                   <Insets top="10.0" />
-               </VBox.margin>
-            </JFXButton>
-             <JFXButton buttonType="RAISED" layoutX="23.0" layoutY="256.0" onAction="#logOut" prefHeight="62.0" prefWidth="253.0" style="-fx-background-color: #dd6666; -fx-background-radius: 0;" text=" Log Out" textFill="WHITE">
-               <font>
-                   <Font size="16.0" />
-               </font>
-               <opaqueInsets>
-                   <Insets />
-               </opaqueInsets>
-               <graphic>
-                   <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="16" />
-               </graphic>
-               <VBox.margin>
-                   <Insets top="345.0" />
-               </VBox.margin>
-            </JFXButton>
-         </children>
-      </VBox>
-       <Pane fx:id="gradeReport" layoutX="225.0" layoutY="30.0" prefHeight="800.0" prefWidth="975.0" style="-fx-background-color: #00a896;" visible="false">
-           <Pane id="paneScroll">
-         <children>
-             <ScrollPane id="scroller" layoutX="18.0" layoutY="166.0" prefHeight="600.0" prefWidth="920.0" styleClass="edge-to-edge">
-               <content>
-                   <VBox fx:id="vBox" prefWidth="820.0" />
-               </content>
-            </ScrollPane>
-             <Label layoutX="313.0" layoutY="40.0" text="Grade Report" textFill="WHITE">
-                 <font>
-                     <Font name="Chilanka Regular" size="54.0" />
-                 </font>
-             </Label>
-         </children>
-           </Pane>
-      </Pane>
-       <Pane fx:id="changePass" layoutX="225.0" layoutY="30.0" prefHeight="800.0" prefWidth="975.0" style="-fx-background-color: #028090;" visible="false">
-           <JFXPasswordField fx:id="oldPass" focusColor="#27e74a" labelFloat="true" layoutX="315.0" layoutY="276.0" prefHeight="42.0" prefWidth="344.0" promptText="Old pasword" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;" unFocusColor="WHITE" />
-           <JFXPasswordField fx:id="newPass" focusColor="#27e74a" labelFloat="true" layoutX="317.0" layoutY="365.0" onKeyReleased="#validatePassword" prefHeight="42.0" prefWidth="344.0" promptText="New pasword" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;" unFocusColor="WHITE" />
-           <JFXPasswordField fx:id="confirmPass" disable="true" focusColor="#27e74a" labelFloat="true" layoutX="317.0" layoutY="435.0" onKeyReleased="#didMatch" prefHeight="42.0" prefWidth="344.0" promptText="Confirm new password" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;" unFocusColor="WHITE" />
-           <JFXButton fx:id="changePassButton" layoutX="390.0" layoutY="526.0" onAction="#changePassword" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #44bb44; -fx-background-radius: 10;" text="Change Password" textFill="WHITE">
-               <font>
-                   <Font size="17.0" />
-               </font>
-           </JFXButton>
-           <Label fx:id="passSuccess" layoutX="265.0" layoutY="218.0" text="Password changed successfully!" textFill="#169754" visible="false">
-               <font>
-                   <Font size="18.0" />
-               </font>
-           </Label>
-           <Label fx:id="wrongPass" layoutX="659.0" layoutY="288.0" text="Wrong password!" textFill="#e19729" visible="false">
-               <font>
-                   <Font size="14.0" />
-               </font>
-           </Label>
-           <Label fx:id="passMatch" layoutX="661.0" layoutY="447.0" text="Password didn't match!" textFill="#e19729" visible="false">
-               <font>
-                   <Font size="14.0" />
-               </font>
-           </Label>
-           <Label fx:id="invalidPass" layoutX="661.0" layoutY="365.0" prefHeight="42.0" prefWidth="309.0" text="Must be &gt;8 characters containing both lower and upper-case letters, numbers and symbols." textFill="#e19729" visible="false" wrapText="true" />
-           <Hyperlink layoutX="512.0" layoutY="327.0" onAction="#forgotPass" text="Forgotten password?" textFill="#05eb93" />
-           <Label layoutX="268.0" layoutY="66.0" text="Change Password" textFill="WHITE">
-               <font>
-                   <Font name="Chilanka Regular" size="54.0" />
-               </font>
-           </Label>
-       </Pane>
-       <Pane fx:id="home" layoutX="225.0" layoutY="30.0" prefHeight="800.0" prefWidth="975.0" style="-fx-background-color: #02c39a;">
-         <children>
-            <VBox fx:id="dashVBox" layoutX="138.0" layoutY="100.0" prefHeight="688.0" prefWidth="700.0">
-               <children>
-                  <HBox prefHeight="60.0" prefWidth="767.0">
-                     <children>
-                        <Label prefHeight="69.0" prefWidth="200.0" text="ID:" textFill="WHITE">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="stID" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0" text="Student ID" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="767.0">
-                     <children>
-                        <Label prefHeight="69.0" prefWidth="200.0" text="Name:" textFill="WHITE">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="stName" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0" text="Student Name" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="79.0" prefHeight="60.0" prefWidth="767.0">
-                     <children>
-                        <Label prefHeight="69.0" prefWidth="200.0" text="Gender:" textFill="WHITE">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="stGender" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0" text="Student Gender" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="148.0" prefHeight="60.0" prefWidth="767.0">
-                     <children>
-                        <Label prefHeight="69.0" prefWidth="200.0" text="Department:" textFill="WHITE">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="stDept" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0" text="Student Dept" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="217.0" prefHeight="60.0" prefWidth="767.0">
-                     <children>
-                        <Label prefHeight="69.0" prefWidth="200.0" text="Admission Date:" textFill="WHITE">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="stAdDate" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0" text="Student AdDate" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </Pane>
-       <Pane fx:id="support" layoutX="225.0" layoutY="30.0" prefHeight="800.0" prefWidth="975.0" style="-fx-background-color: #05668d;" visible="false">
-           <children>
-               <Label layoutX="386.0" layoutY="51.0" text="Support" textFill="WHITE">
-                   <font>
-                       <Font name="Chilanka Regular" size="54.0" />
-                   </font>
-               </Label>
-           </children>
-       </Pane>
-       <fx:include source="../headerBar.fxml" />
-   </children>
+            <Label fx:id="passMatch" layoutX="661.0" layoutY="447.0" text="Password didn't match!" textFill="#e19729"
+                   visible="false">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Label>
+            <Label fx:id="invalidPass" layoutX="661.0" layoutY="365.0" prefHeight="42.0" prefWidth="309.0"
+                   text="Must be &gt;8 characters containing both lower and upper-case letters, numbers and symbols."
+                   textFill="#e19729" visible="false" wrapText="true"/>
+            <Hyperlink layoutX="512.0" layoutY="327.0" onAction="#forgotPass" text="Forgotten password?"
+                       textFill="#05eb93"/>
+            <Label layoutX="268.0" layoutY="66.0" text="Change Password" textFill="WHITE">
+                <font>
+                    <Font name="Chilanka Regular" size="54.0"/>
+                </font>
+            </Label>
+        </Pane>
+        <Pane fx:id="home" layoutX="225.0" layoutY="30.0" prefHeight="800.0" prefWidth="975.0"
+              style="-fx-background-color: #02c39a;">
+            <children>
+                <VBox fx:id="dashVBox" layoutX="138.0" layoutY="100.0" prefHeight="688.0" prefWidth="700.0">
+                    <children>
+                        <HBox prefHeight="60.0" prefWidth="767.0">
+                            <children>
+                                <Label prefHeight="69.0" prefWidth="200.0" text="ID:" textFill="WHITE">
+                                    <padding>
+                                        <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="stID" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0"
+                                       text="Student ID" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                    <padding>
+                                        <Insets left="10.0"/>
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="767.0">
+                            <children>
+                                <Label prefHeight="69.0" prefWidth="200.0" text="Name:" textFill="WHITE">
+                                    <padding>
+                                        <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="stName" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0"
+                                       text="Student Name" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                    <padding>
+                                        <Insets left="10.0"/>
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="79.0" prefHeight="60.0" prefWidth="767.0">
+                            <children>
+                                <Label prefHeight="69.0" prefWidth="200.0" text="Gender:" textFill="WHITE">
+                                    <padding>
+                                        <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="stGender" layoutX="10.0" layoutY="10.0" prefHeight="69.0"
+                                       prefWidth="292.0" text="Student Gender" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                    <padding>
+                                        <Insets left="10.0"/>
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="148.0" prefHeight="60.0" prefWidth="767.0">
+                            <children>
+                                <Label prefHeight="69.0" prefWidth="200.0" text="Department:" textFill="WHITE">
+                                    <padding>
+                                        <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="stDept" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0"
+                                       text="Student Dept" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                    <padding>
+                                        <Insets left="10.0"/>
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="217.0" prefHeight="60.0" prefWidth="767.0">
+                            <children>
+                                <Label prefHeight="69.0" prefWidth="200.0" text="Admission Date:" textFill="WHITE">
+                                    <padding>
+                                        <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="stAdDate" layoutX="10.0" layoutY="10.0" prefHeight="69.0"
+                                       prefWidth="292.0" text="Student AdDate" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                    <padding>
+                                        <Insets left="10.0"/>
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Pane fx:id="support" layoutX="225.0" layoutY="30.0" prefHeight="800.0" prefWidth="975.0"
+              style="-fx-background-color: #05668d;" visible="false">
+            <children>
+                <Label layoutX="386.0" layoutY="51.0" text="Support" textFill="WHITE">
+                    <font>
+                        <Font name="Chilanka Regular" size="54.0"/>
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <fx:include source="../headerBar.fxml"/>
+    </children>
 </AnchorPane>
