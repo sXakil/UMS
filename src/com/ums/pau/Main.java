@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -14,16 +16,17 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("resources/splash.fxml"));
         Scene newScene = new Scene(root);
         newScene.getStylesheets().add(getClass().getResource("resources/stylesheet/style.css").toExternalForm());
+        newScene.setFill(Color.TRANSPARENT);
         primaryStage.setScene(newScene);
         primaryStage.setResizable(false);
-        primaryStage.setTitle("UMS");
         primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setTitle("UMS");
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("bin/pictures/ico.jpg")));
         primaryStage.centerOnScreen();
         rootStage = primaryStage;
         primaryStage.show();
     }
-
     public static void main (String[]args) {
         launch(args);
     }

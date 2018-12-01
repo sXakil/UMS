@@ -37,7 +37,12 @@
             <Image url="@../../bin/pictures/man-user.png" />
          </image>
       </ImageView>
-        <JFXPasswordField fx:id="passWord" focusColor="#00ffff00" labelFloat="true" layoutX="468.0" layoutY="416.0" prefHeight="48.0" prefWidth="380.0" promptText="Password" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff; -fx-background-color: #ffffff55; -fx-background-radius: 50; -fx-border-radius: 50;" unFocusColor="#ffffff00">
+        <JFXTextField fx:id="studentID" focusColor="#00ffff00" layoutX="468.0" layoutY="335.0" prefHeight="48.0" prefWidth="380.0" promptText="Enter your ID" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff; -fx-background-color: #ffffff55; -fx-background-radius: 50; -fx-border-radius: 50;" unFocusColor="#ffffff00">
+            <padding>
+                <Insets left="50.0" right="30.0" />
+            </padding>
+        </JFXTextField>
+        <JFXPasswordField fx:id="passWord" focusColor="#00ffff00" layoutX="468.0" layoutY="416.0" prefHeight="48.0" prefWidth="380.0" promptText="Password" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff; -fx-background-color: #ffffff55; -fx-background-radius: 50; -fx-border-radius: 50;" unFocusColor="#ffffff00">
          <padding>
             <Insets left="50.0" right="30.0" />
          </padding>
@@ -57,11 +62,6 @@
                 <Font size="15.0" />
             </font>
         </Hyperlink>
-        <JFXTextField fx:id="studentID" focusColor="#00ffff00" labelFloat="true" layoutX="468.0" layoutY="335.0" prefHeight="48.0" prefWidth="380.0" promptText="Enter your ID" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff; -fx-background-color: #ffffff55; -fx-background-radius: 50; -fx-border-radius: 50;" unFocusColor="#ffffff00">
-         <padding>
-            <Insets left="50.0" right="30.0" />
-         </padding>
-      </JFXTextField>
         <Label fx:id="error" layoutX="128.0" layoutY="591.0" prefHeight="61.0" prefWidth="524.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 20;" text="Please contact the Software Engineering section on level X, with proper credential to retrieve your password." textAlignment="CENTER" textFill="#f23131" visible="false" wrapText="true" />
       <ImageView fitHeight="150.0" fitWidth="239.0" layoutX="14.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
          <image>

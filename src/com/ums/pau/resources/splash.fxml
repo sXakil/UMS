@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXProgressBar?>
-<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="869.0" style="-fx-background-color: #4ebf70c7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.SplashController">
-         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="400.0" layoutY="38.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #fff; -fx-background-radius: 50;" text="UMS" textFill="#4ebf70">
-            <font>
-               <Font name="Ubuntu Bold" size="32.0" />
-            </font>
-         </Label>
-         <Label layoutX="259.0" layoutY="142.0" prefHeight="56.0" prefWidth="382.0" text="Welcome to the UMS" textFill="WHITE">
-            <font>
-               <Font size="36.0" />
-            </font>
-         </Label>
-         <Label alignment="CENTER" layoutX="353.0" layoutY="267.0" prefHeight="30.0" prefWidth="195.0" text="Just a second..." textFill="WHITE" />
-   <JFXProgressBar layoutY="403.0" prefHeight="9.0" prefWidth="869.0" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: transparent" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.SplashController">
+    <ImageView fitHeight="800.0" fitWidth="1000.0" layoutX="-1.0">
+        <Image url="@../bin/pictures/splash.png" />
+    </ImageView>
+    <JFXSpinner layoutX="500.0" layoutY="470.0" />
 </AnchorPane>

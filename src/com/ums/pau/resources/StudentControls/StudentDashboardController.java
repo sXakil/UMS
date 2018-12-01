@@ -6,8 +6,13 @@ import com.mongodb.*;
 import com.ums.pau.SceneSwitcher;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,11 +28,12 @@ public class StudentDashboardController implements Initializable {
     public Label passSuccess, invalidPass, wrongPass, passMatch;
     public JFXButton changePassButton;
     public Pane support;
+    public VBox dashVBox;
+    public Label stID, stName, stGender, stDept, stAdDate;
     private String id = StudentLoginController.id;
     public Label studentName;
 
-
-
+    private static int i = 1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,15 +44,46 @@ public class StudentDashboardController implements Initializable {
         BasicDBObject query = new BasicDBObject("id", id);
         DBCursor cursor = collection.find(query);
         DBObject object = cursor.next();
-        studentName.setText(object.get("name") == null ? "Unknown" : object.get("name").toString());
+        stID.setText(id);
+        stName.setText(object.get("name").toString());
+        stGender.setText(object.get("gender").toString());
+        stDept.setText(object.get("dept").toString());
+        stDept.setText(object.get("admissionDate").toString());
+
+        studentName.setText(object.get("name").toString());
         collection = getFrom("results");
         cursor = collection.find(query);
         query = new BasicDBObject("semester", 1);
         getReport(cursor.sort(query));
+
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Subjects");
+        //xAxis.setUpperBound(12);
+        //xAxis.setLowerBound(0);
+        //xAxis.setTickUnit(1);
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Marks");
+        @SuppressWarnings("unchecked")
+        LineChart<String, Double> lineChart = new LineChart(xAxis, yAxis);
+        lineChart.setTitle("Academic Progress");
+        XYChart.Series<String, Double> dataSeries = new XYChart.Series<>();
+        dataSeries.setName("2014");
+        query = new BasicDBObject("id", id);
+        cursor = collection.find(query);
+        query = new BasicDBObject("semester", 1);
+        DBCursor tc = cursor.sort(query);
+        int j = 1;
+        while (tc.hasNext()) {
+            DBObject obj = tc.next();
+            XYChart.Data<String, Double> data = new XYChart.Data<>( String.valueOf(j++), Double.parseDouble(obj.get("mark").toString()));
+            dataSeries.getData().add(data);
+        }
+
+        lineChart.getData().add(dataSeries);
+        dashVBox.getChildren().add(lineChart);
     }
 
     private void getReport(DBCursor cursor) {
-        int i = 1;
         while (cursor.hasNext()) {
             DBObject object = cursor.next();
             if (object.get("semester").toString().contains(String.valueOf(i))) {
