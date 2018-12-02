@@ -24,9 +24,9 @@ public class HeaderBar implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Font.loadFont(getClass().getResource("../bin/fonts/LOBSTER.TTF").toExternalForm(), 20);
         title.setStyle("-fx-font-family: LOBSTER; -fx-font-size: 20");
         icon.setStyle("-fx-font-family: Ubuntu; -fx-font-size: 25");
+
         headerBar.setOnMousePressed(event -> {
             xOffset = mainStage.getX() - event.getScreenX();
             yOffset = mainStage.getY() - event.getScreenY();

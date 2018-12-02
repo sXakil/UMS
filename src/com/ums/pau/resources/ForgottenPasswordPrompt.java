@@ -29,6 +29,6 @@ public class ForgottenPasswordPrompt {
         stage.initOwner(Main.rootStage);
         Main.rootStage.setOpacity(0.8);
         thisStage = stage;
-        stage.showAndWait();
+        stage.show();
     }
 }

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.mongodb.*;
 import com.ums.pau.SceneSwitcher;
+import com.ums.pau.resources.ForgottenPasswordPrompt;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.chart.*;
@@ -213,7 +214,7 @@ public class StudentDashboardController implements Initializable {
         confirmPass.clear();
     }
 
-    public void forgotPass() {
-
+    public void forgotPass() throws IOException {
+        new ForgottenPasswordPrompt().show();
     }
 }
