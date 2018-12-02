@@ -1,0 +1,12 @@
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Pane?>
+<Pane fx:controller="com.ums.pau.resources.StudentControls.Support.SupportController" prefHeight="800.0" prefWidth="975.0" style="-fx-background-color: #05668d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="386.0" layoutY="51.0" text="Support" textFill="WHITE">
+            <font>
+                <Font name="Chilanka Regular" size="54.0" />
+            </font>
+        </Label>
+    </children>
+</Pane>
