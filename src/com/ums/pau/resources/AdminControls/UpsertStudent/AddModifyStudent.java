@@ -45,7 +45,7 @@ public class AddModifyStudent implements Initializable {
     public Pane preview, modifyStudent;
 
     private static boolean addNew = true;
-
+    private static String altBtnText;
     public void addNewStudent() {
         if(addNew) {
             MongoCollection<Document> collection = insertInto("students");
@@ -62,27 +62,20 @@ public class AddModifyStudent implements Initializable {
                             .append("added_on", new Date()));
             UpdateOptions options = new UpdateOptions().upsert(true);
             collection.updateOne(filter, update, options);
-            notification.setText("New student added successfully!");
-            notification.setTextFill(Color.GREEN);
             if (isDuplicate()) {
                 notification.setText("An existing student was updated!");
                 notification.setTextFill(Color.CORAL);
             }
             preview.setVisible(true);
-            nameLabel.setText(nameLabel.getText() + newStudName.getText());
-            idLabel.setText(idLabel.getText() + newStudID.getText());
-            deptLabel.setText(deptLabel.getText() + newStudDept.getText());
-            adDateLabel.setText(adDateLabel.getText() + (newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString()));
-            sessionLabel.setText((sessionLabel.getText() + newStudSes.getText()));
+            nameLabel.setText("Name: " + newStudName.getText());
+            idLabel.setText("ID: " + newStudID.getText());
+            deptLabel.setText("Department: " + newStudDept.getText());
+            adDateLabel.setText("Admission Date: " + (newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString()));
+            sessionLabel.setText(("Session: " + newStudSes.getText()));
             disableStudentsFields(true);
-            addNewStud.setText("Add Another");
+            addNewStud.setText(altBtnText);
             addNew = false;
         } else {
-            nameLabel.setText("Name: ");
-            idLabel.setText("ID: ");
-            deptLabel.setText("Department: ");
-            adDateLabel.setText("Admission Date: ");
-            sessionLabel.setText("Session: ");
             preview.setVisible(false);
             clearStudentFields();
             disableStudentsFields(false);
@@ -172,6 +165,18 @@ public class AddModifyStudent implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         BooleanProperty b = new SimpleBooleanProperty(AdminDashboardController.modStudent);
         modifyStudent.visibleProperty().bind(b);
+        if(modifyStudent.isVisible()) {
+            addNewStud.setText("Modify");
+            notification.setText("An existing student was updated!");
+            notification.setTextFill(Color.CORAL);
+            altBtnText = "Modify Another";
+        }
+        else {
+            addNewStud.setText("Add");
+            notification.setText("New student added successfully!");
+            notification.setTextFill(Color.GREEN);
+            altBtnText = "Add Another";
+        }
         if(modifyStudent.isVisible()) addStudTitle.setText("Modify a Student");
         else addStudTitle.setText("Add a new Student");
         addNewStud.disableProperty().bind(

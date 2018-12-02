@@ -34,17 +34,17 @@ public class DashBoardController implements Initializable {
         stName.setText(object.get("name").toString());
         stGender.setText(object.get("gender").toString());
         stDept.setText(object.get("dept").toString());
-        stDept.setText(object.get("admissionDate").toString());
+        stAdDate.setText(object.get("admissionDate").toString());
 
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Subjects");
+        //xAxis.setLabel("Subjects");
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Marks");
+        //yAxis.setLabel("Marks");
         @SuppressWarnings("unchecked")
         LineChart<String, Number> lineChart = new LineChart(xAxis, yAxis);
         lineChart.setTitle("Academic Progress");
         XYChart.Series<String, Number> dataSeries = new XYChart.Series<>();
-        dataSeries.setName("Marks obtained in different courses");
+        dataSeries.setName("Based on the marks obtained in the completed courses");
         collection = getFrom("results");
         cursor = collection.find(query);
         query = new BasicDBObject("semester", 1);

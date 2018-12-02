@@ -6,7 +6,9 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.ums.pau.BCrypt;
 import com.ums.pau.resources.ForgottenPasswordPrompt;
+import com.ums.pau.resources.StudentControls.StudentLoginController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
@@ -17,7 +19,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.ums.pau.DatabaseHandler.getFrom;
-import static com.ums.pau.resources.StudentControls.StudentLoginController.id;
 
 public class ChangePasswordController implements Initializable {
     public JFXPasswordField oldPass;
@@ -28,6 +29,7 @@ public class ChangePasswordController implements Initializable {
     public Label wrongPass;
     public Label passMatch;
     public Label invalidPass;
+    private String id = StudentLoginController.id;
 
     public void validatePassword() {
         Pattern pattern = Pattern.compile("^(?=\\P{Ll}*\\p{Ll})(?=\\P{Lu}*\\p{Lu})(?=\\P{N}*\\p{N})(?=[\\p{L}\\p{N}]*[^\\p{L}\\p{N}])[\\s\\S]{8,}$");
@@ -58,9 +60,8 @@ public class ChangePasswordController implements Initializable {
         BasicDBObject query = new BasicDBObject("id", id);
         DBCursor cursor = collection.find(query);
         DBObject object = cursor.next();
-        String pass = object.get("password").toString();
-        if (pass.equals(oldPass.getText())) {
-            BasicDBObject newPassObject = new BasicDBObject("password", newPass.getText());
+        if (BCrypt.checkPassword(oldPass.getText(), object.get("password").toString())) {
+            BasicDBObject newPassObject = new BasicDBObject("password", BCrypt.hashPassword(newPass.getText(), BCrypt.genSalt()));
             newPassObject = new BasicDBObject("$set", newPassObject);
             collection.update(query, newPassObject);
             passSuccess.setVisible(true);

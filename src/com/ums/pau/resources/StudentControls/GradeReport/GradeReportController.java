@@ -20,9 +20,9 @@ public class GradeReportController implements Initializable {
     public VBox vBox;
 
     private String id = StudentLoginController.id;
-    private static int i = 1;
 
     private void getReport(DBCursor cursor) {
+        int i = 1;
         while (cursor.hasNext()) {
             DBObject object = cursor.next();
             if (object.get("semester").toString().contains(String.valueOf(i))) {

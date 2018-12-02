@@ -176,6 +176,8 @@ public class AddModifyFaculty implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         BooleanProperty b = new SimpleBooleanProperty(AdminDashboardController.modFaculty);
         modifyFaculty.visibleProperty().bind(b);
+        if(modifyFaculty.isVisible()) addNewTeacher.setText("Modify");
+        else addNewTeacher.setText("Add");
         if(modifyFaculty.isVisible()) addFacultyTitle.setText("Modify a Faculty");
         else addFacultyTitle.setText("Add a new Faculty");
         addNewTeacher.disableProperty().bind(
