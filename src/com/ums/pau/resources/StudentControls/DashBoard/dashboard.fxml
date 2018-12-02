@@ -1,0 +1,115 @@
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="800.0" prefWidth="975.0" fx:controller="com.ums.pau.resources.StudentControls.DashBoard.DashBoardController" style="-fx-background-color: #02c39a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox fx:id="dashVBox" layoutX="138.0" layoutY="100.0" prefHeight="688.0" prefWidth="700.0">
+            <children>
+                <HBox prefHeight="60.0" prefWidth="767.0">
+                    <children>
+                        <Label prefHeight="69.0" prefWidth="200.0" text="ID:" textFill="WHITE">
+                            <padding>
+                                <Insets left="20.0" right="20.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="stID" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0" text="Student ID" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="767.0">
+                    <children>
+                        <Label prefHeight="69.0" prefWidth="200.0" text="Name:" textFill="WHITE">
+                            <padding>
+                                <Insets left="20.0" right="20.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="stName" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0" text="Student Name" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="79.0" prefHeight="60.0" prefWidth="767.0">
+                    <children>
+                        <Label prefHeight="69.0" prefWidth="200.0" text="Gender:" textFill="WHITE">
+                            <padding>
+                                <Insets left="20.0" right="20.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="stGender" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0" text="Student Gender" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="148.0" prefHeight="60.0" prefWidth="767.0">
+                    <children>
+                        <Label prefHeight="69.0" prefWidth="200.0" text="Department:" textFill="WHITE">
+                            <padding>
+                                <Insets left="20.0" right="20.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="stDept" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0" text="Student Dept" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="217.0" prefHeight="60.0" prefWidth="767.0">
+                    <children>
+                        <Label prefHeight="69.0" prefWidth="200.0" text="Admission Date:" textFill="WHITE">
+                            <padding>
+                                <Insets left="20.0" right="20.0" />
+                            </padding>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="stAdDate" layoutX="10.0" layoutY="10.0" prefHeight="69.0" prefWidth="292.0" text="Student AdDate" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</Pane>

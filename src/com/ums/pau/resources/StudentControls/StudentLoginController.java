@@ -25,7 +25,7 @@ public class StudentLoginController implements Initializable {
     @FXML
     private JFXButton login;
 
-    static String id;
+    public static String id;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
