@@ -1,9 +1,6 @@
 package com.ums.pau.resources.AdminControls.UpsertStudent;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -37,8 +34,9 @@ import static com.ums.pau.DatabaseHandler.insertInto;
 
 public class AddModifyStudent implements Initializable {
 
-    public JFXTextField newStudName, newStudID, newStudDept, newStudSes, newStudPass, searchStud;
+    public JFXTextField newStudName, newStudID, newStudDept, newStudPass, searchStud;
     public JFXDatePicker newStudAdDate;
+    public JFXComboBox<String> newStudSes;
     public Label notification, nameLabel, idLabel, deptLabel, adDateLabel, sessionLabel, addStudTitle, zeroSearchResult;
     public JFXCheckBox male, female;
     public JFXButton addNewStud;
@@ -55,7 +53,7 @@ public class AddModifyStudent implements Initializable {
                             .append("name", newStudName.getText())
                             .append("id", newStudID.getText())
                             .append("dept", newStudDept.getText().toUpperCase())
-                            .append("session", newStudSes.getText())
+                            .append("session", newStudSes.getSelectionModel().getSelectedItem())
                             .append("gender", male.isSelected() ? "Male" : "Female")
                             .append("admissionDate", newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString())
                             .append("password", BCrypt.hashPassword(newStudPass.getText(), BCrypt.genSalt()))
@@ -71,7 +69,7 @@ public class AddModifyStudent implements Initializable {
             idLabel.setText("ID: " + newStudID.getText());
             deptLabel.setText("Department: " + newStudDept.getText());
             adDateLabel.setText("Admission Date: " + (newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString()));
-            sessionLabel.setText(("Session: " + newStudSes.getText()));
+            sessionLabel.setText(("Session: " + newStudSes.getSelectionModel().getSelectedItem()));
             disableStudentsFields(true);
             addNewStud.setText(altBtnText);
             addNew = false;
@@ -88,7 +86,7 @@ public class AddModifyStudent implements Initializable {
         newStudName.clear();
         newStudID.clear();
         newStudDept.clear();
-        newStudSes.clear();
+        newStudSes.getSelectionModel().clearSelection();
         newStudAdDate.setValue(null);
         newStudPass.clear();
     }
@@ -135,7 +133,8 @@ public class AddModifyStudent implements Initializable {
             newStudID.setText(object.get("id").toString());
             newStudName.setText(object.get("name").toString());
             newStudDept.setText(object.get("dept").toString());
-            newStudSes.setText(object.get("session").toString());
+            String s = object.get("session").toString();
+            newStudSes.getSelectionModel().select(s.equals("Spring") ? 0 : s.equals("Summer") ? 1 : 2);
             newStudAdDate.setValue(LocalDate.parse(object.get("admissionDate").toString()));
             getGender(object.get("gender").toString(), male, female);
             checked = true;
@@ -163,6 +162,7 @@ public class AddModifyStudent implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        newStudSes.getItems().addAll("Spring", "Summer", "Fall");
         BooleanProperty b = new SimpleBooleanProperty(AdminDashboardController.modStudent);
         modifyStudent.visibleProperty().bind(b);
         if(modifyStudent.isVisible()) {
@@ -183,7 +183,6 @@ public class AddModifyStudent implements Initializable {
                 Bindings.isEmpty(newStudID.textProperty())
                         .or(Bindings.isEmpty(newStudName.textProperty()))
                         .or(Bindings.isEmpty(newStudDept.textProperty()))
-                        .or(Bindings.isEmpty(newStudSes.textProperty()))
                         .or(Bindings.isNull(newStudAdDate.getEditor().textProperty()))
                         .or(Bindings.isEmpty(newStudPass.textProperty()))
         );
