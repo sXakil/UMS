@@ -20,7 +20,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -44,22 +43,22 @@ public class AddModifyStudent implements Initializable {
 
     private static boolean addNew = true;
     private static String altBtnText;
+
     public void addNewStudent() {
-        if(addNew) {
+        if (addNew) {
             MongoCollection<Document> collection = insertInto("students");
-            Bson filter = Filters.eq("id", newStudID.getText());
-            Bson update = new Document("$set",
-                    new Document()
-                            .append("name", newStudName.getText())
-                            .append("id", newStudID.getText())
-                            .append("dept", newStudDept.getText().toUpperCase())
-                            .append("session", newStudSes.getSelectionModel().getSelectedItem())
-                            .append("gender", male.isSelected() ? "Male" : "Female")
-                            .append("admissionDate", newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString())
-                            .append("password", BCrypt.hashPassword(newStudPass.getText(), BCrypt.genSalt()))
-                            .append("added_on", new Date()));
-            UpdateOptions options = new UpdateOptions().upsert(true);
-            collection.updateOne(filter, update, options);
+            collection.updateOne(Filters.eq("id", newStudID.getText()),
+                    new Document("$set",
+                            new Document()
+                                    .append("name", newStudName.getText())
+                                    .append("id", newStudID.getText())
+                                    .append("dept", newStudDept.getText().toUpperCase())
+                                    .append("session", newStudSes.getSelectionModel().getSelectedItem())
+                                    .append("gender", male.isSelected() ? "Male" : "Female")
+                                    .append("admissionDate", newStudAdDate.getValue() == null ? new Date().toString() : newStudAdDate.getValue().toString())
+                                    .append("password", BCrypt.hashPassword(newStudPass.getText(), BCrypt.genSalt()))
+                                    .append("added_on", new Date())),
+                    new UpdateOptions().upsert(true));
             if (isDuplicate()) {
                 notification.setText("An existing student was updated!");
                 notification.setTextFill(Color.CORAL);
@@ -90,8 +89,9 @@ public class AddModifyStudent implements Initializable {
         newStudAdDate.setValue(null);
         newStudPass.clear();
     }
+
     private void disableStudentsFields(boolean disable) {
-        if(disable) {
+        if (disable) {
             newStudName.setDisable(true);
             newStudID.setDisable(true);
             newStudDept.setDisable(true);
@@ -141,43 +141,47 @@ public class AddModifyStudent implements Initializable {
         }
         if (!checked) zeroSearchResult.setVisible(true);
     }
+
     private void getGender(String string, JFXCheckBox maleT, JFXCheckBox femaleT) {
         AddModifyFaculty.toGender(string, maleT, femaleT);
     }
+
     public void isMale() {
-        if(!male.isSelected())
+        if (!male.isSelected())
             female.setSelected(true);
         else
             female.setSelected(false);
     }
+
     public void isFemale() {
-        if(!female.isSelected())
+        if (!female.isSelected())
             male.setSelected(true);
         else
             male.setSelected(false);
     }
+
     public void genPass() {
         GenPass gp = new GenPass();
         newStudPass.setText(gp.getString());
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         newStudSes.getItems().addAll("Spring", "Summer", "Fall");
         BooleanProperty b = new SimpleBooleanProperty(AdminDashboardController.modStudent);
         modifyStudent.visibleProperty().bind(b);
-        if(modifyStudent.isVisible()) {
+        if (modifyStudent.isVisible()) {
             addNewStud.setText("Modify");
             notification.setText("An existing student was updated!");
             notification.setTextFill(Color.CORAL);
             altBtnText = "Modify Another";
-        }
-        else {
+        } else {
             addNewStud.setText("Add");
             notification.setText("New student added successfully!");
             notification.setTextFill(Color.GREEN);
             altBtnText = "Add Another";
         }
-        if(modifyStudent.isVisible()) addStudTitle.setText("Modify a Student");
+        if (modifyStudent.isVisible()) addStudTitle.setText("Modify a Student");
         else addStudTitle.setText("Add a new Student");
         addNewStud.disableProperty().bind(
                 Bindings.isEmpty(newStudID.textProperty())
