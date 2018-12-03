@@ -40,8 +40,8 @@ public class FacultyDashboardController implements Initializable {
         success.setVisible(false);
         isValid = false;
         resultBTN.setDisable(true);
+        nameLab.setText("");
         facName.setText("Hello, " + FacultyLoginController.facName);
-        semCB.getItems().setAll("1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th");
         DBCollection collection = getFrom("students");
         DBCursor students = collection.find();
         BasicDBObject sort = new BasicDBObject("id", 1);
@@ -68,19 +68,24 @@ public class FacultyDashboardController implements Initializable {
         l.setStyle("-fx-min-width: inherit; -fx-font-size: 18px; -fx-alignment: center;");
         resultVBox.getChildren().add(l);
         int i = 1;
+        semCB.getItems().clear();
+        semCB.getItems().add("1st");
         while (cursor.hasNext()) {
             object = cursor.next();
             if (object.get("semester").toString().contains(String.valueOf(i))) {
                 HBox hBox = new HBox();
                 hBox.setId("hBox-header");
-                Label semester = new Label(i == 1 ? "1st Semester" : i == 2 ? "2nd Semester" : i == 3 ? "3rd Semester" : i + "th Semester");
+                Label semester = new Label(i == 1 ? "1st" : i == 2 ? "2nd" : i == 3 ? "3rd" : i + "th");
                 semester.setId("itemH");
                 hBox.getChildren().add(semester);
                 hBox.setStyle("-fx-alignment: center");
                 Pane p = new Pane();
                 p.setStyle("-fx-pref-height: 1px; -fx-background-color: darkgray");
-                if (i > 1)
+                if (i == 1) semCB.getItems().add("2nd");
+                if (i > 1) {
                     resultVBox.getChildren().add(p);
+                    semCB.getItems().add( i == 2 ? "3rd" : i + "th");
+                }
                 VBox.setMargin(hBox, new Insets(25, 0, 0, 0));
                 resultVBox.getChildren().add(hBox);
                 i++;

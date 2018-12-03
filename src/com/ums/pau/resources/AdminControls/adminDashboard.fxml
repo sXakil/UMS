@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="830.0" prefWidth="1200.0" style="-fx-background-color: #F0FBFF;" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.AdminDashboardController">
-    <Pane layoutY="33.0" prefHeight="800.0" prefWidth="226.0" style="-fx-background-color: #333388;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="33.0">
+    <Pane layoutY="40.0" prefHeight="793.0" prefWidth="226.0" style="-fx-background-color: #333388;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="40.0">
                 <VBox layoutX="13.0" layoutY="99.0" prefHeight="418.0" prefWidth="200.0">
                         <Label alignment="CENTER" prefHeight="43.0" prefWidth="200.0" text="Student" textFill="WHITE">
                             <font>
@@ -93,6 +93,9 @@
                                 <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="18" />
                             </graphic>
                         </JFXButton>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
                 </VBox>
                 <JFXButton buttonType="RAISED" layoutX="13.0" layoutY="21.0" onAction="#toDashboardPane" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #444488;" text="Dashboard" textFill="WHITE">
                     <font>
@@ -106,6 +109,15 @@
                     </font>
                 </JFXButton>
                 <MaterialDesignIconView fill="WHITE" glyphName="LOGOUT" layoutX="50.0" layoutY="755.0" size="18" />
+      <JFXButton disable="true" layoutY="613.0" prefHeight="40.0" prefWidth="226.0" style="-fx-background-color: coral; -fx-background-radius: 0;" text="  Support Box" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <MaterialDesignIconView fill="WHITE" glyphName="INBOX" layoutX="40.0" layoutY="642.0" size="20" />
+      <padding>
+         <Insets top="15.0" />
+      </padding>
         </Pane>
         <StackPane fx:id="stackPane" layoutX="226.0" layoutY="33.0" prefHeight="800.0" prefWidth="974.0">
 

@@ -1,4 +1,4 @@
-package com.ums.pau.resources.StudentControls.Support;
+package com.ums.pau.resources.AdminControls.Support;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.mongodb.BasicDBObject;
@@ -38,7 +38,7 @@ public class SupportController implements Initializable {
             DBObject object = cursor.next();
             Label messageLabel = new Label();
             messageLabel.setAlignment(Pos.CENTER);
-            if(object.get("role").toString().equals("student")) messageLabel.setStyle("-fx-background-color: royalblue; -fx-text-fill: white; -fx-padding: 10 100 10 10; -fx-background-radius: 20");
+            if(object.get("role").toString().equals("admin")) messageLabel.setStyle("-fx-background-color: royalblue; -fx-text-fill: white; -fx-padding: 10 100 10 10; -fx-background-radius: 20");
             else messageLabel.setStyle("-fx-background-color: darkgrey; -fx-padding: 10 10 100 10; -fx-background-radius: 20");
             messageLabel.setText(object.get("messageBody").toString());
             msgVBox.getChildren().add(messageLabel);
@@ -50,7 +50,7 @@ public class SupportController implements Initializable {
         BasicDBObject document = new BasicDBObject("id", id)
                 .append("messageBody", msgTF.getText())
                 .append("sentOn", new Date())
-                .append("role", "student");
+                .append("role", "admin");
         Document doc = new Document(document);
         collection.insertOne(doc);
         getMsg();

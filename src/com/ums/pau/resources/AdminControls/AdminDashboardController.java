@@ -61,7 +61,13 @@ public class AdminDashboardController implements Initializable {
         stackPane.getChildren().add(FXMLLoader.load(getClass().getResource("DeleteFaculty/deletePane.fxml")));
     }
 
+//    public void toSupportPane() throws IOException {
+//        stackPane.getChildren().clear();
+//        stackPane.getChildren().add(FXMLLoader.load(getClass().getResource("Support/support.fxml")));
+//    }
+
     public void logOut() throws IOException {
         new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
     }
+
 }

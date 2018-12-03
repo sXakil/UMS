@@ -63,7 +63,7 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                 </JFXButton>
-                <JFXButton id="std-btn" alignment="CENTER" layoutX="23.0" layoutY="270.0" onAction="#toSupport" prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #05668d; -fx-background-radius: 0;" text=" Support" textFill="WHITE">
+                <JFXButton id="std-btn" disable="true" alignment="CENTER" layoutX="23.0" layoutY="270.0" prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #05668d; -fx-background-radius: 0;" text=" Support" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
                     </font>
