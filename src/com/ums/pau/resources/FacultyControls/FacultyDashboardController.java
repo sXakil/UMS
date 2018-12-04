@@ -11,6 +11,7 @@ import javafx.scene.layout.*;
 import org.bson.Document;
 import java.io.IOException;
 import java.net.URL;
+import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 import static com.ums.pau.DatabaseHandler.*;
 
@@ -32,7 +33,10 @@ public class FacultyDashboardController implements Initializable {
     public JFXTextField markTF;
     public JFXTextArea commentTF;
     public Label facName;
+    public Label idNotFound;
+    public JFXButton nextStud;
 
+    private static String selectedID;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,6 +44,7 @@ public class FacultyDashboardController implements Initializable {
         success.setVisible(false);
         isValid = false;
         resultBTN.setDisable(true);
+        nextStud.setDisable(true);
         nameLab.setText("");
         facName.setText("Hello, " + FacultyLoginController.facName);
         DBCollection collection = getFrom("students");
@@ -50,60 +55,70 @@ public class FacultyDashboardController implements Initializable {
     }
 
     private void editorFill(String id) {
+        selectedID = id;
         isValid = false;
+        success.setVisible(false);
+        idNotFound.setVisible(false);
+        nextStud.setDisable(false);
         DBCollection collection = getFrom("students");
         BasicDBObject dbObject = new BasicDBObject("id", id);
         DBCursor cursor = collection.find(dbObject);
-        DBObject object = cursor.next();
-        prevPane.setVisible(true);
-        nameLab.setText(object.get("name").toString());
-        idTF.setText(object.get("id").toString());
-        idTF.setDisable(true);
-        collection = getFrom("results");
-        cursor = collection.find(dbObject);
-        BasicDBObject sorter = new BasicDBObject("semester", 1);
-        cursor.sort(sorter);
-        resultVBox.getChildren().clear();
-        Label l = new Label("Previous Records of " + object.get("name").toString());
-        l.setStyle("-fx-min-width: inherit; -fx-font-size: 18px; -fx-alignment: center;");
-        resultVBox.getChildren().add(l);
-        int i = 1;
-        semCB.getItems().clear();
-        semCB.getItems().add("1st");
-        while (cursor.hasNext()) {
-            object = cursor.next();
-            if (object.get("semester").toString().contains(String.valueOf(i))) {
-                HBox hBox = new HBox();
-                hBox.setId("hBox-header");
-                Label semester = new Label(i == 1 ? "1st" : i == 2 ? "2nd" : i == 3 ? "3rd" : i + "th");
-                semester.setId("itemH");
-                hBox.getChildren().add(semester);
-                hBox.setStyle("-fx-alignment: center");
-                Pane p = new Pane();
-                p.setStyle("-fx-pref-height: 1px; -fx-background-color: darkgray");
-                if (i == 1) semCB.getItems().add("2nd");
-                if (i > 1) {
-                    resultVBox.getChildren().add(p);
-                    semCB.getItems().add( i == 2 ? "3rd" : i + "th");
+        try {
+            DBObject object = cursor.next();
+            prevPane.setVisible(true);
+            nameLab.setText(object.get("name").toString());
+            idTF.setText(object.get("id").toString());
+            idTF.setDisable(true);
+            collection = getFrom("results");
+            cursor = collection.find(dbObject);
+            BasicDBObject sorter = new BasicDBObject("semester", 1);
+            cursor.sort(sorter);
+            resultVBox.getChildren().clear();
+            Label l = new Label("Previous Records of " + object.get("name").toString());
+            l.setStyle("-fx-min-width: inherit; -fx-font-size: 18px; -fx-alignment: center;");
+            resultVBox.getChildren().add(l);
+            int i = 1;
+            semCB.getItems().clear();
+            semCB.getItems().add("1st");
+            while (cursor.hasNext()) {
+                object = cursor.next();
+                if (object.get("semester").toString().contains(String.valueOf(i))) {
+                    HBox hBox = new HBox();
+                    hBox.setId("hBox-header");
+                    Label semester = new Label(i == 1 ? "1st" : i == 2 ? "2nd" : i == 3 ? "3rd" : i + "th");
+                    semester.setId("itemH");
+                    hBox.getChildren().add(semester);
+                    hBox.setStyle("-fx-alignment: center");
+                    Pane p = new Pane();
+                    p.setStyle("-fx-pref-height: 1px; -fx-background-color: darkgray");
+                    if (i == 1) semCB.getItems().add("2nd");
+                    if (i > 1) {
+                        resultVBox.getChildren().add(p);
+                        semCB.getItems().add( i == 2 ? "3rd" : i + "th");
+                    }
+                    VBox.setMargin(hBox, new Insets(25, 0, 0, 0));
+                    resultVBox.getChildren().add(hBox);
+                    i++;
                 }
-                VBox.setMargin(hBox, new Insets(25, 0, 0, 0));
+                HBox hBox = new HBox();
+                hBox.setMinWidth(500);
+                Label courseName = new Label(object.get("course_code").toString());
+                courseName.setStyle("-fx-alignment: center; -fx-min-width: 245");
+
+                Label grade = new Label(object.get("mark").toString());
+                grade.setStyle("-fx-alignment: center; -fx-min-width: 245");
+
+                hBox.getChildren().addAll(courseName, grade);
+                hBox.setStyle("-fx-alignment: center");
+
+                hBox.setPadding(new Insets(5));
+                hBox.setStyle("-fx-border-color: darkgray; -fx-border: 0 0 0 1px");
                 resultVBox.getChildren().add(hBox);
-                i++;
             }
-            HBox hBox = new HBox();
-            hBox.setMinWidth(500);
-            Label courseName = new Label(object.get("course_code").toString());
-            courseName.setStyle("-fx-alignment: center; -fx-min-width: 245");
-
-            Label grade = new Label(object.get("mark").toString());
-            grade.setStyle("-fx-alignment: center; -fx-min-width: 245");
-
-            hBox.getChildren().addAll(courseName, grade);
-            hBox.setStyle("-fx-alignment: center");
-
-            hBox.setPadding(new Insets(5));
-            hBox.setStyle("-fx-border-color: darkgray; -fx-border: 0 0 0 1px");
-            resultVBox.getChildren().add(hBox);
+        } catch (NoSuchElementException e) {
+            idNotFound.setText("No student with ID: " + id);
+            idNotFound.setVisible(true);
+            resultVBox.getChildren().clear();
         }
     }
 
@@ -169,7 +184,8 @@ public class FacultyDashboardController implements Initializable {
     public void enterResult() {
         resultBTN.setText("Enter");
         DBCollection collection = getFrom("results");
-        BasicDBObject query = new BasicDBObject("course_code", courseTF.getText().toUpperCase().replaceAll("[ \\-]", ""));
+        BasicDBObject query = new BasicDBObject("course_code", courseTF.getText().toUpperCase().replaceAll("[ \\-]", ""))
+                .append("id", idTF.getText());
         DBCursor cursor = collection.find(query);
         DBObject check = null;
         if (cursor.hasNext()) check = cursor.next();
@@ -226,5 +242,16 @@ public class FacultyDashboardController implements Initializable {
 
     public void logOut() throws IOException {
         new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
+    }
+
+    public void nextStudent() {
+        String id = selectedID;
+        int roll = Integer.parseInt(id.substring(3,6));
+        roll++;
+        if(roll > 99) id = id.substring(0,3) + String.valueOf(roll) + id.substring(6, 9);
+        else if(roll > 9) id = id.substring(0,3) + "0" + String.valueOf(roll) + id.substring(6, 9);
+        else id = id.substring(0,3) + "00" + String.valueOf(roll) + id.substring(6, 9);
+        editorFill(id);
+        selectedID = id;
     }
 }

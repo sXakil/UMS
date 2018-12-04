@@ -20,8 +20,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import org.bson.Document;
-import org.bson.conversions.Bson;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
@@ -47,7 +45,8 @@ public class AddModifyStudent implements Initializable {
     public void addNewStudent() {
         if(addNew) {
             MongoCollection<Document> collection = insertInto("students");
-            collection.updateOne(Filters.eq("id", newStudID.getText()), new Document("$set",
+            collection.updateOne(
+                    Filters.eq("id", newStudID.getText()), new Document("$set",
                     new Document()
                             .append("name", newStudName.getText())
                             .append("id", newStudID.getText())

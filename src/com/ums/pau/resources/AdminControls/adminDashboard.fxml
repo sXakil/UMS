@@ -11,116 +11,131 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="830.0" prefWidth="1200.0" style="-fx-background-color: #F0FBFF;" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.AdminControls.AdminDashboardController">
-    <Pane layoutY="40.0" prefHeight="793.0" prefWidth="226.0" style="-fx-background-color: #333388;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="40.0">
-                <VBox layoutX="13.0" layoutY="99.0" prefHeight="418.0" prefWidth="200.0">
-                        <Label alignment="CENTER" prefHeight="43.0" prefWidth="200.0" text="Student" textFill="WHITE">
-                            <font>
-                                <Font name="DejaVu Serif Bold" size="15.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" top="30.0" />
-                            </VBox.margin>
-                        </Label>
-                        <JFXButton buttonType="RAISED" onAction="#toAddStudentPane" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #7777ff;" text="Add new Student" textFill="WHITE">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                            <graphic>
-                                <FontAwesomeIconView fill="#f8f8f8" glyphName="PLUS_CIRCLE" size="18.0" />
-                            </graphic>
-                        </JFXButton>
-                        <JFXButton layoutX="10.0" layoutY="53.0" onAction="#toModifyStudent" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #111125;" text="Modify a Student" textFill="WHITE">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                            <graphic>
-                                <FontAwesomeIconView fill="#f8f8f8" glyphName="EDIT" size="18.0" />
-                            </graphic>
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                        </JFXButton>
-                        <JFXButton layoutX="10.0" layoutY="150.0" onAction="#toDeleteStudent" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #cc1111;" text=" Delete A Student" textFill="WHITE">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="20.0" />
-                            </VBox.margin>
-                            <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="18" />
-                            </graphic>
-                        </JFXButton>
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="200.0" text="Faculty" textFill="WHITE">
-                            <font>
-                                <Font name="DejaVu Serif Bold" size="15.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" top="30.0" />
-                            </VBox.margin>
-                        </Label>
-                        <JFXButton buttonType="RAISED" onAction="#toAddTeacherPane" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #7777ff;" text=" Add new Faculty" textFill="WHITE">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                            <graphic>
-                                <FontAwesomeIconView fill="#f8f8f8" glyphName="PLUS_CIRCLE" size="18.0" />
-                            </graphic>
-                        </JFXButton>
-                        <JFXButton layoutX="10.0" layoutY="113.0" onAction="#toModifyFac" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #111125;" text="Modify a Faculty" textFill="WHITE">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                            <graphic>
-                                <FontAwesomeIconView fill="#f8f8f8" glyphName="EDIT" size="18.0" />
-                            </graphic>
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                        </JFXButton>
-                        <JFXButton onAction="#toDeleteFac" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #cc1111;" text=" Delete A Faculty" textFill="WHITE">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                            <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="18" />
-                            </graphic>
-                        </JFXButton>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-                </VBox>
-                <JFXButton buttonType="RAISED" layoutX="13.0" layoutY="21.0" onAction="#toDashboardPane" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #444488;" text="Dashboard" textFill="WHITE">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </JFXButton>
-                <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="37.0" layoutY="64.0" size="20" />
-                <JFXButton buttonType="RAISED" layoutX="29.0" layoutY="717.0" onAction="#logOut" prefHeight="60.0" prefWidth="168.0" style="-fx-background-color: #111f3aa7; -fx-background-radius: 10;" text="Log Out" textFill="WHITE">
-                    <font>
-                        <Font name="KacstBook" size="20.0" />
-                    </font>
-                </JFXButton>
-                <MaterialDesignIconView fill="WHITE" glyphName="LOGOUT" layoutX="50.0" layoutY="755.0" size="18" />
-      <JFXButton disable="true" layoutY="613.0" prefHeight="40.0" prefWidth="226.0" style="-fx-background-color: coral; -fx-background-radius: 0;" text="  Support Box" textFill="WHITE">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </JFXButton>
-      <MaterialDesignIconView fill="WHITE" glyphName="INBOX" layoutX="40.0" layoutY="642.0" size="20" />
-      <padding>
-         <Insets top="15.0" />
-      </padding>
-        </Pane>
-        <StackPane fx:id="stackPane" layoutX="226.0" layoutY="33.0" prefHeight="800.0" prefWidth="974.0">
+<AnchorPane prefHeight="830.0" prefWidth="1200.0" style="-fx-background-color: #F0FBFF;"
+            stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ums.pau.resources.AdminControls.AdminDashboardController">
+    <Pane layoutY="40.0" prefHeight="793.0" prefWidth="226.0" style="-fx-background-color: #333388;"
+          AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="40.0">
+        <VBox layoutX="13.0" layoutY="99.0" prefHeight="418.0" prefWidth="200.0">
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="200.0" text="Student" textFill="WHITE">
+                <font>
+                    <Font name="DejaVu Serif Bold" size="15.0"/>
+                </font>
+                <VBox.margin>
+                    <Insets bottom="10.0" top="30.0"/>
+                </VBox.margin>
+            </Label>
+            <JFXButton buttonType="RAISED" onAction="#toAddStudentPane" prefHeight="70.0" prefWidth="200.0"
+                       style="-fx-background-color: #7777ff;" text="Add new Student" textFill="WHITE">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+                <VBox.margin>
+                    <Insets bottom="10.0"/>
+                </VBox.margin>
+                <graphic>
+                    <FontAwesomeIconView fill="#f8f8f8" glyphName="PLUS_CIRCLE" size="18.0"/>
+                </graphic>
+            </JFXButton>
+            <JFXButton layoutX="10.0" layoutY="53.0" onAction="#toModifyStudent" prefHeight="70.0" prefWidth="200.0"
+                       style="-fx-background-color: #111125;" text="Modify a Student" textFill="WHITE">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#f8f8f8" glyphName="EDIT" size="18.0"/>
+                </graphic>
+                <VBox.margin>
+                    <Insets bottom="10.0"/>
+                </VBox.margin>
+            </JFXButton>
+            <JFXButton layoutX="10.0" layoutY="150.0" onAction="#toDeleteStudent" prefHeight="70.0" prefWidth="200.0"
+                       style="-fx-background-color: #cc1111;" text=" Delete A Student" textFill="WHITE">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+                <VBox.margin>
+                    <Insets bottom="20.0"/>
+                </VBox.margin>
+                <graphic>
+                    <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="18"/>
+                </graphic>
+            </JFXButton>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="200.0" text="Faculty"
+                   textFill="WHITE">
+                <font>
+                    <Font name="DejaVu Serif Bold" size="15.0"/>
+                </font>
+                <VBox.margin>
+                    <Insets bottom="10.0" top="30.0"/>
+                </VBox.margin>
+            </Label>
+            <JFXButton buttonType="RAISED" onAction="#toAddTeacherPane" prefHeight="70.0" prefWidth="200.0"
+                       style="-fx-background-color: #7777ff;" text=" Add new Faculty" textFill="WHITE">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+                <VBox.margin>
+                    <Insets bottom="10.0"/>
+                </VBox.margin>
+                <graphic>
+                    <FontAwesomeIconView fill="#f8f8f8" glyphName="PLUS_CIRCLE" size="18.0"/>
+                </graphic>
+            </JFXButton>
+            <JFXButton layoutX="10.0" layoutY="113.0" onAction="#toModifyFac" prefHeight="70.0" prefWidth="200.0"
+                       style="-fx-background-color: #111125;" text="Modify a Faculty" textFill="WHITE">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#f8f8f8" glyphName="EDIT" size="18.0"/>
+                </graphic>
+                <VBox.margin>
+                    <Insets bottom="10.0"/>
+                </VBox.margin>
+            </JFXButton>
+            <JFXButton onAction="#toDeleteFac" prefHeight="70.0" prefWidth="200.0"
+                       style="-fx-background-color: #cc1111;" text=" Delete A Faculty" textFill="WHITE">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="18"/>
+                </graphic>
+            </JFXButton>
+            <padding>
+                <Insets top="10.0"/>
+            </padding>
+        </VBox>
+        <JFXButton buttonType="RAISED" layoutX="13.0" layoutY="21.0" onAction="#toDashboardPane" prefHeight="70.0"
+                   prefWidth="200.0" style="-fx-background-color: #444488;" text="Dashboard" textFill="WHITE">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </JFXButton>
+        <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="37.0" layoutY="64.0" size="20"/>
+        <JFXButton buttonType="RAISED" layoutX="29.0" layoutY="717.0" onAction="#logOut" prefHeight="60.0"
+                   prefWidth="168.0" style="-fx-background-color: #111f3aa7; -fx-background-radius: 10;" text="Log Out"
+                   textFill="WHITE">
+            <font>
+                <Font name="KacstBook" size="20.0"/>
+            </font>
+        </JFXButton>
+        <MaterialDesignIconView fill="WHITE" glyphName="LOGOUT" layoutX="50.0" layoutY="755.0" size="18"/>
+        <JFXButton disable="true" layoutY="613.0" prefHeight="40.0" prefWidth="226.0"
+                   style="-fx-background-color: coral; -fx-background-radius: 0;" text="  Support Box" textFill="WHITE">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </JFXButton>
+        <MaterialDesignIconView fill="dimgray" glyphName="INBOX" layoutX="40.0" layoutY="642.0" size="20"/>
+        <padding>
+            <Insets top="15.0"/>
+        </padding>
+    </Pane>
+    <StackPane fx:id="stackPane" layoutX="226.0" layoutY="33.0" prefHeight="800.0" prefWidth="974.0">
 
-        </StackPane>
-    <fx:include source="../headerBar.fxml" />
+    </StackPane>
+    <fx:include source="../headerBar.fxml"/>
 </AnchorPane>

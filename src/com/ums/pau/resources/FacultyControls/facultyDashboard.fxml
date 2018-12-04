@@ -81,8 +81,18 @@
                 <Font name="System Bold" size="13.0" />
             </font>
         </Label>
+      <Label fx:id="idNotFound" layoutX="744.0" layoutY="335.0" text="No sudent found with ID 181008042" textFill="#d01a1a" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
         <JFXTextArea fx:id="commentTF" labelFloat="true" layoutX="702.0" layoutY="248.0" prefHeight="70.0" prefWidth="372.0" promptText="Comment (optional)" />
         <JFXTextField fx:id="markTF" labelFloat="true" layoutX="918.0" layoutY="161.0" onKeyReleased="#filled" prefHeight="26.0" prefWidth="155.0" promptText="Mark (0-100)" />
+      <JFXButton fx:id="nextStud" buttonType="RAISED" contentDisplay="RIGHT" layoutX="1039.0" layoutY="363.0" onAction="#nextStudent" prefHeight="46.0" prefWidth="71.0" style="-fx-background-color: deepskyblue;" text="Next" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="FORWARD" />
+         </graphic>
+      </JFXButton>
         <fx:include source="../headerBar.fxml" />
     </children>
 </AnchorPane>
