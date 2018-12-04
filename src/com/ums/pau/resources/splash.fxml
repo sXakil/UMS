@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,10 +11,10 @@
     <ImageView fitHeight="800.0" fitWidth="1000.0" layoutX="-1.0">
         <Image url="@../bin/pictures/splash.png" />
     </ImageView>
-   <Label fx:id="loader" alignment="CENTER" layoutX="486.0" layoutY="473.0" text="100%" textFill="#4719a6">
+    <JFXSpinner layoutX="488.0" layoutY="451.0" prefHeight="80.0" prefWidth="80.0" />
+   <Label fx:id="loader" alignment="CENTER" contentDisplay="CENTER" layoutX="478.0" layoutY="479.0" prefWidth="100.0" text="100%" textFill="#4719a6">
       <font>
-         <Font name="DejaVu Sans ExtraLight" size="29.0" />
+         <Font name="DejaVu Sans ExtraLight" size="20.0" />
       </font>
    </Label>
-    <!--<JFXSpinner layoutX="500.0" layoutY="470.0" />-->
 </AnchorPane>

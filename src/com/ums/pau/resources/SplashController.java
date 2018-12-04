@@ -21,7 +21,7 @@ public class SplashController implements Initializable {
             try {
                 for(int i = 1; i <= 100; i++) {
                     final int loaded = i;
-                    Thread.sleep(ThreadLocalRandom.current().nextInt(50, 70));
+                    Thread.sleep(ThreadLocalRandom.current().nextInt(30, 70));
                     Platform.runLater(() -> loader.setText(loaded + "%"));
                 }
                 Thread.sleep(100);

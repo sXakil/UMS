@@ -240,9 +240,7 @@ public class FacultyDashboardController implements Initializable {
         else resultBTN.setDisable(true);
     }
 
-    public void logOut() throws IOException {
-        new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
-    }
+    public void logOut() throws IOException { new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml"); }
 
     public void nextStudent() {
         String id = selectedID;

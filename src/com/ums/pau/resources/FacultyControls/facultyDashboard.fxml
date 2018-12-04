@@ -16,7 +16,6 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="830.0" prefWidth="1200.0" stylesheets="@../stylesheet/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ums.pau.resources.FacultyControls.FacultyDashboardController">
-    <children>
       <Label fx:id="facName" layoutY="36.0" prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: lightseagreen;" text="Hello, Faculty Name!" textFill="WHITE" wrapText="true">
          <font>
             <Font size="18.0" />
@@ -26,7 +25,6 @@
          </padding>
       </Label>
         <Pane fx:id="prevPane" layoutX="601.0" layoutY="36.0" prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: mediumseagreen;">
-            <children>
                 <Label fx:id="nameLab" alignment="CENTER" layoutX="114.0" layoutY="35.0" prefHeight="20.0" prefWidth="335.0" text="This Student" textFill="WHITE">
                     <font>
                         <Font size="16.0" />
@@ -37,12 +35,9 @@
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Label>
-            </children>
         </Pane>
       <ScrollPane layoutY="230.0" prefHeight="600.0" prefWidth="600.0">
-         <content>
             <VBox fx:id="vBox" prefWidth="596.0" />
-         </content>
       </ScrollPane>
         <JFXTextField fx:id="searchToEdit" focusColor="#00cf9b00" layoutX="74.0" layoutY="145.0" maxWidth="452.0" minWidth="289.0" prefHeight="46.0" prefWidth="452.0" promptText="Search with the ID" style="-fx-background-color: #fff; -fx-border-color: #000; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 10;" unFocusColor="#d9d9d900" AnchorPane.leftAnchor="74.0" />
         <JFXButton id="BTNS" fx:id="resultBTN" buttonType="RAISED" layoutX="824.0" layoutY="363.0" onAction="#enterResult" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: #ff5656;" text="Enter" textFill="WHITE">
@@ -59,13 +54,11 @@
             </graphic>
         </JFXButton>
         <ScrollPane hbarPolicy="NEVER" layoutX="616.0" layoutY="436.0" prefHeight="380.0" prefWidth="570.0">
-            <content>
                 <VBox fx:id="resultVBox" alignment="CENTER" prefWidth="560.0">
                     <padding>
                         <Insets topRightBottomLeft="10.0" />
                     </padding>
                 </VBox>
-            </content>
         </ScrollPane>
         <JFXComboBox fx:id="semCB" layoutX="918.0" layoutY="117.0" onAction="#filled" prefHeight="26.0" prefWidth="155.0" promptText="Semester" visibleRowCount="6" />
         <JFXCheckBox fx:id="c3" layoutX="810.0" layoutY="210.0" onAction="#isThree" selected="true" text="3" />
@@ -81,7 +74,7 @@
                 <Font name="System Bold" size="13.0" />
             </font>
         </Label>
-      <Label fx:id="idNotFound" layoutX="744.0" layoutY="335.0" text="No sudent found with ID 181008042" textFill="#d01a1a" visible="false">
+      <Label fx:id="idNotFound" layoutX="744.0" layoutY="335.0" text="No student found with ID 181008042" textFill="#d01a1a" visible="false">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -94,5 +87,4 @@
          </graphic>
       </JFXButton>
         <fx:include source="../headerBar.fxml" />
-    </children>
 </AnchorPane>
