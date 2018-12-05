@@ -1,5 +1,6 @@
 package com.ums.pau.resources.AdminControls.DeleteStudent;
 
+import animatefx.animation.Shake;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
 import com.mongodb.BasicDBObject;
@@ -46,6 +47,7 @@ public class DeleteController {
         deletePrompt = stage;
         delAll = includeResult.isSelected();
         stage.show();
+        new Shake(root).play();
         delConfirmation.setVisible(false);
         delSearchTF.clear();
     }

@@ -10,5 +10,6 @@
     <orderEntry type="library" name="jfoenix-8.0.7" level="project" />
     <orderEntry type="library" name="mongo-java-driver-3.9.0" level="project" />
     <orderEntry type="library" name="fontawesomefx-8.9" level="project" />
+    <orderEntry type="library" name="AnimateFX-1.2.0" level="project" />
   </component>
 </module>

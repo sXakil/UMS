@@ -24,7 +24,7 @@ public class SplashController implements Initializable {
                     Thread.sleep(ThreadLocalRandom.current().nextInt(30, 70));
                     Platform.runLater(() -> loader.setText(loaded + "%"));
                 }
-                Thread.sleep(100);
+                Thread.sleep(200);
                 Platform.runLater(() -> {
                     try { new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml"); }
                     catch (IOException e) { e.printStackTrace(); }
