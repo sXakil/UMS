@@ -1,10 +1,12 @@
 package com.ums.pau.resources.StudentControls;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.mongodb.*;
 import com.ums.pau.BCrypt;
 import com.ums.pau.SceneSwitcher;
+import com.ums.pau.Shake;
 import com.ums.pau.resources.ForgottenPasswordPrompt;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -34,28 +36,30 @@ public class StudentLoginController implements Initializable {
                 Bindings.isEmpty(studentID.textProperty())
                         .or(Bindings.isEmpty(passWord.textProperty()))
         );
-        error.setVisible(false);
     }
 
     @FXML
-    private void checkLogin() throws IOException {
+    private void checkLogin() {
         error.setVisible(false);
-        boolean studentExists = false;
-        String passInDB = null;
         DBCollection collection = getFrom("students");
         BasicDBObject query = new BasicDBObject("id", studentID.getText());
         DBCursor results = collection.find(query);
         try {
             DBObject object = results.next();
-            studentExists = true;
-            passInDB = object.get("password").toString();
+            String passInDB = object.get("password").toString();
+            if (BCrypt.checkPassword(passWord.getText(), passInDB)) {
+                id = studentID.getText();
+                new SceneSwitcher().switchSceneTo("resources/StudentControls/studentDashboard.fxml");
+            } else {
+                error.setVisible(true);
+                Shake.that(login);
+                Shake.play();
+                studentID.clear();
+                passWord.clear();
+            }
         } catch (Exception ne) {
-            System.out.println("Empty input!");
+            error.setVisible(true);
         }
-        if (studentExists && BCrypt.checkPassword(passWord.getText(), passInDB)) {
-            id = studentID.getText();
-            new SceneSwitcher().switchSceneTo("resources/StudentControls/studentDashboard.fxml");
-        } else error.setVisible(true);
     }
 
     @FXML

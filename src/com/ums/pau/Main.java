@@ -13,6 +13,7 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
     public static Stage rootStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("resources/splash.fxml"));
@@ -32,7 +33,8 @@ public class Main extends Application {
         primaryStage.show();
         new FlipInX(root).play();
     }
-    public static void main (String[]args) {
+
+    public static void main(String[] args) {
         launch(args);
     }
 }

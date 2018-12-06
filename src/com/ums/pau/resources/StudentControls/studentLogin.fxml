@@ -62,7 +62,7 @@
                 <Font size="15.0" />
             </font>
         </Hyperlink>
-        <Label fx:id="error" alignment="CENTER" layoutX="584.0" layoutY="474.0" prefHeight="24.0" prefWidth="137.0" style="-fx-background-color: #f5f5f5d1; -fx-background-radius: 20;" text="Wrong info!" textAlignment="CENTER" textFill="#f23131" wrapText="true" />
+        <Label fx:id="error" alignment="CENTER" layoutX="584.0" layoutY="474.0" prefHeight="24.0" visible="false" prefWidth="137.0" style="-fx-background-color: #f5f5f5d1; -fx-background-radius: 20;" text="Wrong info!" textAlignment="CENTER" textFill="#f23131" wrapText="true" />
       <ImageView fitHeight="150.0" fitWidth="239.0" layoutX="14.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../bin/pictures/logo.png" />

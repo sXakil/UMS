@@ -1,7 +1,6 @@
 package com.ums.pau;
 
 
-
 import animatefx.animation.FadeIn;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

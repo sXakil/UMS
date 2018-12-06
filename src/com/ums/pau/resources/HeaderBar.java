@@ -2,9 +2,9 @@ package com.ums.pau.resources;
 
 import com.ums.pau.Main;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -16,8 +16,14 @@ public class HeaderBar implements Initializable {
     public Label title;
     public Label icon;
     private Stage mainStage = Main.rootStage;
-    public void closeWindow() { mainStage.close(); }
-    public void minimizeWindow() { mainStage.setIconified(true); }
+
+    public void closeWindow() {
+        mainStage.close();
+    }
+
+    public void minimizeWindow() {
+        mainStage.setIconified(true);
+    }
 
     private static double xOffset = 0;
     private static double yOffset = 0;
@@ -27,6 +33,7 @@ public class HeaderBar implements Initializable {
         title.setStyle("-fx-font-family: LOBSTER; -fx-font-size: 20");
         icon.setStyle("-fx-font-family: Ubuntu; -fx-font-size: 25");
 
+        headerBar.setCursor(Cursor.HAND);
         headerBar.setOnMousePressed(event -> {
             xOffset = mainStage.getX() - event.getScreenX();
             yOffset = mainStage.getY() - event.getScreenY();

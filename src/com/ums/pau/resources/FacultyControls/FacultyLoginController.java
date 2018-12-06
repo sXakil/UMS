@@ -9,12 +9,13 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.ums.pau.BCrypt;
 import com.ums.pau.SceneSwitcher;
+import com.ums.pau.Shake;
 import com.ums.pau.resources.ForgottenPasswordPrompt;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 import java.io.IOException;
 import java.net.URL;
@@ -52,7 +53,13 @@ public class FacultyLoginController implements Initializable {
         }
         if (facultyExists && BCrypt.checkPassword(passWord.getText(), passInDB)) {
             new SceneSwitcher().switchSceneTo("resources/FacultyControls/facultyDashboard.fxml");
-        } else error.setVisible(true);
+        } else {
+            Shake.that(login);
+            Shake.play();
+            error.setVisible(true);
+            teacherID.clear();
+            passWord.clear();
+        }
     }
 
     public void forgotPass() throws IOException {
@@ -74,6 +81,5 @@ public class FacultyLoginController implements Initializable {
                 Bindings.isEmpty(teacherID.textProperty())
                         .or(Bindings.isEmpty(passWord.textProperty()))
         );
-        error.setVisible(false);
     }
 }

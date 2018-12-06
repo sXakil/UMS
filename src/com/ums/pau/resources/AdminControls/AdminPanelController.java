@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.ums.pau.SceneSwitcher;
+import com.ums.pau.Shake;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -33,6 +34,8 @@ public class AdminPanelController implements Initializable {
             new SceneSwitcher().switchSceneTo("resources/AdminControls/adminDashboard.fxml");
         }
         else {
+            Shake.that(login);
+            Shake.play();
             wrongID.setVisible(true);
             wrongPass.setVisible(true);
             adminID.clear();

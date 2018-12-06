@@ -1,6 +1,5 @@
 package com.ums.pau.resources;
 
-
 import com.ums.pau.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
