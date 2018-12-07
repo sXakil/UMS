@@ -52,13 +52,13 @@ public class StudentLoginController implements Initializable {
                 new SceneSwitcher().switchSceneTo("resources/StudentControls/studentDashboard.fxml");
             } else {
                 error.setVisible(true);
-                Shake.that(login);
-                Shake.play();
                 studentID.clear();
                 passWord.clear();
             }
         } catch (Exception ne) {
             error.setVisible(true);
+            Shake.that(login);
+            Shake.play();
         }
     }
 

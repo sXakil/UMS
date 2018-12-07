@@ -151,33 +151,33 @@ public class FacultyDashboardController implements Initializable {
             String dept = object.get("dept").toString();
             String gender = object.get("gender").toString();
 
-            HBox hb = new HBox();
-            hb.setId("hBox-list");
-            vBox.getChildren().add(hb);
+            HBox hBox = new HBox();
+            hBox.setId("hBox-list");
 
             Label lb1 = new Label(name);
             lb1.setId("nameItem");
-            hb.getChildren().add(lb1);
+            hBox.getChildren().add(lb1);
 
             Label lb2 = new Label(id);
             lb2.setId("item");
-            hb.getChildren().add(lb2);
+            hBox.getChildren().add(lb2);
 
             Label lb3 = new Label(dept);
             lb3.setId("item");
-            hb.getChildren().add(lb3);
+            hBox.getChildren().add(lb3);
 
             Label lb4 = new Label(gender);
             lb4.setId("item");
-            hb.getChildren().add(lb4);
+            hBox.getChildren().add(lb4);
 
             Pane sep = new Pane();
-            sep.setPrefHeight(1.0);
+            sep.setPrefHeight(0.5);
             sep.setPrefWidth(596.0);
             sep.setId("sep-pane");
-            vBox.getChildren().add(sep);
 
-            hb.setOnMouseClicked(t -> editorFill(id));
+            vBox.getChildren().addAll(hBox, sep);
+
+            hBox.setOnMouseClicked(t -> editorFill(id));
         }
     }
 
@@ -246,9 +246,9 @@ public class FacultyDashboardController implements Initializable {
         String id = selectedID;
         int roll = Integer.parseInt(id.substring(3,6));
         roll++;
-        if(roll > 99) id = id.substring(0,3) + String.valueOf(roll) + id.substring(6, 9);
-        else if(roll > 9) id = id.substring(0,3) + "0" + String.valueOf(roll) + id.substring(6, 9);
-        else id = id.substring(0,3) + "00" + String.valueOf(roll) + id.substring(6, 9);
+        if(roll > 99) id = id.substring(0,3) + roll + id.substring(6, 9);
+        else if(roll > 9) id = id.substring(0,3) + "0" + roll + id.substring(6, 9);
+        else id = id.substring(0,3) + "00" + roll + id.substring(6, 9);
         editorFill(id);
         selectedID = id;
     }

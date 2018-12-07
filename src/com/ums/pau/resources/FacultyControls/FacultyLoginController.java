@@ -49,7 +49,7 @@ public class FacultyLoginController implements Initializable {
             passInDB = object.get("password").toString();
             facName = object.get("name").toString();
         } catch (Exception ne) {
-            ne.printStackTrace();
+            error.setVisible(true);
         }
         if (facultyExists && BCrypt.checkPassword(passWord.getText(), passInDB)) {
             new SceneSwitcher().switchSceneTo("resources/FacultyControls/facultyDashboard.fxml");

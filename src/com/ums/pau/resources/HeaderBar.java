@@ -1,6 +1,8 @@
 package com.ums.pau.resources;
 
+import animatefx.animation.RollIn;
 import com.ums.pau.Main;
+import com.ums.pau.Shake;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -42,5 +44,10 @@ public class HeaderBar implements Initializable {
             mainStage.setX(event.getScreenX() + xOffset);
             mainStage.setY(event.getScreenY() + yOffset);
         });
+
+        Shake.that(title);
+        title.setOnMouseEntered(e -> Shake.play());
+        icon.setOnMouseEntered(e -> new RollIn(icon).play());
+
     }
 }

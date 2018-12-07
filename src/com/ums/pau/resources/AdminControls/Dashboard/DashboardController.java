@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,6 +34,7 @@ public class DashboardController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
         stage.setTitle("Faculties");
         facList = stage;
@@ -43,8 +46,9 @@ public class DashboardController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Students");
+        stage.setResizable(false);
         studList = stage;
         stage.show();
     }
