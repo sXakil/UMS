@@ -15,7 +15,6 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 
 import java.io.IOException;
 import java.net.URL;
