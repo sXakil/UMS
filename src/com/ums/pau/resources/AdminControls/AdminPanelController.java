@@ -34,8 +34,7 @@ public class AdminPanelController implements Initializable {
             new SceneSwitcher().switchSceneTo("resources/AdminControls/adminDashboard.fxml");
         }
         else {
-            Shake.that(login);
-            Shake.play();
+            new Shake(login).play();
             wrongID.setVisible(true);
             wrongPass.setVisible(true);
             adminID.clear();

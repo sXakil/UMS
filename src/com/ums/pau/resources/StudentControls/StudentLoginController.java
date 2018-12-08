@@ -57,8 +57,7 @@ public class StudentLoginController implements Initializable {
             }
         } catch (Exception ne) {
             error.setVisible(true);
-            Shake.that(login);
-            Shake.play();
+            new Shake(login).play();
         }
     }
 

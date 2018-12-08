@@ -53,8 +53,7 @@ public class FacultyLoginController implements Initializable {
         if (facultyExists && BCrypt.checkPassword(passWord.getText(), passInDB)) {
             new SceneSwitcher().switchSceneTo("resources/FacultyControls/facultyDashboard.fxml");
         } else {
-            Shake.that(login);
-            Shake.play();
+            new Shake(login).play();
             error.setVisible(true);
             teacherID.clear();
             passWord.clear();

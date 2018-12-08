@@ -11,7 +11,7 @@ public class Shake {
     private static Timeline timeline;
     private static Interpolator EASE = Interpolator.SPLINE(0.25D, 0.1D, 0.25D, 1.0D);
 
-    public static void that(Node node) {
+    public Shake(Node node) {
         timeline = new Timeline(
                 new KeyFrame(Duration.millis(0.0D),
                         new KeyValue(node.translateXProperty(), 0, EASE)),
@@ -25,7 +25,7 @@ public class Shake {
                         new KeyValue(node.translateXProperty(), 0, EASE)));
     }
 
-    public static void play() {
+    public void play() {
         timeline.play();
     }
 }
