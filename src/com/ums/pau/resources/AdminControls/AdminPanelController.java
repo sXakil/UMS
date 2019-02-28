@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.ums.pau.SceneSwitcher;
 import com.ums.pau.Shake;
 import javafx.beans.binding.Bindings;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
@@ -14,12 +15,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminPanelController implements Initializable {
-    public JFXTextField adminID;
-    public JFXPasswordField adminPass;
-    public Label wrongPass;
-    public Label wrongID;
-    public Label wrongIDFormat;
-    public JFXButton login;
+    @FXML
+    private JFXTextField adminID;
+    @FXML
+    private JFXPasswordField adminPass;
+    @FXML
+    private Label wrongPass;
+    @FXML
+    private Label wrongID;
+    @FXML
+    private Label wrongIDFormat;
+    @FXML
+    private JFXButton login;
 
     public void backToHome() throws IOException {
         new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
@@ -30,10 +37,9 @@ public class AdminPanelController implements Initializable {
         wrongID.setVisible(false);
         wrongPass.setVisible(false);
         //TODO: Add admins
-        if(adminID.getText().equals("a") || adminPass.getText().equals("adminPassword")) {
+        if (adminID.getText().equals("a") || adminPass.getText().equals("adminPassword")) {
             new SceneSwitcher().switchSceneTo("resources/AdminControls/adminDashboard.fxml");
-        }
-        else {
+        } else {
             new Shake(login).play();
             wrongID.setVisible(true);
             wrongPass.setVisible(true);
@@ -45,7 +51,7 @@ public class AdminPanelController implements Initializable {
     public void validateEmail() {
         wrongID.setVisible(false);
         wrongPass.setVisible(false);
-        if(adminID.getText().length() > 3 &&
+        if (adminID.getText().length() > 3 &&
                 !adminID.getText().substring(0, 3).equals("__@")) {
             wrongIDFormat.setVisible(true);
         } else {

@@ -2,6 +2,7 @@ package com.ums.pau.resources.AdminControls;
 
 import animatefx.animation.Bounce;
 import com.ums.pau.SceneSwitcher;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;
@@ -11,7 +12,8 @@ import java.util.ResourceBundle;
 
 public class AdminDashboardController implements Initializable {
 
-    public StackPane stackPane;
+    @FXML
+    private StackPane stackPane;
     public static boolean modStudent = false;
     public static boolean modFaculty = false;
     @Override

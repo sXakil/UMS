@@ -2,15 +2,16 @@ package com.ums.pau.resources.FacultyControls;
 
 import com.jfoenix.controls.*;
 import com.mongodb.*;
-import com.mongodb.client.MongoCollection;
+import com.ums.pau.DBModels.NewResult;
 import com.ums.pau.SceneSwitcher;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import org.bson.Document;
 import java.io.IOException;
 import java.net.URL;
+import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 import static com.ums.pau.DatabaseHandler.*;
@@ -18,25 +19,41 @@ import static com.ums.pau.DatabaseHandler.*;
 
 public class FacultyDashboardController implements Initializable {
 
-    public VBox vBox;
-    public Label nameLab;
-    public JFXTextField searchToEdit;
-    public JFXComboBox<String> semCB;
-    public Pane prevPane;
-    public JFXTextField idTF;
-    public JFXTextField courseTF;
-    public JFXButton resultBTN;
-    public VBox resultVBox;
-    public JFXCheckBox c3, c1;
-    private static boolean isValid = false;
-    public Label failed, success;
-    public JFXTextField markTF;
-    public JFXTextArea commentTF;
-    public Label facName;
-    public Label idNotFound;
-    public JFXButton nextStud;
+    @FXML
+    private VBox vBox;
+    @FXML
+    private Label nameLab;
+    @FXML
+    private JFXTextField searchToEdit;
+    @FXML
+    private JFXComboBox<String> semCB;
+    @FXML
+    private Pane prevPane;
+    @FXML
+    private JFXTextField idTF;
+    @FXML
+    private JFXTextField courseTF;
+    @FXML
+    private JFXButton resultBTN;
+    @FXML
+    private VBox resultVBox;
+    @FXML
+    private JFXCheckBox c3, c1;
+    @FXML
+    private Label failed, success;
+    @FXML
+    private JFXTextField markTF;
+    @FXML
+    private JFXTextArea commentTF;
+    @FXML
+    private Label facName;
+    @FXML
+    private Label idNotFound;
+    @FXML
+    private JFXButton nextStud;
 
     private static String selectedID;
+    private static boolean isValid;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,7 +78,7 @@ public class FacultyDashboardController implements Initializable {
         idNotFound.setVisible(false);
         nextStud.setDisable(false);
         DBCollection collection = getFrom("students");
-        BasicDBObject dbObject = new BasicDBObject("id", id);
+        BasicDBObject dbObject = new BasicDBObject("id", Integer.parseInt(id));
         DBCursor cursor = collection.find(dbObject);
         try {
             DBObject object = cursor.next();
@@ -94,7 +111,7 @@ public class FacultyDashboardController implements Initializable {
                     if (i == 1) semCB.getItems().add("2nd");
                     if (i > 1) {
                         resultVBox.getChildren().add(p);
-                        semCB.getItems().add( i == 2 ? "3rd" : i + "th");
+                        semCB.getItems().add(i == 2 ? "3rd" : i + "th");
                     }
                     VBox.setMargin(hBox, new Insets(25, 0, 0, 0));
                     resultVBox.getChildren().add(hBox);
@@ -195,26 +212,29 @@ public class FacultyDashboardController implements Initializable {
             resultBTN.setDisable(false);
             System.out.println(check.get("course_code").toString() + " " + courseTF.getText());
         } else {
-            MongoCollection<Document> grades = insertInto("results");
-            BasicDBObject dbObject = new BasicDBObject("id", idTF.getText())
-                    .append("semester", semCB.getSelectionModel().getSelectedItem())
-                    .append("course_code", courseTF.getText().toUpperCase().replaceAll("[ \\-]", ""))
-                    .append("mark", markTF.getText())
-                    .append("course_credit", c3.isSelected() ? "3" : "1")
-                    .append("comment", commentTF.getText() == null ? "" : commentTF.getText())
-                    .append("added_by", FacultyLoginController.facName);
-            Document doc = new Document(dbObject);
-            grades.insertOne(doc);
-            editorFill(idTF.getText());
-            semCB.getSelectionModel().clearSelection();
-            courseTF.clear();
-            markTF.clear();
-            resultBTN.setDisable(true);
-            success.setVisible(true);
+            try {
+                NewResult newResult = new NewResult(
+                        Integer.parseInt(idTF.getText()),
+                        semCB.getSelectionModel().getSelectedItem(),
+                        courseTF.getText(),
+                        Double.parseDouble(markTF.getText()),
+                        c3.isSelected(),
+                        commentTF.getText(),
+                        FacultyLoginController.facName
+                );
+                newResult.insert();
+                editorFill(idTF.getText());
+                semCB.getSelectionModel().clearSelection();
+                courseTF.clear();
+                markTF.clear();
+                resultBTN.setDisable(true);
+                success.setVisible(true);
+                failed.setVisible(false);
+            } catch (InputMismatchException e) {
+                failed.setVisible(true);
+            }
         }
     }
-
-
     public void isThree() {
         if (!c3.isSelected())
             c1.setSelected(true);
@@ -240,15 +260,17 @@ public class FacultyDashboardController implements Initializable {
         else resultBTN.setDisable(true);
     }
 
-    public void logOut() throws IOException { new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml"); }
+    public void logOut() throws IOException {
+        new SceneSwitcher().switchSceneTo("resources/LandingControls/landing.fxml");
+    }
 
     public void nextStudent() {
         String id = selectedID;
-        int roll = Integer.parseInt(id.substring(3,6));
+        int roll = Integer.parseInt(id.substring(3, 6));
         roll++;
-        if(roll > 99) id = id.substring(0,3) + roll + id.substring(6, 9);
-        else if(roll > 9) id = id.substring(0,3) + "0" + roll + id.substring(6, 9);
-        else id = id.substring(0,3) + "00" + roll + id.substring(6, 9);
+        if (roll > 99) id = id.substring(0, 3) + roll + id.substring(6, 9);
+        else if (roll > 9) id = id.substring(0, 3) + "0" + roll + id.substring(6, 9);
+        else id = id.substring(0, 3) + "00" + roll + id.substring(6, 9);
         editorFill(id);
         selectedID = id;
     }

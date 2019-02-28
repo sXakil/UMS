@@ -11,6 +11,7 @@ import com.ums.pau.resources.ForgottenPasswordPrompt;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

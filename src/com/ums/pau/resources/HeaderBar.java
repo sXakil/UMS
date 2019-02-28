@@ -2,20 +2,26 @@ package com.ums.pau.resources;
 
 import com.ums.pau.Main;
 import com.ums.pau.Shake;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HeaderBar implements Initializable {
-    public ToolBar headerBar;
-    public Label title;
-    public Label icon;
-    public Button minimize, close;
+    @FXML
+    private ToolBar headerBar;
+    @FXML
+    private Label title;
+    @FXML
+    private Label icon;
+    @FXML
+    private Button minimize, close;
 
     private Stage mainStage = Main.rootStage;
 
