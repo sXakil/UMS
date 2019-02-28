@@ -77,10 +77,10 @@ public class FacultyDashboardController implements Initializable {
         success.setVisible(false);
         idNotFound.setVisible(false);
         nextStud.setDisable(false);
-        DBCollection collection = getFrom("students");
-        BasicDBObject dbObject = new BasicDBObject("id", Integer.parseInt(id));
-        DBCursor cursor = collection.find(dbObject);
         try {
+            DBCollection collection = getFrom("students");
+            BasicDBObject dbObject = new BasicDBObject("id", id);
+            DBCursor cursor = collection.find(dbObject);
             DBObject object = cursor.next();
             prevPane.setVisible(true);
             nameLab.setText(object.get("name").toString());
@@ -210,11 +210,10 @@ public class FacultyDashboardController implements Initializable {
             failed.setVisible(true);
             resultBTN.setText("Try Again");
             resultBTN.setDisable(false);
-            System.out.println(check.get("course_code").toString() + " " + courseTF.getText());
         } else {
             try {
                 NewResult newResult = new NewResult(
-                        Integer.parseInt(idTF.getText()),
+                        idTF.getText(),
                         semCB.getSelectionModel().getSelectedItem(),
                         courseTF.getText(),
                         Double.parseDouble(markTF.getText()),

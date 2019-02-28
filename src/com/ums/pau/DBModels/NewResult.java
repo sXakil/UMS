@@ -6,7 +6,7 @@ import org.bson.Document;
 import static com.ums.pau.DatabaseHandler.insertInto;
 
 public class NewResult {
-    private int id;
+    private String id;
     private String semester;
     private String courseCode;
     private double mark;
@@ -15,7 +15,7 @@ public class NewResult {
     private String addedBy;
 
     public NewResult(
-            int id,
+            String id,
             String semester,
             String courseCode,
             double mark,
