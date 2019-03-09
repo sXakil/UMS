@@ -37,7 +37,7 @@ public class AdminPanelController implements Initializable {
         wrongID.setVisible(false);
         wrongPass.setVisible(false);
         //TODO: Add admins
-        if (adminID.getText().equals("a") || adminPass.getText().equals("adminPassword")) {
+        if (adminID.getText().equals("root") || adminPass.getText().equals("toor")) {
             new SceneSwitcher().switchSceneTo("resources/AdminControls/adminDashboard.fxml");
         } else {
             new Shake(login).play();
