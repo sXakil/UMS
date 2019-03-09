@@ -2,7 +2,7 @@
 First-year Project for my Java OOP course, made with JavaFX, JFOENIX and MongoDB.
 
 # Screenshots
-Welcome Page
+A transparent splash screen is followed by the landing page. The header is custom, green button is for minimizing and the red is for exiting the application.
 ![Screenshot](src/com/ums/pau/bin/pictures/readme/welcome.png)
 
 # Admin Login
